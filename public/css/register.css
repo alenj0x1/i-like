@@ -1,0 +1,17 @@
+.hr-btn:nth-child(1) {
+  display: none;
+}
+
+.subt {
+  margin-bottom: 0;
+}
+
+.fm-btn {
+  width: 70%;
+}
+
+/* Utils */
+.link {
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+}

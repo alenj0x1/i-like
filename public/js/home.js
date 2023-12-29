@@ -17,14 +17,14 @@ btnMenu.addEventListener('click', (e) => {
   if (hrMenu.classList.contains('hidden')) {
     hrMenu.classList.remove('hidden')
 
-    // Apply blur
+    // Hidden main content
     document.querySelector('main').classList.add('hidden')
     return
   }
 
   hrMenu.classList.add('hidden')
 
-  // Remove blur
+  // Show main content
   document.querySelector('main').classList.remove('hidden')
 })
 

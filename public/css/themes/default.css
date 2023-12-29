@@ -58,6 +58,10 @@ a {
   border-radius: 15px;
 }
 
+.hr-btn-tag {
+  display: none;
+}
+
 .hr-mn {
   position: absolute;
   left: 0;
@@ -113,4 +117,63 @@ a {
   pointer-events: none;
 
   transition-duration: 200ms;
+}
+
+
+/* Desktop */
+@media (min-width: 768px) {
+  /* Includes */
+  .hr-nv {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+
+  .hr-mn {
+    display: flex;
+    margin: 0;
+    position: initial;
+
+    background-color: initial;
+
+    border: initial;
+
+    opacity: 1;
+  }
+
+  .hr-mn li {
+    margin: 0 10px;
+    padding: 0;
+  
+    border: none;
+  }
+
+  #hr-btn-mn {
+    display: none; 
+  }
+
+  .hr-btn {
+    padding-left: 15px;
+    cursor: pointer;
+  }
+
+  .hr-btn-tag {
+    display: initial;
+    padding: 10px;
+  }
+
+  /* Utils */
+  .hr-link {
+    display: inline;
+  }
+
+  .hr-link:hover,
+  .hr-btn:hover {
+    opacity: 0.9;
+  }
+
+  .hr-link:active,
+  .hr-btn:active {
+    opacity: 0.8;
+  }
 }

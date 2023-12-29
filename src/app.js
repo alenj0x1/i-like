@@ -3,6 +3,7 @@ import './database/index'
 import express from 'express'
 import morgan from 'morgan'
 import homeRoutes from './routes/home.routes'
+import loginRoutes from './routes/login.routes'
 const SERVER_PORT = process.env.SERVER_PORT || 3001
 
 const app = express()
@@ -19,5 +20,6 @@ app.set('view engine', 'pug')
 
 // Routes
 app.use(homeRoutes)
+app.use(loginRoutes)
 
 export default app

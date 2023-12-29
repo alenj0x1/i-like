@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="css/normalize.css")
+    link(rel="stylesheet", href="css/themes/default.css")
+    link(rel="stylesheet", href="css/login.css")
+    title Login / i like!
+  body 
+    include includes/header.pug
+
+    main 
+      form(action="/login", method="post" class='fm')
+        h2 Login
+        label(for="name" class='label' class="fm-lb") Username
+          input(type="text" name="name" id="user-name" class="fm-i" required)
+        label(for="password" class="fm-lb") Password
+          input(type="password" name="password" id="user-password" class="fm-i" required)
+
+        button(type="submit" class='fm-btn') Sign in
+    
+    script(src="js/home.js")

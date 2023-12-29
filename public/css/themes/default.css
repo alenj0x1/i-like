@@ -3,12 +3,15 @@
 /* Customization */
 :root {
   --background-color: rgb(15, 15, 15);
+  
+  --btn-color: rgba(223, 176, 255, 0.3);
 
   --font-family: 'Quicksand', sans-serif;
   --font-color: rgb(224, 176, 255);
 
   --border-color: rgb(224, 176, 255, 0.7);
   --border: 2px solid var(--border-color);
+  --border-semilight: 2px solid rgb(224, 176, 255, .3);
   --border-light: 2px solid rgb(224, 176, 255, .05);
 }
 
@@ -23,11 +26,69 @@ body {
 }
 
 h1,
+h2,
 button,
-a {
+a,
+label{
   font-family: var(--font-family);
 
   color: var(--font-color);
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+.fm {
+  display: flex;
+  width: 60%;
+  padding: 40px;
+  flex-direction: column;
+}
+
+.fm-lb {
+  margin-bottom: 30px;
+
+  font-size: 1.1;
+}
+
+.fm-i {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  padding-left: 20px;
+
+  color: var(--font-color);
+  background-color: transparent;
+  
+  border: var(--border-light);
+  border-radius: 10px;
+}
+
+.fm-i:focus {
+  outline: none;
+
+  border: var(--border-semilight);
+}
+
+.fm-btn {
+  width: 60%;
+  padding: 10px 30px;
+
+  background-color: transparent;
+
+  border-radius: 5px;
+  border: var(--border-light);
+
+  cursor: not-allowed;
+}
+
+.fm:valid .fm-btn {
+  background-color: var(--btn-color);
+  color: white;
+
+  cursor: pointer;
 }
 
 /* Includes */
@@ -56,6 +117,8 @@ a {
 
   border: var(--border);
   border-radius: 15px;
+
+  text-decoration: none;
 }
 
 .hr-btn-tag {
@@ -122,6 +185,16 @@ a {
 
 /* Desktop */
 @media (min-width: 768px) {
+  /* Main styles */
+  main {
+    display: flex;
+    justify-content: center;
+  }
+
+  .fm {
+    width: 500px;
+  }
+
   /* Includes */
   .hr-nv {
     display: flex;

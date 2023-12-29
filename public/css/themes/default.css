@@ -2,7 +2,7 @@
 
 /* Customization */
 :root {
-  --background-color: rgb(15, 15, 15);
+  --background-color: rgba(20, 20, 20);
   
   --btn-color: rgba(223, 176, 255, 0.3);
 
@@ -13,6 +13,8 @@
   --border: 2px solid var(--border-color);
   --border-semilight: 2px solid rgb(224, 176, 255, .3);
   --border-light: 2px solid rgb(224, 176, 255, .05);
+
+  --blur: 15px;
 }
 
 /* Main styles */
@@ -96,14 +98,16 @@ label{
 .hr {
   display: flex;
   position: relative;
-  padding: 0 20px;
+  padding: 5px 20px;
   align-items: center;
   justify-content: space-between;
+
+  background-color: var(--background-color);
 }
 
 .hr-icon {
-  height: 20px;
-  width: 20px;
+  height: 28px;
+  width: 28px;
 
   fill: currentColor;
 
@@ -115,8 +119,8 @@ label{
   padding: 10px;
 
   background-color: transparent;
+  border: none;
 
-  border: var(--border);
   border-radius: 15px;
 
   text-decoration: none;
@@ -130,11 +134,12 @@ label{
   position: absolute;
   left: 0;
   right: 0;
-  margin: 20px 30px;
+  margin: 40px;
   padding-left: 0;
-  padding: 15px;
+  padding: 30px 15px;
+  text-align: center;
 
-  background-color: rgba(255, 255, 255, 0.137);
+  background-color: var(--background-color);
 
   border-radius: 10px;
   border: var(--border);
@@ -182,7 +187,6 @@ label{
 
   transition-duration: 200ms;
 }
-
 
 /* Desktop */
 @media (min-width: 768px) {
@@ -234,6 +238,11 @@ label{
   .hr-btn-tag {
     display: initial;
     padding: 10px;
+  }
+
+  .hr-icon {
+    height: 20px;
+    width: 20px;
   }
 
   /* Utils */

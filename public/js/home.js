@@ -14,10 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 btnMenu.addEventListener('click', (e) => {
-  if (hrMenu.classList.contains('hidden'))
-    return hrMenu.classList.remove('hidden')
+  if (hrMenu.classList.contains('hidden')) {
+    hrMenu.classList.remove('hidden')
+
+    // Apply blur
+    document.querySelector('main').classList.add('hidden')
+    return
+  }
 
   hrMenu.classList.add('hidden')
+
+  // Remove blur
+  document.querySelector('main').classList.remove('hidden')
 })
 
 // Changes body image every 3 seconds, iterating over 'backgrounds'

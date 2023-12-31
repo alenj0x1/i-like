@@ -31,4 +31,11 @@ app.use('/login', authenticate, loginRoutes)
 app.use('/register', authenticate, registerRoutes)
 app.use('/home', authenticate, homeRoutes)
 
+app.get('/logout', authenticate, (req, res) => {
+  if (req.cookies.token) {
+    res.clearCookie('token')
+    res.redirect('/')
+  }
+})
+
 export default app

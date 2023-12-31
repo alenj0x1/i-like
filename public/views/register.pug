@@ -6,7 +6,7 @@ html(lang="en")
     link(rel="stylesheet", href="css/normalize.css")
     link(rel="stylesheet", href="css/themes/default.css")
     link(rel="stylesheet", href="css/register.css")
-    title Register / i like!
+    title Create a account / i like!
   body 
     include includes/header.pug
 
@@ -14,17 +14,20 @@ html(lang="en")
       form(action="/register", method="post" class='fm')
         h2(class='subt') Create a account
         a(href='/login' class='link') Or are you trying to login?
-        label(for="name" class='label' class="fm-lb") Username
-          input(type="text" name="name" id="user-name" class="fm-i" required)
-        label(for="name" class='label' class="fm-lb") Display name
-          input(type="text" name="name" id="user-display-name" class="fm-i" required)
-        label(for="password" class="fm-lb") Password
-          input(type="password" name="password" id="user-password" class="fm-i" required)
-        label(for="password" class="fm-lb") Confirm password
-          input(type="password" name="password" id="user-password-confirm" class="fm-i" required)
-        label(for="password" class="fm-lb") Password hint
-          input(type="password" name="password" id="user-password-hint" class="fm-i")
+        
+        label(for="user_username" class='label' class="fm-lb") Username
+          input(type="text" name="user_username" id="user_username" class="fm-i" required)
+        label(for="user_display_name" class='label' class="fm-lb") Display name
+          input(type="text" name="user_display_name" id="user_display_name" class="fm-i" required)
+        label(for="user_password" class="fm-lb") Password
+          input(type="password" name="user_password" id="user_password" class="fm-i" required)
+        label(for="user_password_confirm" class="fm-lb") Confirm password
+          input(type="password" name="user_password_confirm" id="user_password_confirm" class="fm-i" required)
+        label(for="user_password_hint" class="fm-lb") Password hint
+          input(type="text" name="user_password_hint" id="user_password_hint" class="fm-i")
 
         button(type="submit" class='fm-btn') Create my account
     
-    script(src="js/home.js")
+    script(src="js/lib/changeBackground.js")
+    script(src="js/lib/hrMenu.js")
+    script(src="js/register.js")

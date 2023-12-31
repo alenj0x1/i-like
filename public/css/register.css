@@ -7,11 +7,18 @@
 }
 
 .fm-btn {
-  width: 70%;
+  width: 90%;
 }
 
 /* Utils */
 .link {
   margin-bottom: 30px;
   font-size: 0.9rem;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .fm-btn {
+    width: 50%;
+  }
 }

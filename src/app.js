@@ -14,6 +14,8 @@ app.use(express.static('public'))
 
 app.set('port', SERVER_PORT)
 app.use(morgan('dev'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 // Pug engine
 app.set('views', 'public/views')

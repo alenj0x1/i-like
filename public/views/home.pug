@@ -7,6 +7,8 @@ html(lang="en")
     link(rel="stylesheet", href="css/themes/default.css")
     link(rel="stylesheet", href="css/home.css")
     title i like!
-  body 
-    h2='Hello ' + user.display_name
-    script(src="js/lib/changeBackground.js")
+  body
+    include includes/header_logged.pug
+    main
+      h2='Hello ' + user.display_name
+    script(src="js/lib/hrMenu.js")

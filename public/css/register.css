@@ -1,9 +1,22 @@
-.subt {
-  margin-bottom: 0;
+.fm-btn {
+  width: 70%;
 }
 
-.fm-btn {
-  width: 90%;
+.fm-lb:nth-child(2) {
+  width: 50%;
+}
+
+.fm-lb:nth-child(3) {
+  width: 60%;
+}
+
+.fm-lb:nth-child(4),
+.fm-lb:nth-child(5) {
+  width: 70%;
+}
+
+.fm-lb:nth-child(6) {
+  width: 50%;
 }
 
 /* Utils */

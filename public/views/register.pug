@@ -13,8 +13,7 @@ html(lang="en")
     main 
       form(action="/register", method="post" class='fm')
         h2(class='subt') Create a account
-        a(href='/login' class='link') Or are you trying to login?
-        
+
         label(for="user_username" class='label' class="fm-lb") Username
           input(type="text" name="user_username" id="user_username" class="fm-i" required)
         label(for="user_display_name" class='label' class="fm-lb") Display name
@@ -28,6 +27,5 @@ html(lang="en")
 
         button(type="submit" class='fm-btn') Create my account
     
-    script(src="js/lib/changeBackground.js")
     script(src="js/lib/hrMenu.js")
     script(src="js/register.js")

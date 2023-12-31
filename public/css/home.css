@@ -1,0 +1,9 @@
+.hr-btn:nth-child(1) {
+  display: initial;
+}
+
+@media (min-width: 768px) {
+  .hr-mn li:nth-child(1) {
+    display: initial;
+  }
+}

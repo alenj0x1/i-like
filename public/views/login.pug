@@ -12,14 +12,13 @@ html(lang="en")
 
     main 
       form(action="/login", method="post" class='fm')
-        h2(class='subt') Login
+        h2(class='subt') Sign in
         label(for="user_username" class='label' class="fm-lb") Username
           input(type="text" name="user_username" id="user_username" class="fm-i" required)
         label(for="user_password" class="fm-lb") Password
           input(type="password" name="user_password" id="user_password" class="fm-i" required)
 
-        button(type="submit" class='fm-btn') Sign in
+        button(type="submit" class='fm-btn') let's go!
     
-    script(src="js/lib/changeBackground.js")
     script(src="js/lib/hrMenu.js")
     script(src="js/login.js")

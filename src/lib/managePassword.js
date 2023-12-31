@@ -4,6 +4,6 @@ export function hashPassword(password) {
   return hashSync(password, 10)
 }
 
-export function comparePasword(password, hash) {
+export function comparePassword(password, hash) {
   return compareSync(password, hash)
 }

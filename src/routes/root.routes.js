@@ -2,7 +2,7 @@ import { Router } from 'express'
 const router = Router()
 
 router.get('/', (_req, res) => {
-  res.render('home')
+  res.render('root')
 })
 
 export default router

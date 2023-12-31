@@ -2,7 +2,7 @@ import 'dotenv/config'
 import './database/index'
 import express from 'express'
 import morgan from 'morgan'
-import homeRoutes from './routes/home.routes'
+import rootRoutes from './routes/root.routes'
 import loginRoutes from './routes/login.routes'
 import registerRoutes from './routes/register.routes'
 const SERVER_PORT = process.env.SERVER_PORT || 3001
@@ -22,7 +22,7 @@ app.set('views', 'public/views')
 app.set('view engine', 'pug')
 
 // Routes
-app.use(homeRoutes)
+app.use(rootRoutes)
 app.use(loginRoutes)
 app.use(registerRoutes)
 

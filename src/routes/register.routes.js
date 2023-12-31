@@ -3,11 +3,11 @@ import User from '../database/models/User.models'
 import { hashPassword } from '../lib/managePassword'
 const router = Router()
 
-router.get('/register', (_req, res) => {
+router.get('/', (_req, res) => {
   res.render('register')
 })
 
-router.post('/register', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const {
       user_username,

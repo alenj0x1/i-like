@@ -4,11 +4,11 @@ import { comparePassword } from '../lib/managePassword'
 import { createToken } from '../lib/manageToken'
 const router = Router()
 
-router.get('/login', (_req, res) => {
+router.get('/', (_req, res) => {
   res.render('login')
 })
 
-router.post('/login', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const { user_username, user_password } = req.body
     if (!user_username) throw Error('user_required')
@@ -27,6 +27,7 @@ router.post('/login', async (req, res) => {
       secure: true,
       maxAge: process.env.TOKEN_COOKIE_MAXAGE,
     })
+
     res.status(200).json({ ok: true })
   } catch (err) {
     res.status(404).json({ err: err.message })

@@ -1,7 +1,8 @@
 import { Router } from 'express'
+import { authenticate } from '../middlewares/authenticate.middlewares'
 const router = Router()
 
-router.get('/', (_req, res) => {
+router.get('/', authenticate, (_req, res) => {
   res.render('root')
 })
 

@@ -10,5 +10,13 @@ export function createToken(user) {
 }
 
 export function validateToken(token) {
-  return verify(token, process.env.JWT_SECRET_KEY)
+  try {
+    const validation = verify(token, process.env.JWT_SECRET_KEY)
+
+    if (!validation) return { result: false, data: null }
+
+    return { result: true, data: verify(token, process.env.JWT_SECRET_KEY) }
+  } catch (err) {
+    return { result: false, err: err.message }
+  }
 }

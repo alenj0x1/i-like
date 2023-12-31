@@ -23,9 +23,10 @@ fm.addEventListener('submit', async (e) => {
   if (result.ok) {
     alert.textContent = 'User logged correctly. Coming soon.'
   } else {
-    if (result.err === 'username_or_password_incorrect') {
-      alert.textContent = 'Username or password incorrect.'
-    }
+    if (result.err === 'username_or_password_incorrect')
+      return (alert.textContent = 'Username or password incorrect.')
+
+    alert.textContent = 'An unexpected error has occurred.'
   }
 
   document.querySelector('body').append(alert)

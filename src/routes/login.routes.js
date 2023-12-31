@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import User from '../database/models/User.models'
 import { comparePassword } from '../lib/managePassword'
+import { createToken } from '../lib/manageToken'
 const router = Router()
 
 router.get('/login', (_req, res) => {
@@ -17,9 +18,15 @@ router.post('/login', async (req, res) => {
     if (!getUser) throw Error('username_or_password_incorrect')
 
     const comparePasswords = comparePassword(user_password, getUser.password)
-    console.log(comparePasswords)
     if (!comparePasswords) throw Error('username_or_password_incorrect')
 
+    const token = createToken(getUser.toJSON())
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      maxAge: process.env.TOKEN_COOKIE_MAXAGE,
+    })
     res.status(200).json({ ok: true })
   } catch (err) {
     res.status(404).json({ err: err.message })

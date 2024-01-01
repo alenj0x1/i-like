@@ -1,0 +1,18 @@
+body {
+  overflow: hidden;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+.gif {
+  height: 300px;
+  width: 300px;
+  margin: 40px;
+}

@@ -22,6 +22,10 @@ const User = new Schema(
       type: Array,
       default: [],
     },
+    roles: {
+      type: Array,
+      required: true,
+    },
   },
   {
     timestamps: true,

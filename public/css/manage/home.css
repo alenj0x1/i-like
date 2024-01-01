@@ -1,0 +1,52 @@
+.hr-btn:nth-child(1) {
+  display: initial;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.card {
+  display: flex;
+  height: 200px;
+  width: 400px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  text-decoration: none;
+
+  background-color: var(--background-color-btn);
+
+  border: var(--border-light);
+}
+
+.card:hover {
+  opacity: 0.8;
+}
+
+.card:active {
+  opacity: 0.6;
+}
+
+.subt {
+  margin: 0;
+}
+
+.para {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 500;
+
+  color: var(--font-color-light);
+}
+
+@media (min-width: 768px) {
+  .hr-mn li:nth-child(1) {
+    display: initial;
+  }
+}

@@ -36,7 +36,9 @@ h2,
 button,
 a,
 label,
-span {
+span,
+table,
+td {
   font-family: var(--font-family);
 }
 

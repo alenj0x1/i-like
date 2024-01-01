@@ -7,7 +7,9 @@ import rootRoutes from './routes/root.routes'
 import loginRoutes from './routes/login.routes'
 import registerRoutes from './routes/register.routes'
 import homeRoutes from './routes/home.routes'
+import manageRoutes from './routes/manage.routes'
 import { authenticate } from './middlewares/authenticate.middlewares'
+import { restricted } from './middlewares/restricted.middlewares'
 const SERVER_PORT = process.env.SERVER_PORT || 3001
 
 const app = express()
@@ -36,6 +38,12 @@ app.get('/logout', authenticate, (req, res) => {
     res.clearCookie('token')
     res.redirect('/')
   }
+})
+
+app.use('/manage', [authenticate, restricted], manageRoutes)
+
+app.all('*', (_req, res) => {
+  res.render('404')
 })
 
 export default app

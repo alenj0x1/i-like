@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
       display_name: user_display_name,
       password: hashPassword(user_password),
       password_hint: user_password_hint,
+      roles: ['user'],
     })
     await newUser.save()
 

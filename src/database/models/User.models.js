@@ -20,11 +20,19 @@ const User = new Schema(
     },
     like: {
       type: Array,
-      default: [],
+      default: [], // Coming soon
     },
     roles: {
       type: Array,
-      required: true,
+      required: true, // "admin", "mod", 'support", "user"
+    },
+    status: {
+      type: Boolean,
+      default: true, // "true: connected", "false: disconnected"
+    },
+    account_status: {
+      type: String,
+      default: 'good', // "good", ,"muted', "banned"
     },
   },
   {

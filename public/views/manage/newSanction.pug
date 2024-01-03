@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../../css/normalize.css")
+    link(rel="stylesheet", href="../../css/themes/default.css")
+    link(rel="stylesheet", href="../../css/manage/default.css")
+    title Manage - New sanction / i like!
+  body
+    include ../includes/header_manage.pug
+    main
+      form(action="/manage/newSanction/"+user.id class='fm' method='post')
+        h2(class='subt')='New sanction' 
+        
+        label(for='subject' class='fm-lb' required) Subject
+          input(type="text" name='subject' id='subject' class='fm-i')
+        label(for='content' class='fm-lb') Content
+          input(type="text" name='content' id='content' class='fm-i' required)
+        fieldset(class='fm-fset')
+          legend(class='fm-legend') Sanction type
+          label(class='fm-lb-radio') Muted
+            input(type="radio" name='sanction_type' value='muted' class='fm-i-radio' checked)
+          label(class='fm-lb-radio') Banned
+            input(type="radio" name='sanction_type' value='banned' class='fm-i-radio')
+        label(for='sanction_time' class='fm-lb') Sanction time
+          input(type="text" name='sanction_time' id='sanction_time' class='fm-i' required)
+        
+        span(class='info')='The sanction will be applied by @'+ moderator.username + ' to the user @' + user.username
+
+        button(class='fm-btn')='Execute sanction'
+
+
+    script(src="../../js/lib/hrMenu.js")
+    script(src="../../js/manage/newSanction.js") 

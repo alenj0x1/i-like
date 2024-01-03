@@ -38,7 +38,9 @@ a,
 label,
 span,
 table,
-td {
+td,
+p,
+legend {
   font-family: var(--font-family);
 }
 
@@ -48,6 +50,12 @@ td {
   color: var(--font-color-brand);
 
   font-size: 2.5rem;
+}
+
+.para {
+  margin: 5px 0;
+  
+  color: var(--font-color-light);
 }
 
 main {
@@ -257,6 +265,71 @@ main {
   text-align: center;
 }
 
+.btn {
+  margin: 20px 0;
+  padding: 10px 30px;
+
+  background-color: var(--background-color-btn);
+
+  font-size: 0.9rem;
+
+  text-decoration: none;
+
+  color: var(--font-color-light);
+
+  border: var(--border-light);
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:active {
+  opacity: 0.6;
+}
+
+.fm-i-radio {
+  height: 30px;
+  width: 30px;
+  margin: 0 5px;
+  appearance: none;
+
+  vertical-align: middle;
+
+  border: var(--border-semilight);
+
+  opacity: 0.2;
+}
+
+.fm-i-radio:checked {
+  background-color: var(--background-color-btn);
+  border: var(--border-light);
+  opacity: 1;
+}
+
+.fm-lb-radio {
+  color: var(--font-color-light);
+
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.fm-fset {
+  margin-bottom: 30px;
+  padding: 0;
+  border-style: none;
+}
+
+.fm-legend {
+  margin-bottom: 5px;
+  font-weight: 500;
+
+  color: var(--font-color-light);
+}
+
 /* Desktop */
 @media (min-width: 768px) {
   /* Main styles */
@@ -354,6 +427,10 @@ main {
   .alert {
     width: 50%;
     margin: 0 auto;
+  }
+
+  .fm-i-radio:hover {
+    opacity: 0.8;
   }
 }
 

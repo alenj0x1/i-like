@@ -10,15 +10,15 @@ const Mod = new Schema(
       type: Array,
       required: true, // ["6592651caf60e91a9bce3d18"]
     },
-    users_involucred: {
-      type: Array,
-      required: true, // ["6592651caf60e91a9bce3d19"]
+    user: {
+      type: String,
+      required: true, // "6592651caf60e91a9bce3d19"
     },
-    name: {
+    subject: {
       type: String,
       required: true, // "Support: I don't know how to use the channels"
     },
-    description: {
+    content: {
       type: String,
       required: true, // "I'm new here and don't quite understand how it works."
     },
@@ -29,6 +29,12 @@ const Mod = new Schema(
     status: {
       type: String,
       default: 'pending', // 'pending', 'opened', 'closed'
+    },
+    sanction_type: {
+      type: String, // 'muted', 'banned'
+    },
+    sanction_time: {
+      type: Number, // 1000, 3600000
     },
   },
   {

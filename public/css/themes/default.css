@@ -6,6 +6,7 @@
   --background-color-main: rgba(10, 0, 10, .9);
   --background-color-hr-mn: rgba(50, 50, 50, 0.1);
   --background-color-btn: rgb(8, 3, 8);
+  --background-color-danger: rgb(12, 4, 4);
 
   --font-family: 'Quicksand', sans-serif;
   --font-color: rgb(110, 74, 110);
@@ -14,11 +15,17 @@
   --font-color-icon: rgb(200, 150, 200);
   --font-color-link: rgb(141, 112, 141);
   --font-color-brand: rgb(255, 255, 255);
+  --font-color-subt: rgb(255, 255, 255);
+  --font-color-subt-3: rgb(235, 235, 235);
 
   --border-color: rgb(50, 30, 50);
   --border: 1px solid var(--border-color);
   --border-semilight: 1px solid rgb(70, 50, 70, .7);
   --border-light: 1px solid rgba(50, 30, 50, .7);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 /* Main styles */
@@ -33,6 +40,7 @@ body {
 
 h1,
 h2,
+h3,
 button,
 a,
 label,
@@ -47,9 +55,17 @@ legend {
 .subt {
   margin-top: 0;
 
-  color: var(--font-color-brand);
+  color: var(--font-color-subt);
 
   font-size: 2.5rem;
+}
+
+.subt-3 {
+  margin: 0;
+
+  color: var(--font-color-subt-3);
+
+  font-size: 2rem;
 }
 
 .para {
@@ -273,6 +289,7 @@ main {
 
   font-size: 0.9rem;
 
+  text-align: center;
   text-decoration: none;
 
   color: var(--font-color-light);
@@ -328,6 +345,68 @@ main {
   font-weight: 500;
 
   color: var(--font-color-light);
+}
+
+.bx-dtl {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  max-width: 100%;
+
+  background-color: var(--background-color-hr-mn);
+
+  border: var(--border-light);
+  border-radius: 10px;
+
+  overflow: hidden;
+}
+
+.bx-dtl-cont {
+  margin: 10px 0;
+}
+
+.dtl-cont-key {
+  display: block;
+  padding: 10px 0;
+
+  font-weight: 700;
+}
+
+.dtl-cont-id {
+  font-weight: 300;
+}
+
+.dtl-cont-content {
+  display: block;
+  padding: 10px;
+  width: 100%;
+
+  background-color: var(--background-color-btn);
+
+  border: var(--border-light);
+
+  overflow: auto;
+}
+
+.dtl-cont-mod {
+  padding: 5px;
+
+  background-color: var(--background-color-btn);
+
+  border: var(--border-light);
+  border-radius: 5px;
+
+  color: var(--font-color-light);
+}
+
+.dtl-cont-key,
+.dtl-cont-val,
+.dtl-cont-content {
+  color: var(--font-color-light);
+}
+
+.danger {
+  background-color: var(--background-color-danger);
 }
 
 /* Desktop */
@@ -431,6 +510,10 @@ main {
 
   .fm-i-radio:hover {
     opacity: 0.8;
+  }
+
+  .bx-dtl {
+    width: 60%;
   }
 }
 

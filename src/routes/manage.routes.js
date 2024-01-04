@@ -3,16 +3,19 @@ import {
   MOD_SANCTION_TYPES,
   MOD_STATUS,
   MOD_TYPES,
+  getSanctionByUser,
   getSanctions,
   getSanctionsByUser,
   getUser,
   getUsers,
+  removeSanction,
 } from '../lib/manageApp'
 import Mod from '../database/models/Mod.model'
 import { isValidObjectId } from 'mongoose'
 import { ms } from '../lib/ms'
 const router = Router()
 
+/* HOME */
 router.get('/', async (req, res) => {
   try {
     if (req.user.roles.includes('admin'))
@@ -48,13 +51,14 @@ router.get('/sanctions', async (req, res) => {
   }
 })
 
+/* SANCTIONS */
 router.get('/sanctions/:userId', async (req, res) => {
   try {
     const { userId } = req.params
-    if (!isValidObjectId(userId)) throw Error('invalid_id')
+    if (!isValidObjectId(userId)) throw Error('invalid_user_id')
 
     if (req.user.roles.includes('admin'))
-      return res.render('manage/sanctionsUser', {
+      return res.render('manage/sanctions/user', {
         user: await getUser(userId, 'mod'),
         sanctions: await getSanctionsByUser(userId, { include_mod: true }),
       })
@@ -63,13 +67,13 @@ router.get('/sanctions/:userId', async (req, res) => {
   }
 })
 
-router.get('/newSanction/:userId', async (req, res) => {
+router.get('/sanctions/new/:userId', async (req, res) => {
   try {
     const { userId } = req.params
-    if (!isValidObjectId(userId)) throw Error('invalid_id')
+    if (!isValidObjectId(userId)) throw Error('invalid_user_id')
 
     if (req.user.roles.includes('admin'))
-      return res.render('manage/newSanction', {
+      return res.render('manage/sanctions/new', {
         moderator: req.user,
         user: await getUser(userId, 'mod'),
       })
@@ -78,13 +82,13 @@ router.get('/newSanction/:userId', async (req, res) => {
   }
 })
 
-router.post('/newSanction/:userId', async (req, res) => {
+router.post('/sanctions/new/:userId', async (req, res) => {
   try {
     if (req.user.roles.includes('admin') || req.user.roles.includes('mod')) {
       const { userId } = req.params
       const { subject, content, sanction_type, sanction_time } = req.body
       const sanctionTimeParsed = ms(sanction_time)
-      if (!isValidObjectId(userId)) throw Error('invalid_id')
+      if (!isValidObjectId(userId)) throw Error('invalid_user_id')
       if (!subject) throw Error('subject_missing')
       if (!content) throw Error('content_missing')
       if (!sanction_type) throw Error('sanction_type_missing')
@@ -107,6 +111,39 @@ router.post('/newSanction/:userId', async (req, res) => {
       await newSanction.save()
 
       res.status(201).json({ userId })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/sanctions/details/:sanctionId', async (req, res) => {
+  try {
+    const { sanctionId } = req.params
+    if (!isValidObjectId(sanctionId)) throw Error('invalid_sanction_id')
+
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/sanctions/details', {
+        sanction: await getSanctionByUser(sanctionId, {
+          include_user: true,
+          include_mod: true,
+        }),
+      })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/sanctions/remove/:sanctionId', async (req, res) => {
+  try {
+    const { sanctionId } = req.params
+    const { userId } = req.query
+    if (!isValidObjectId(sanctionId)) throw Error('invalid_sanction_id')
+    if (!isValidObjectId(userId)) throw Error('invalid_user_id')
+
+    if (req.user.roles.includes('admin')) {
+      await removeSanction(sanctionId)
+      return res.redirect(`/manage/sanctions/${userId}`)
     }
   } catch (err) {
     res.status(404).json({ err: err.message })

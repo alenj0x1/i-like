@@ -43,6 +43,7 @@ export async function filterSanctionData(
   { include_mod, include_user }
 ) {
   return {
+    id: sanction._id,
     moderators: include_mod
       ? await Promise.all(
           sanction.moderators.map(

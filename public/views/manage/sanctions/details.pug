@@ -1,0 +1,53 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../../../css/normalize.css")
+    link(rel="stylesheet", href="../../../css/themes/default.css")
+    link(rel="stylesheet", href="../../../css/manage/default.css")
+    link(rel="stylesheet", href="../../../css/manage/sanctions/user.css")
+    title="Manage / Sanction of @"+sanction.user.username+" / i like!"
+  body
+    include ../../includes/header_manage.pug
+    main
+      h2(class='subt')='Sanction of '+sanction.user.username
+
+      div(class='bx-dtl')
+        h3(class='subt-3')=sanction.subject
+        span(class='dtl-cont-val')="#"+sanction.id
+        
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Content
+          span(class='dtl-cont-content')=sanction.content
+        
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Moderators
+          for mod in sanction.moderators
+            a(href='/manage/users/'+mod.id class='dtl-cont-mod')=mod.username
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Status
+          span(class='dtl-cont-val')=sanction.status
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Type
+          span(class='dtl-cont-val')=sanction.sanction
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Duration
+          span(class='dtl-cont-val')=sanction.time
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Created
+          span(class='dtl-cont-val')=sanction.created
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Updated
+          span(class='dtl-cont-val')=sanction.updated
+
+        if sanction.status == 'pending'
+          a(href='/manage/sanctions/remove/'+sanction.id+"?userId="+sanction.user.id class='btn danger') Mark sanction as closed
+
+        a(href='/manage/sanctions/interactions/'+sanction.id class='btn') Interactions
+    script(src="../../../js/lib/hrMenu.js") 

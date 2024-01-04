@@ -3,14 +3,14 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="../../css/normalize.css")
-    link(rel="stylesheet", href="../../css/themes/default.css")
-    link(rel="stylesheet", href="../../css/manage/default.css")
+    link(rel="stylesheet", href="../../../css/normalize.css")
+    link(rel="stylesheet", href="../../../css/themes/default.css")
+    link(rel="stylesheet", href="../../../css/manage/default.css")
     title Manage - New sanction / i like!
   body
-    include ../includes/header_manage.pug
+    include ../../includes/header_manage.pug
     main
-      form(action="/manage/newSanction/"+user.id class='fm' method='post')
+      form(action="/manage/sanctions/new/"+user.id class='fm' method='post')
         h2(class='subt')='New sanction' 
         
         label(for='subject' class='fm-lb' required) Subject
@@ -31,5 +31,5 @@ html(lang="en")
         button(class='fm-btn')='Execute sanction'
 
 
-    script(src="../../js/lib/hrMenu.js")
-    script(src="../../js/manage/newSanction.js") 
+    script(src="../../../js/lib/hrMenu.js")
+    script(src="../../../js/manage/sanctions/new.js") 

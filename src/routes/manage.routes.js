@@ -9,6 +9,7 @@ import {
   getUser,
   getUsers,
   removeSanction,
+  updateUser,
 } from '../lib/manageApp'
 import Mod from '../database/models/Mod.model'
 import { isValidObjectId } from 'mongoose'
@@ -144,6 +145,41 @@ router.get('/sanctions/remove/:sanctionId', async (req, res) => {
     if (req.user.roles.includes('admin')) {
       await removeSanction(sanctionId)
       return res.redirect(`/manage/sanctions/${userId}`)
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+/** USERS **/
+router.get('/users/:userId', async (req, res) => {
+  try {
+    const { userId } = req.params
+    if (!isValidObjectId(userId)) throw Error('invalid_user_id')
+
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/users/user', {
+        user: await getUser(userId, 'mod'),
+        perms_to_delete_users: req.user.roles.includes('admin') ? true : false,
+      })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/users/edit/:userId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { userId } = req.params
+      const { username, display_name } = req.body
+      if (!isValidObjectId(userId)) throw Error('invalid_user_id')
+      if (username.length < 3) throw Error('username_too_short')
+      if (username.length > 28) throw Error('username_too_long')
+      if (username.length > 50) throw Error('display_name_too_long')
+      if (display_name.length < 1) throw Error('display_name_too_short')
+
+      await updateUser(userId, { username, display_name })
+      res.status(200).json({ ok: true })
     }
   } catch (err) {
     res.status(404).json({ err: err.message })

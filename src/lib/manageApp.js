@@ -33,6 +33,13 @@ export async function getUsers() {
   return filterUsersData(await User.find({}))
 }
 
+export async function updateUser(user_id, data) {
+  return User.findByIdAndUpdate(user_id, {
+    username: data.username,
+    display_name: data.display_name,
+  })
+}
+
 export async function getSanctionByUser(sanction_id, obj) {
   return await filterSanctionData(await Mod.findById(sanction_id), obj)
 }

@@ -9,6 +9,8 @@ export function filterUserData(user, role) {
         display_name: user.display_name,
         like: user.like,
         roles: user.roles,
+        status: user.status,
+        account_status: user.account_status,
         created_account: user.createdAt,
         last_change_account: user.updatedAt,
       }
@@ -19,6 +21,8 @@ export function filterUserData(user, role) {
         display_name: user.display_name,
         like: user.like,
         roles: user.roles,
+        status: user.status,
+        account_status: user.account_status,
         created_account: user.createdAt,
       }
   }

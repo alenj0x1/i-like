@@ -6,7 +6,11 @@
   --background-color-main: rgba(10, 0, 10, .9);
   --background-color-hr-mn: rgba(50, 50, 50, 0.1);
   --background-color-btn: rgb(8, 3, 8);
-  --background-color-danger: rgb(12, 4, 4);
+  --background-color-danger: rgb(10, 3, 3);
+  --background-color-warning: rgb(12, 7, 4);
+  --background-color-sucess: rgb(1, 3, 1);
+  --color-status-connected: rgb(46, 148, 46);
+  --color-status-disconnected: rgb(148, 46, 46);
 
   --font-family: 'Quicksand', sans-serif;
   --font-color: rgb(110, 74, 110);
@@ -282,7 +286,7 @@ main {
 }
 
 .btn {
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 10px 30px;
 
   background-color: var(--background-color-btn);
@@ -298,6 +302,8 @@ main {
   border-radius: 5px;
 
   cursor: pointer;
+
+  user-select: none;
 }
 
 .btn:hover {
@@ -306,6 +312,16 @@ main {
 
 .btn:active {
   opacity: 0.6;
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  
+  filter: grayscale(1);
+
+  pointer-events: none;
+
+  cursor: not-allowed;
 }
 
 .fm-i-radio {
@@ -388,8 +404,10 @@ main {
   overflow: auto;
 }
 
-.dtl-cont-mod {
-  padding: 5px;
+.dtl-cont-mod,
+.dtl-cont-role {
+  display: inline-block;
+  padding: 5px 10px;
 
   background-color: var(--background-color-btn);
 
@@ -409,8 +427,59 @@ main {
   background-color: var(--background-color-danger);
 }
 
+.warning {
+  background-color: var(--background-color-warning);
+}
+
+.sucess {
+  background-color: var(--background-color-sucess);
+}
+
 .to-lower {
   text-transform: lowercase;
+}
+
+.status-cont {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+  gap: 10px;
+}
+
+.status-name-connected {
+  color: var(--color-status-connected);
+
+  user-select: none;
+}
+
+.status-name-disconnected {
+  color: var(--color-status-disconnected);
+
+  user-select: none;
+}
+
+.status-connected,
+.status-disconnected {
+  height: 25px;
+  width: 25px;
+
+  border-radius: 50%;
+}
+
+.status-connected {
+  fill: var(--color-status-connected);
+
+  filter: drop-shadow(0 0 1.3rem var(--color-status-connected));
+}
+
+.status-disconnected {
+  fill: var(--color-status-disconnected);
+
+  filter: drop-shadow(0 0 0.9rem var(--color-status-disconnected));
+}
+
+.bold {
+  font-weight: 700;
 }
 
 /* Desktop */

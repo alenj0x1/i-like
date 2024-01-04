@@ -13,10 +13,10 @@ html(lang="en")
     main 
       form(action="/login", method="post" class='fm')
         h2(class='subt') Sign in
-        label(for="user_username" class='label' class="fm-lb") Username
-          input(type="text" name="user_username" id="user_username" class="fm-i" required)
-        label(for="user_password" class="fm-lb") Password
-          input(type="password" name="user_password" id="user_password" class="fm-i" required)
+        label(for="username_login" class='label' class="fm-lb" spellcheck="false") Username
+          input(type="text" name="username_login" id="username_login" class="fm-i" minlength="3" maxlength="28" required)
+        label(for="password_login" class="fm-lb") Password
+          input(type="password" name="password_login" id="password_login" minlength="8" class="fm-i" required)
 
         button(type="submit" class='fm-btn') let's go!
     

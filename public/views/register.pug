@@ -15,15 +15,15 @@ html(lang="en")
         h2(class='subt') Create a account
 
         label(for="user_username" class='label' class="fm-lb") Username
-          input(type="text" name="user_username" id="user_username" class="fm-i" required)
+          input(type="text" name="user_username" id="user_username" class="fm-i to-lower" minlength="3" maxlength="28" spellcheck="false" required)
         label(for="user_display_name" class='label' class="fm-lb") Display name
-          input(type="text" name="user_display_name" id="user_display_name" class="fm-i" required)
+          input(type="text" name="user_display_name" id="user_display_name" class="fm-i" maxlength="50" spellcheck="false" required)
         label(for="user_password" class="fm-lb") Password
-          input(type="password" name="user_password" id="user_password" class="fm-i" required)
+          input(type="password" name="user_password" id="user_password" class="fm-i" minlength="8" required)
         label(for="user_password_confirm" class="fm-lb") Confirm password
-          input(type="password" name="user_password_confirm" id="user_password_confirm" class="fm-i" required)
+          input(type="password" name="user_password_confirm" id="user_password_confirm" class="fm-i" minlength="8" required)
         label(for="user_password_hint" class="fm-lb") Password hint
-          input(type="text" name="user_password_hint" id="user_password_hint" class="fm-i")
+          input(type="text" name="user_password_hint" id="user_password_hint" spellcheck="false" class="fm-i")
 
         button(type="submit" class='fm-btn') Create my account
     

@@ -10,14 +10,16 @@ router.get('/', (_req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { user_username, user_password } = req.body
-    if (!user_username) throw Error('user_required')
-    if (!user_password) throw Error('password_required')
+    const { username_login, password_login } = req.body
+    if (!username_login) throw Error('username_required')
+    if (username_login.length < 3) throw Error('nope')
+    if (!password_login) throw Error('password_required')
+    if (password_login.length < 8) throw Error('nope')
 
-    const getUser = await User.findOne({ username: user_username })
+    const getUser = await User.findOne({ username: username_login })
     if (!getUser) throw Error('username_or_password_incorrect')
 
-    const comparePasswords = comparePassword(user_password, getUser.password)
+    const comparePasswords = comparePassword(password_login, getUser.password)
     if (!comparePasswords) throw Error('username_or_password_incorrect')
 
     const token = createToken(getUser.toJSON())
@@ -30,7 +32,7 @@ router.post('/', async (req, res) => {
 
     res.status(200).json({ ok: true })
   } catch (err) {
-    res.status(404).json({ err: err.message })
+    res.status(404).json({ err: err.message, data: '🪑' })
   }
 })
 

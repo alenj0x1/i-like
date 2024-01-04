@@ -409,6 +409,10 @@ main {
   background-color: var(--background-color-danger);
 }
 
+.to-lower {
+  text-transform: lowercase;
+}
+
 /* Desktop */
 @media (min-width: 768px) {
   /* Main styles */

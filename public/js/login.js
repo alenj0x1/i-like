@@ -9,8 +9,8 @@ fm.addEventListener('submit', async (e) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      user_username: e.target[0].value,
-      user_password: e.target[1].value,
+      username_login: e.target[0].value,
+      password_login: e.target[1].value,
     }),
   })
 
@@ -25,6 +25,8 @@ fm.addEventListener('submit', async (e) => {
   } else {
     if (result.err === 'username_or_password_incorrect') {
       alert.textContent = 'Username or password incorrect.'
+    } else if (result.err === 'nope') {
+      alert.textContent = `nope. ${result.data}`
     } else {
       alert.textContent = 'An unexpected error has occurred.'
     }

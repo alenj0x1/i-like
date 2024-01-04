@@ -33,11 +33,20 @@ fm.addEventListener('submit', async (e) => {
     }, 3000)
   } else {
     switch (result.err) {
-      case 'user_required':
+      case 'username_required':
         alert.textContent = 'The username field is required.'
+        break
+      case 'username_too_long':
+        alert.textContent = 'The username field is too long.'
+        break
+      case 'username_too_short':
+        alert.textContent = 'The username field is too short.'
         break
       case 'display_name_required':
         alert.textContent = 'The display name field is required.'
+        break
+      case 'display_name_too_long':
+        alert.textContent = 'The display name field is too long.'
         break
       case 'password_required':
         alert.textContent = 'The password field is required.'

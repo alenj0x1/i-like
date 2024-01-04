@@ -16,8 +16,11 @@ router.post('/', async (req, res) => {
       user_password_confirm,
       user_password_hint,
     } = req.body
-    if (!user_username) throw Error('user_required')
+    if (!user_username) throw Error('username_required')
+    if (user_username.length > 28) throw Error('username_too_long')
+    if (user_username.length < 3) throw Error('username_too_short')
     if (!user_display_name) throw Error('display_name_required')
+    if (user_display_name.length > 50) throw Error('display_name_too_long')
     if (!user_password) throw Error('password_required')
     if (!user_password_confirm) throw Error('password_confirm_required')
 

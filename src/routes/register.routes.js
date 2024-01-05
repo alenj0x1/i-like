@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import User from '../database/models/User.models'
 import { hashPassword } from '../lib/managePassword'
+import { createToken } from '../lib/manageToken'
 const router = Router()
 
 router.get('/', (_req, res) => {
@@ -38,6 +39,14 @@ router.post('/', async (req, res) => {
       roles: ['user'],
     })
     await newUser.save()
+
+    const token = createToken(newUser.toJSON())
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+      maxAge: process.env.TOKEN_COOKIE_MAXAGE,
+    })
 
     res.status(201).json({ ok: true })
   } catch (err) {

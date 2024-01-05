@@ -40,6 +40,10 @@ export async function updateUser(user_id, data) {
   })
 }
 
+export async function deleteUser(user_id) {
+  return User.findByIdAndDelete(user_id)
+}
+
 export async function getSanctionByUser(sanction_id, obj) {
   return await filterSanctionData(await Mod.findById(sanction_id), obj)
 }

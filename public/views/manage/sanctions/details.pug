@@ -46,8 +46,9 @@ html(lang="en")
           span(class='dtl-cont-key') Updated
           span(class='dtl-cont-val')=sanction.updated
 
-        if sanction.status == 'pending'
-          a(href='/manage/sanctions/remove/'+sanction.id+"?userId="+sanction.user.id class='btn danger') Mark sanction as closed
+        div(class='bx-dtl-cont bx-dtl-cont-btns')
+          if sanction.status == 'pending'
+            a(href='/manage/sanctions/remove/'+sanction.id+"?userId="+sanction.user.id class='btn danger') Mark sanction as closed
 
-        a(href='/manage/sanctions/interactions/'+sanction.id class='btn') Interactions
+          a(href='/manage/sanctions/interactions/'+sanction.id class='btn') Interactions
     script(src="../../../js/lib/hrMenu.js") 

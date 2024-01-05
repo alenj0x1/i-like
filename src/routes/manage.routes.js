@@ -3,6 +3,7 @@ import {
   MOD_SANCTION_TYPES,
   MOD_STATUS,
   MOD_TYPES,
+  deleteUser,
   getSanctionByUser,
   getSanctions,
   getSanctionsByUser,
@@ -179,6 +180,20 @@ router.post('/users/edit/:userId', async (req, res) => {
       if (display_name.length < 1) throw Error('display_name_too_short')
 
       await updateUser(userId, { username, display_name })
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/users/delete/:userId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { userId } = req.params
+      if (!isValidObjectId(userId)) throw Error('invalid_user_id')
+
+      await deleteUser(userId)
       res.status(200).json({ ok: true })
     }
   } catch (err) {

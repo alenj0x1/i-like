@@ -4,10 +4,6 @@ const { dataset } = document.querySelector('.dtl-cont-val')
 const userUsername = document.getElementById('user-username')
 const userDisplayName = document.getElementById('user-display-name')
 
-document.addEventListener('DOMContentLoaded', (ev) => {
-  console.log('here')
-})
-
 userUsername.addEventListener('input', (e) => {
   if (btnSave.attributes.getNamedItem('disabled'))
     btnSave.attributes.removeNamedItem('disabled')
@@ -18,6 +14,7 @@ userDisplayName.addEventListener('input', (e) => {
     btnSave.attributes.removeNamedItem('disabled')
 })
 
+/** Edit user **/
 btnSave.addEventListener('click', async (e) => {
   const response = await fetch(`/manage/users/edit/${dataset.userid}`, {
     method: 'POST',
@@ -68,4 +65,47 @@ btnSave.addEventListener('click', async (e) => {
       alert.remove()
     }, 3000)
   }
+})
+
+/** Delete user **/
+btnDelete.addEventListener('click', async (e) => {
+  const alert = document.createElement('span')
+  alert.classList.add('alert')
+
+  const warning = prompt('This action is irreversible. Type "yes" to continue.')
+  if (!warning || warning !== 'yes') {
+    alert.textContent = 'Action cancelled.'
+    document.querySelector('body').append(alert)
+
+    setTimeout(() => {
+      alert.remove()
+    }, 3000)
+    return
+  }
+
+  const response = await fetch(`/manage/users/delete/${dataset.userid}`, {
+    method: 'POST',
+  })
+
+  const result = await response.json()
+
+  if (result.ok) {
+    alert.textContent = 'User deleted correctly.'
+
+    document.querySelector('body').append(alert)
+
+    setTimeout(() => {
+      alert.remove()
+      window.location.href = '/manage/users'
+    }, 3000)
+  } else {
+    alert.textContent = 'An unexpected error has occurred.'
+  }
+
+  document.querySelector('body').append(alert)
+  btnSave.attributes.setNamedItem('disabled')
+
+  setTimeout(() => {
+    alert.remove()
+  }, 3000)
 })

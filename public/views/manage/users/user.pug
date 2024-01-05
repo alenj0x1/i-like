@@ -45,10 +45,11 @@ html(lang="en")
           span(class='dtl-cont-key') Last change
           span(class='dtl-cont-val')=user.last_change_account
 
-        button(class="btn sucess" id="btn-save" disabled) Save changes
-        a(href="/manage/sanctions/"+user.id class='btn') Sanctions
-        if perms_to_delete_users
-          button(class="btn danger" id="btn-delete") Delete user
+        div(class='bx-dtl-cont bx-dtl-cont-btns')
+          button(class="btn sucess" id="btn-save" disabled) Save changes
+          a(href="/manage/sanctions/"+user.id class='btn') Sanctions
+          if perms_to_delete_users
+            button(class="btn danger" id="btn-delete") Delete user
 
     script(src="../../../js/lib/hrMenu.js")
     script(src="../../../js/manage/users/user.js")

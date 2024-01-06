@@ -13,10 +13,12 @@ html(lang="en")
     main
       h2(class='subt')='Sanctions'
       if sanctions.length
+        include ../includes/bar_search.pug
+
         table(class='tb')
           thead
             tr(class='tb-tr')
-              th(class='tb-th')='#'
+              th(class='tb-th')='ID'
               th(class='tb-th')='Username'
               th(class='tb-th')='Moderator'
               th(class='tb-th')='Subject'
@@ -25,7 +27,7 @@ html(lang="en")
           tbody
             for sanction, index in sanctions
               tr(class='tb-tr')
-                td(class='tb-td')=index + 1
+                td(class='tb-td')=sanction.id
                 td(class='tb-td')=sanction.user.username
                 td(class='tb-td')
                   for moderator in sanction.moderators 
@@ -40,3 +42,4 @@ html(lang="en")
         p(class='para')='Without sanctions.'
 
     script(src="../../js/lib/hrMenu.js") 
+    script(src="../../js/lib/searchBar.js")

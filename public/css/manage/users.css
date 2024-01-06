@@ -1,9 +1,11 @@
-.tb-th:nth-child(2),
-.tb-td:nth-child(2),
-.tb-th:nth-child(4),
-.tb-td:nth-child(4),
+.tb-th:nth-child(1),
+.tb-td:nth-child(1),
+.tb-th:nth-child(3),
+.tb-td:nth-child(3),
 .tb-th:nth-child(5),
-.tb-td:nth-child(5){
+.tb-td:nth-child(5),
+.tb-th:nth-child(6),
+.tb-td:nth-child(6){
   display: none;
 }
 
@@ -18,13 +20,24 @@
   text-align: center;
 }
 
+/* Show: id, display_name, created_account, last_change_account */
 @media (min-width: 768px) {
-  .tb-th:nth-child(2),
-  .tb-td:nth-child(2),
-  .tb-th:nth-child(4),
-  .tb-td:nth-child(4),
+  .tb-th:nth-child(1),
+  .tb-td:nth-child(1),
+  .tb-th:nth-child(3),
+  .tb-td:nth-child(3),
   .tb-th:nth-child(5),
-  .tb-td:nth-child(5){
+  .tb-td:nth-child(5),
+  .tb-th:nth-child(6),
+  .tb-td:nth-child(6){
     display: table-cell;
+  }
+}
+
+/* Hidden: id */
+@media (max-width: 1000px) {
+  .tb-th:nth-child(1),
+  .tb-td:nth-child(1) {
+    display: none;
   }
 }

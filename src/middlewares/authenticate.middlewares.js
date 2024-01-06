@@ -13,7 +13,8 @@ export function authenticate(req, res, next) {
   const checkToken = validateToken(TOKEN)
   if (!checkToken.result) {
     res.clearCookie('token')
-    return next()
+    if (LOW_LEVEL_ROUTES.includes(BASE_URL)) return next()
+    res.redirect('/login')
   }
 
   if (LOW_LEVEL_ROUTES.includes(BASE_URL)) {

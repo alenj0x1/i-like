@@ -2,30 +2,29 @@
 
 /* Customization */
 :root {
-  --background-color: rgba(0, 0, 0);
-  --background-color-main: rgba(10, 0, 10, .9);
-  --background-color-hr-mn: rgba(50, 50, 50, 0.1);
-  --background-color-btn: rgb(8, 3, 8);
-  --background-color-danger: rgb(10, 3, 3);
-  --background-color-warning: rgb(12, 7, 4);
-  --background-color-sucess: rgb(1, 3, 1);
+  --background-color: rgb(17, 17, 17);
+  --background-color-main: rgba(4, 4, 4, .7);
+  --background-color-hr-mn: rgba(17, 17, 17);
+  --background-color-btn: rgb(15, 15, 15);
+  --background-color-danger: rgb(40, 20, 20);
+  --background-color-warning: rgb(60, 40, 20);
+  --background-color-sucess: rgb(20, 40, 20);
   --color-status-connected: rgb(46, 148, 46);
   --color-status-disconnected: rgb(148, 46, 46);
 
   --font-family: 'Quicksand', sans-serif;
-  --font-color: rgb(110, 74, 110);
-  --font-color-light: rgb(139, 97, 139);
-  --font-color-subt: rgb(59, 24, 59);
-  --font-color-icon: rgb(200, 150, 200);
-  --font-color-link: rgb(141, 112, 141);
+  --font-color: rgb(175, 175, 175);
+  --font-color-light: rgb(150, 150, 150);
+  --font-color-icon: rgb(200, 200, 200);
+  --font-color-link: rgb(150, 150, 150);
   --font-color-brand: rgb(255, 255, 255);
   --font-color-subt: rgb(255, 255, 255);
-  --font-color-subt-3: rgb(235, 235, 235);
+  --font-color-subt-3: rgb(225, 225, 225);
 
-  --border-color: rgb(50, 30, 50);
+  --border-color: rgb(100, 100, 100);
   --border: 1px solid var(--border-color);
-  --border-semilight: 1px solid rgb(70, 50, 70, .7);
-  --border-light: 1px solid rgba(50, 30, 50, .7);
+  --border-semilight: 1px solid rgb(25, 25, 25, .7);
+  --border-light: 1px solid rgba(50, 50, 50, .7);
 }
 
 * {
@@ -152,8 +151,6 @@ main {
   padding: 5px 20px 15px 20px;
   align-items: center;
   justify-content: space-between;
-
-  border-bottom: var(--border-light);
 }
 
 .hr-icon {
@@ -551,6 +548,31 @@ main {
   border: var(--border-semilight);
 
   opacity: 1;
+}
+
+.nv-inapp {
+  display: flex;
+
+}
+
+.nv-inapp-link {
+  padding: 20px;
+  width: 100%;
+
+  color: var(--font-color-link);
+
+  font-weight: 400;
+
+  text-decoration: none;
+  text-align: center;
+
+  border-bottom: var(--border-light);
+}
+
+.nv-inapp-link-current {
+  font-weight: 500;
+
+  border-width: 3px;
 }
 
 /* Desktop */

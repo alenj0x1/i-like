@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../../../css/normalize.css")
+    link(rel="stylesheet", href="../../../css/themes/default.css")
+    link(rel="stylesheet", href="../../../css/manage/default.css")
+    title Manage - New topic / i like!
+  body
+    include ../../includes/header_manage.pug
+    main
+      form(action="/manage/topics/new" class='fm' method='post')
+        h2(class='subt')='New topic' 
+        
+        label(for='name' class='fm-lb' required) Name
+          input(type="text" name='name' id='name' class='fm-i')
+        label(for='description' class='fm-lb') Description
+          input(type="text" name='description' id='description' class='fm-i' required)
+        label(for='banner' class='fm-lb') Banner
+          input(type="text" name='banner' id='banner' class='fm-i')
+        
+        span(class='info')='The user @'+user.username+' will create a new topic'
+
+        button(class='fm-btn')='Create'
+
+
+    script(src="../../../js/lib/hrMenu.js")
+    script(src="../../../js/manage/topics/new.js") 

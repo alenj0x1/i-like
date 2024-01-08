@@ -426,6 +426,13 @@ main {
   color: var(--font-color-light);
 }
 
+.dtl-cont-img {
+  margin: 15px 0;
+  width: 100%;
+  max-width: 768px;
+  display: block;
+}
+
 .danger {
   background-color: var(--background-color-danger);
 }
@@ -575,6 +582,13 @@ main {
   border-width: 3px;
 }
 
+.icon {
+  height: 24px;
+  width: 24px;
+
+  fill: var(--font-color-icon);
+}
+
 /* Desktop */
 @media (min-width: 768px) {
   /* Main styles */
@@ -679,7 +693,7 @@ main {
   }
 
   .bx-dtl {
-    width: auto;
+    max-width: 768px;
   }
 
   .bx-dtl-cont-btns {

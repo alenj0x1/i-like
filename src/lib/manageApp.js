@@ -1,8 +1,11 @@
 import User from '../database/models/User.models'
 import Mod from '../database/models/Mod.model'
+import Topic from '../database/models/Topic.model'
 import {
   filterSanctionData,
   filterSanctionsData,
+  filterTopicData,
+  filterTopicsData,
   filterUserData,
   filterUsersData,
 } from './filterData'
@@ -68,4 +71,28 @@ export async function removeSanction(sanction_id) {
   return await Mod.findByIdAndUpdate(sanction_id, {
     status: MOD_STATUS['closed'],
   })
+}
+
+export async function getTopics(obj) {
+  const topics = await Topic.find({})
+
+  return await filterTopicsData(topics, obj)
+}
+
+export async function getTopic(topic_id, obj) {
+  const topic = await Topic.findById(topic_id)
+
+  return await filterTopicData(topic, obj)
+}
+
+export async function updateTopic(topic_id, data) {
+  return Topic.findByIdAndUpdate(topic_id, {
+    name: data.name,
+    description: data.description,
+    banner: data.banner,
+  })
+}
+
+export async function deleteTopic(topic_id) {
+  return Topic.findByIdAndDelete(topic_id)
 }

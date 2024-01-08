@@ -1,0 +1,52 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../../../css/normalize.css")
+    link(rel="stylesheet", href="../../../css/themes/default.css")
+    link(rel="stylesheet", href="../../../css/manage/default.css")
+    link(rel="stylesheet", href="../../../css/manage/sanctions/user.css")
+    title="Manage / Topic #"+topic.name+" / i like!"
+  body
+    include ../../includes/header_manage.pug
+    
+    main
+      div(class='bx-dtl')
+        h3(class='subt-3' spellcheck="false") #
+          span(id='topic-name' spellcheck="false" contenteditable)=topic.name
+        span(class='dtl-cont-val bold' data-topic-id=topic.id)="#"+topic.id
+        
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Description
+          span(class='dtl-cont-val' id='topic-description' spellcheck="false" contenteditable)=topic.description
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Spaces
+          if topic.spaces.length
+            for space in topic.spaces
+              span(class='dtl-cont-role')=space
+          else
+            span(class='dtl-cont-val') Without spaces.
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Banner
+          span(class='dtl-cont-val' id='topic-banner' contenteditable)=topic.banner
+          img(src=topic.banner alt='banner of '+topic.name class='dtl-cont-img')
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Created
+          span(class='dtl-cont-val')=topic.created
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Updated
+          span(class='dtl-cont-val')=topic.updated
+
+        div(class='bx-dtl-cont bx-dtl-cont-btns')
+          button(class="btn sucess" id="btn-save" disabled) Save changes
+          a(href="/manage/topics" class='btn') Topics
+          if perms_to_delete_topics
+            button(class="btn danger" id="btn-delete") Delete topic
+
+    script(src="../../../js/lib/hrMenu.js")
+    script(src="../../../js/manage/topics/topic.js")

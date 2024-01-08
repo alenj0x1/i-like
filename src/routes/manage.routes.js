@@ -3,17 +3,23 @@ import {
   MOD_SANCTION_TYPES,
   MOD_STATUS,
   MOD_TYPES,
+  deleteTopic,
   deleteUser,
   getSanctionByUser,
   getSanctions,
   getSanctionsByUser,
+  getTopic,
+  getTopics,
   getUser,
   getUsers,
   removeSanction,
+  updateTopic,
   updateUser,
 } from '../lib/manageApp'
 import Mod from '../database/models/Mod.model'
+import Topic from '../database/models/Topic.model'
 import { isValidObjectId } from 'mongoose'
+import { isValidUrl } from '../lib/validate'
 import { ms } from '../lib/ms'
 const router = Router()
 
@@ -24,6 +30,7 @@ router.get('/', async (req, res) => {
       return res.render('manage/home', {
         users: await getUsers(),
         sanctions: await getSanctions({}),
+        topics: await getTopics({}),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -47,6 +54,18 @@ router.get('/sanctions', async (req, res) => {
           include_mod: true,
           include_user: true,
         }),
+      })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/topics', async (req, res) => {
+  console.log(await getTopics({ include_spaces: true }))
+  try {
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/topics', {
+        topics: await getTopics({ include_spaces: true }),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -194,6 +213,96 @@ router.post('/users/delete/:userId', async (req, res) => {
       if (!isValidObjectId(userId)) throw Error('invalid_user_id')
 
       await deleteUser(userId)
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+/** TOPICS **/
+router.get('/topics/new', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/topics/new', { user: req.user })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/topics/new', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin') || req.user.roles.includes('mod')) {
+      const { name, description, banner } = req.body
+      if (!name) throw Error('name_missing')
+      if (name.length < 3) throw Error('name_to_short')
+      if (name.length > 50) throw Error('name_too_long')
+      if (!description) throw Error('description_missing')
+      if (description.length < 10) throw Error('description_to_short')
+      if (description.length > 100) throw Error('description_to_short')
+      if (banner & !isValidUrl(banner)) throw Error('banner_invalid')
+
+      const getTopic = await Topic.findOne({ name: name })
+      if (getTopic) throw Error('already_created_topic')
+
+      const newTopic = new Topic({
+        name,
+        description,
+        banner,
+      })
+
+      await newTopic.save()
+
+      res.status(201).json({ ok: true })
+    }
+  } catch (err) {
+    console.log(err)
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/topics/:topicId', async (req, res) => {
+  try {
+    const { topicId } = req.params
+    if (!isValidObjectId(topicId)) throw Error('invalid_topic_id')
+
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/topics/topic', {
+        topic: await getTopic(topicId, { include_spaces: true }),
+        perms_to_delete_topics: req.user.roles.includes('admin') ? true : false,
+      })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/topics/edit/:topicId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { topicId } = req.params
+      const { name, description, banner } = req.body
+      if (!isValidObjectId(topicId)) throw Error('invalid_topic_id')
+      if (name.length < 3) throw Error('name_too_short')
+      if (name.length > 50) throw Error('name_too_long')
+      if (description.length < 10) throw Error('description_too_short')
+      if (description.length > 100) throw Error('description_too_long')
+      if (!isValidUrl(banner)) throw Error('banner_invalid')
+
+      await updateTopic(topicId, { name, description, banner })
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/topics/delete/:topicId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { topicId } = req.params
+      if (!isValidObjectId(topicId)) throw Error('invalid_topic_id')
+
+      await deleteTopic(topicId)
       res.status(200).json({ ok: true })
     }
   } catch (err) {

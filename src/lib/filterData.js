@@ -80,3 +80,25 @@ export async function filterSanctionsData(
       )
     : sanctions
 }
+
+export async function filterTopicData(topic, { include_spaces }) {
+  return {
+    id: topic._id,
+    name: topic.name,
+    description: topic.description,
+    banner: topic.banner,
+    spaces: topic.spaces,
+    created: topic.createdAt,
+    updated: topic.updatedAt,
+  }
+}
+
+export async function filterTopicsData(topics, { include_spaces }) {
+  return include_spaces
+    ? await Promise.all(
+        topics.map(
+          async (topic) => await filterTopicData(topic, { include_spaces })
+        )
+      )
+    : topics
+}

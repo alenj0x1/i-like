@@ -1,4 +1,4 @@
-import { getUser } from './manageApp'
+import { getSpace, getSpaces, getTopic, getUser } from './manageApp'
 
 export function filterUserData(user, role) {
   switch (role) {
@@ -42,20 +42,17 @@ export function filterUsersData(users) {
   })
 }
 
-export async function filterSanctionData(
-  sanction,
-  { include_mod, include_user }
-) {
+export async function filterSanctionData(sanction, obj) {
   return {
     id: sanction._id,
-    moderators: include_mod
+    moderators: obj.include_mod
       ? await Promise.all(
           sanction.moderators.map(
             async (modId) => await getUser(modId, 'manage')
           )
         )
       : sanction.moderators,
-    user: include_user ? await getUser(sanction.user) : sanction.user,
+    user: obj.include_user ? await getUser(sanction.user) : sanction.user,
     subject: sanction.subject,
     content: sanction.content,
     interactions: sanction.interactions,
@@ -67,38 +64,64 @@ export async function filterSanctionData(
   }
 }
 
-export async function filterSanctionsData(
-  sanctions,
-  { include_mod, include_user }
-) {
-  return include_mod || include_user
+export async function filterSanctionsData(sanctions, obj) {
+  return obj.include_mod || obj.include_user
     ? await Promise.all(
         sanctions.map(
-          async (sanction) =>
-            await filterSanctionData(sanction, { include_mod, include_user })
+          async (sanction) => await filterSanctionData(sanction, obj)
         )
       )
     : sanctions
 }
 
-export async function filterTopicData(topic, { include_spaces }) {
+export async function filterTopicData(topic, obj) {
   return {
     id: topic._id,
     name: topic.name,
     description: topic.description,
     banner: topic.banner,
-    spaces: topic.spaces,
+    spaces: obj.include_spaces
+      ? await Promise.all(
+          topic.spaces.map(
+            async (spaceId) => await getSpace(spaceId.toString(), {})
+          )
+        )
+      : topic.spaces,
     created: topic.createdAt,
     updated: topic.updatedAt,
   }
 }
 
-export async function filterTopicsData(topics, { include_spaces }) {
-  return include_spaces
+export async function filterTopicsData(topics, obj) {
+  return obj.include_spaces
     ? await Promise.all(
-        topics.map(
-          async (topic) => await filterTopicData(topic, { include_spaces })
-        )
+        topics.map(async (topic) => await filterTopicData(topic, obj))
       )
     : topics
+}
+
+export async function filterSpaceData(space, obj) {
+  return {
+    id: space._id,
+    name: space.name,
+    description: space.description,
+    banner: space.banner,
+    manager: obj.include_manager
+      ? await getUser(space.manager, 'mod')
+      : space.manager,
+    topicId: obj.include_topic
+      ? await getTopic(space.topicId, {})
+      : space.topicId,
+    posts: space.posts,
+    created: space.createdAt,
+    updated: space.updatedAt,
+  }
+}
+
+export async function filterSpacesData(spaces, obj) {
+  return obj.include_manager
+    ? await Promise.all(
+        spaces.map(async (space) => await filterSpaceData(space, obj))
+      )
+    : spaces
 }

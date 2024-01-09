@@ -10,9 +10,8 @@ html(lang="en")
     title="Manage / User @2"+user.username+" / i like!"
   body
     include ../../includes/header_manage.pug
-    main
-      h2(class='subt') Edit user
 
+    main
       div(class='bx-dtl')
         h3(class='subt-3' id='user-display-name' spellcheck="false" contenteditable)=user.display_name
         span(class='dtl-cont-val bold' data-userid=user.id)="#"+user.id

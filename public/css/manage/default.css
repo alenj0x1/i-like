@@ -69,20 +69,6 @@ main {
   width: 80%;
 }
 
-.info {
-  margin-bottom: 30px;
-  padding: 10px;
-
-  font-size: .9rem;
-
-  color: var(--font-color-light);
-  background-color: var(--background-color-hr-mn);
-
-  border: var(--border-light);
-  border-radius: 10px;
-}
-
-
 @media (min-width: 768px) {
   .hr-mn li:nth-child(1) {
     display: initial;

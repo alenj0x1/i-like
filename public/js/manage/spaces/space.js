@@ -1,36 +1,36 @@
 const btnSave = document.getElementById('btn-save')
 const btnDelete = document.getElementById('btn-delete')
 const { dataset } = document.querySelector('.dtl-cont-val')
-const topicName = document.getElementById('topic-name')
-const topicDescription = document.getElementById('topic-description')
-const topicBanner = document.getElementById('topic-banner')
+const spaceName = document.getElementById('space-name')
+const spaceDescription = document.getElementById('space-description')
+const spaceBanner = document.getElementById('space-banner')
 
-topicName.addEventListener('input', (e) => {
+spaceName.addEventListener('input', () => {
   if (btnSave.attributes.getNamedItem('disabled'))
     btnSave.attributes.removeNamedItem('disabled')
 })
 
-topicDescription.addEventListener('input', (e) => {
+spaceDescription.addEventListener('input', () => {
   if (btnSave.attributes.getNamedItem('disabled'))
     btnSave.attributes.removeNamedItem('disabled')
 })
 
-topicBanner.addEventListener('input', (e) => {
+spaceBanner.addEventListener('input', () => {
   if (btnSave.attributes.getNamedItem('disabled'))
     btnSave.attributes.removeNamedItem('disabled')
 })
 
-/** Edit topic **/
-btnSave.addEventListener('click', async (e) => {
-  const response = await fetch(`/manage/topics/edit/${dataset.topicId}`, {
+/** Edit space **/
+btnSave.addEventListener('click', async () => {
+  const response = await fetch(`/manage/spaces/edit/${dataset.spaceId}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: topicName.textContent,
-      description: topicDescription.textContent,
-      banner: topicBanner.textContent,
+      name: spaceName.textContent,
+      description: spaceDescription.textContent,
+      banner: spaceBanner.textContent,
     }),
   })
 
@@ -40,7 +40,7 @@ btnSave.addEventListener('click', async (e) => {
   alert.classList.add('alert')
 
   if (result.ok) {
-    alert.textContent = 'Topic edited correctly.'
+    alert.textContent = 'Space edited correctly.'
 
     document.querySelector('body').append(alert)
 
@@ -78,7 +78,7 @@ btnSave.addEventListener('click', async (e) => {
 })
 
 /** Delete topic **/
-btnDelete.addEventListener('click', async (e) => {
+btnDelete.addEventListener('click', async () => {
   const alert = document.createElement('span')
   alert.classList.add('alert')
 
@@ -93,20 +93,20 @@ btnDelete.addEventListener('click', async (e) => {
     return
   }
 
-  const response = await fetch(`/manage/topics/delete/${dataset.topicId}`, {
+  const response = await fetch(`/manage/spaces/delete/${dataset.spaceId}`, {
     method: 'POST',
   })
 
   const result = await response.json()
 
   if (result.ok) {
-    alert.textContent = 'Topic deleted correctly.'
+    alert.textContent = 'Space deleted correctly.'
 
     document.querySelector('body').append(alert)
 
     setTimeout(() => {
       alert.remove()
-      window.location.href = '/manage/topics'
+      window.location.href = '/manage/spaces'
     }, 3000)
   } else {
     alert.textContent = 'An unexpected error has occurred.'

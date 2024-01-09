@@ -1,9 +1,12 @@
 import User from '../database/models/User.models'
 import Mod from '../database/models/Mod.model'
 import Topic from '../database/models/Topic.model'
+import Space from '../database/models/Space.models'
 import {
   filterSanctionData,
   filterSanctionsData,
+  filterSpaceData,
+  filterSpacesData,
   filterTopicData,
   filterTopicsData,
   filterUserData,
@@ -104,5 +107,41 @@ export async function updateTopic(topic_id, data) {
 }
 
 export async function deleteTopic(topic_id) {
-  return Topic.findByIdAndDelete(topic_id)
+  const topic = await Topic.findById(topic_id)
+
+  topic.spaces.forEach(async (spaceId) => {
+    Space.findByIdAndDelete(spaceId)
+  })
+
+  return topic.deleteOne()
+}
+
+export async function getSpaces(obj) {
+  const spaces = await Space.find({})
+
+  return await filterSpacesData(spaces, obj)
+}
+
+export async function getSpace(space_id, obj) {
+  const space = await Space.findById(space_id)
+
+  return await filterSpaceData(space, obj)
+}
+
+export async function updateSpace(space_id, data) {
+  return Space.findByIdAndUpdate(space_id, {
+    name: data.name,
+    description: data.description,
+    banner: data.banner,
+  })
+}
+
+export async function deleteSpace(space_id) {
+  const space = await Space.findById(space_id)
+  const topic = await Topic.findById(space.topicId)
+
+  topic.spaces.splice(topic.spaces.indexOf(space._id), 1)
+  topic.save()
+
+  return space.deleteOne()
 }

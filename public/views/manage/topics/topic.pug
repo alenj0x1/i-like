@@ -25,7 +25,7 @@ html(lang="en")
           span(class='dtl-cont-key') Spaces
           if topic.spaces.length
             for space in topic.spaces
-              span(class='dtl-cont-role')=space
+              span(class='dtl-cont-role')=space.name
           else
             span(class='dtl-cont-val') Without spaces.
 

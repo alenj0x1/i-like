@@ -18,8 +18,8 @@ html(lang="en")
             tr(class='tb-tr')
               th(class='tb-th')='ID'
               th(class='tb-th')='Name'
-              th(class='tb-th')='Banner'
               th(class='tb-th')='Spaces'
+              th(class='tb-th')='Banner'
               th(class='tb-th')='Edit'
           tbody
             for topic, index in topics
@@ -27,13 +27,13 @@ html(lang="en")
                 td(class='tb-td')=topic.id
                 td(class='tb-td')=topic.name
                 td(class='tb-td')
-                  img(src=topic.banner alt="banner of"+topic.name height='50px')
-                td(class='tb-td')
                   if topic.spaces.length
                     for space in topic.spaces 
-                      span(class="td-mod")=space.name
+                      a(href='/manage/spaces/'+space.id class="td-mod")=space.name
                   else 
                     p(class='para')='Without spaces.'
+                td(class='tb-td')
+                  img(src=topic.banner alt="banner of"+topic.name height='50px')
                 td(class='tb-td')
                   a(href='/manage/topics/'+topic.id)
                       svg(xmlns="http://www.w3.org/2000/svg" height="16" width="18" viewBox="0 0 576 512" class='td-icon')
@@ -45,4 +45,3 @@ html(lang="en")
         a(href='/manage/topics/new' class='btn' role='btn') New topic
 
     script(src="../../js/lib/hrMenu.js") 
-    script(src="../../js/lib/searchBar.js")

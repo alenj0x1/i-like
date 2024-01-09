@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../css/normalize.css")
+    link(rel="stylesheet", href="../css/themes/default.css")
+    link(rel="stylesheet", href="../css/spaces/new.css")
+    title Create a space - i like!
+  body
+    include ../includes/header_logged.pug
+    
+    main
+      form(action='/spaces/new' method='post' class='fm')
+        h2(class='subt')='Create a space' 
+        
+        label(for='name' class='fm-lb') Name
+          input(type="text" name='name' id='name' class='fm-i' minlength='3' maxlength='50' required)
+        label(for='description' class='fm-lb') Description
+          input(type="text" name='content' id='content' class='fm-i' minlength='10' maxlength='100' required)
+        label(for='banner' class='fm-lb') Banner
+          input(type="text" name='banner' id='banner' class='fm-i')
+        label(for='space' class='fm-lb') Select a topic
+          select(name='space' class='fm-i' required)
+            for topic in topics
+              option(value=topic.id)=topic.name
+        
+        span(class='info')
+          span(class='bold')='@'+user.username
+            span(class='light')=' when you create a space you become the manager.'
+
+        button(class='fm-btn sucess')='Create'
+    script(src="../../js/lib/hrMenu.js")
+    script(src="../../js/spaces/new.js")

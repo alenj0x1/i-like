@@ -1,0 +1,56 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../../../css/normalize.css")
+    link(rel="stylesheet", href="../../../css/themes/default.css")
+    link(rel="stylesheet", href="../../../css/manage/default.css")
+    link(rel="stylesheet", href="../../../css/manage/sanctions/user.css")
+    title="Manage / Space "+space.name+" / i like!"
+  body
+    include ../../includes/header_manage.pug
+    
+    main
+      div(class='bx-dtl')
+        h3(class='subt-3' spellcheck="false")
+          span(id='space-name' spellcheck="false" contenteditable)=space.name
+        span(class='dtl-cont-val bold' data-space-id=space.id)="#"+space.id
+        
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Description
+          span(class='dtl-cont-val' id='space-description' spellcheck="false" contenteditable)=space.description
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Manager
+          a(href='/manage/users/'+space.manager.id class='dtl-cont-mod')='@'+space.manager.username
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Posts
+          if space.posts.length
+            for post in space.spaces
+              span(class='dtl-cont-role')=space
+          else
+            span(class='dtl-cont-val') Without posts.
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Banner
+          span(class='dtl-cont-val' id='space-banner' contenteditable)=space.banner
+          img(src=space.banner alt='banner of '+space.name class='dtl-cont-img')
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Created
+          span(class='dtl-cont-val')=space.created
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Updated
+          span(class='dtl-cont-val')=space.updated
+
+        div(class='bx-dtl-cont bx-dtl-cont-btns')
+          button(class="btn sucess" id="btn-save" disabled) Save changes
+          a(href="/manage/spaces" class='btn') Spaces
+          if perms_to_delete_spaces
+            button(class="btn danger" id="btn-delete") Delete space
+
+    script(src="../../../js/lib/hrMenu.js")
+    script(src="../../../js/manage/spaces/space.js")

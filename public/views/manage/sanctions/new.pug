@@ -25,8 +25,12 @@ html(lang="en")
             input(type="radio" name='sanction_type' value='banned' class='fm-i-radio')
         label(for='sanction_time' class='fm-lb') Sanction time
           input(type="text" name='sanction_time' id='sanction_time' class='fm-i' required)
-        
-        span(class='info')='The sanction will be applied by @'+ moderator.username + ' to the user @' + user.username
+
+        span(class='info')
+          span(class='ligth')='The sanction will be applied by '
+            span(class='bold')='@'+moderator.username
+              span(class='light')=' to the user '
+                span(class='bold')='@'+user.username
 
         button(class='fm-btn')='Execute sanction'
 

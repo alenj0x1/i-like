@@ -1,7 +1,7 @@
 .tb-th:nth-child(1),
 .tb-td:nth-child(1),
-.tb-th:nth-child(4),
-.tb-td:nth-child(4){
+.tb-th:nth-child(3),
+.tb-td:nth-child(3){
   display: none;
 }
 
@@ -9,8 +9,8 @@
 @media (min-width: 768px) {
   .tb-th:nth-child(1),
   .tb-td:nth-child(1),
-  .tb-th:nth-child(4),
-  .tb-td:nth-child(4){
+  .tb-th:nth-child(3),
+  .tb-td:nth-child(3){
     display: table-cell;
   }
 }

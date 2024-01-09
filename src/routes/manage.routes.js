@@ -3,16 +3,20 @@ import {
   MOD_SANCTION_TYPES,
   MOD_STATUS,
   MOD_TYPES,
+  deleteSpace,
   deleteTopic,
   deleteUser,
   getSanctionByUser,
   getSanctions,
   getSanctionsByUser,
+  getSpace,
+  getSpaces,
   getTopic,
   getTopics,
   getUser,
   getUsers,
   removeSanction,
+  updateSpace,
   updateTopic,
   updateUser,
 } from '../lib/manageApp'
@@ -31,6 +35,7 @@ router.get('/', async (req, res) => {
         users: await getUsers(),
         sanctions: await getSanctions({}),
         topics: await getTopics({}),
+        spaces: await getSpaces({}),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -61,11 +66,21 @@ router.get('/sanctions', async (req, res) => {
 })
 
 router.get('/topics', async (req, res) => {
-  console.log(await getTopics({ include_spaces: true }))
   try {
     if (req.user.roles.includes('admin'))
       return res.render('manage/topics', {
         topics: await getTopics({ include_spaces: true }),
+      })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/spaces', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/spaces', {
+        spaces: await getSpaces({ include_manager: true, include_topic: true }),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -303,6 +318,57 @@ router.post('/topics/delete/:topicId', async (req, res) => {
       if (!isValidObjectId(topicId)) throw Error('invalid_topic_id')
 
       await deleteTopic(topicId)
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+/** SPACES **/
+router.get('/spaces/:spaceId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { spaceId } = req.params
+      if (!isValidObjectId(spaceId)) throw Error('invalid_space_id')
+
+      res.render('manage/spaces/space', {
+        space: await getSpace(spaceId, { include_manager: true }),
+        perms_to_delete_spaces: req.user.roles.includes('admin') ? true : false,
+      })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/spaces/edit/:spaceId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { spaceId } = req.params
+      const { name, description, banner } = req.body
+      if (!isValidObjectId(spaceId)) throw Error('invalid_space_id')
+      if (name.length < 3) throw Error('name_too_short')
+      if (name.length > 50) throw Error('name_too_long')
+      if (description.length < 10) throw Error('description_too_short')
+      if (description.length > 100) throw Error('description_too_long')
+      if (!isValidUrl(banner)) throw Error('banner_invalid')
+
+      await updateSpace(spaceId, { name, description, banner })
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/spaces/delete/:spaceId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { spaceId } = req.params
+      if (!isValidObjectId(spaceId)) throw Error('invalid_space_id')
+
+      await deleteSpace(spaceId)
       res.status(200).json({ ok: true })
     }
   } catch (err) {

@@ -83,7 +83,7 @@ export async function filterTopicData(topic, obj) {
     spaces: obj.include_spaces
       ? await Promise.all(
           topic.spaces.map(
-            async (spaceId) => await getSpace(spaceId.toString(), {})
+            async (spaceId) => await getSpace(spaceId.toString(), obj)
           )
         )
       : topic.spaces,

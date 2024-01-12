@@ -22,7 +22,7 @@ fm.addEventListener('submit', async (e) => {
   const result = await response.json()
 
   if (result.ok) {
-    window.location.href = `/spaces`
+    window.location.href = `/topics/${result.topicId}`
   } else {
     switch (result.err) {
       case 'name_missing':

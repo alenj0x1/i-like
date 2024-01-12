@@ -1,0 +1,35 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="../css/normalize.css")
+    link(rel="stylesheet", href="../css/themes/default.css")
+    link(rel="stylesheet", href="../css/spaces/new.css")
+    title='#'+topic.name + ' / i like!'
+  body()
+    include ../includes/header_logged.pug
+    
+    div(class='background' style=`background: url(${topic.banner}); background-position: top; background-size: cover;`)
+
+    main
+      div(class='tpvw')
+        header(class='tpvw-hr' style=`background: url('${topic.banner}'); background-repeat: no-repeat; background-size: cover; background-position: top;`)
+          div(class='tpvw-hr-info')
+            h2(class='tpvw-nm subt')=topic.name
+            p(class='tpvw-desc normal')=topic.description
+            
+            if topic.spaces.length 
+              span(class='tpvw-dtl')='with '+topic.spaces.length+' spaces.'
+            else 
+              span(class='tpvw-dtl')='without spaces.'
+        
+        div(class='tpvw-main')
+          if topic.spaces.length
+            for space in topic.spaces
+              include ../components/space.pug
+          else 
+            p(class='para')='Without spaces. '
+              a(href='/spaces/new' class='link')='Create one.'
+    
+    script(src="../../js/lib/hrMenu.js")

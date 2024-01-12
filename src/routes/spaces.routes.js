@@ -43,7 +43,7 @@ router.post('/new', async (req, res) => {
     getTopic.save()
     newSpace.save()
 
-    res.status(201).json({ ok: true })
+    res.status(201).json({ ok: true, topicId: topic })
   } catch (err) {
     res.status(404).json({ err: err.message })
   }

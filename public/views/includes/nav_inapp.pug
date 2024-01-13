@@ -1,4 +1,10 @@
 nav(class='nv-inapp')
-  a(href='/home' class=(currentPage === '/home' ? 'nv-inapp-link nv-inapp-link-current' : 'nv-inapp-link')) home
-  a(href='/topics' class=(currentPage === '/topics' ? 'nv-inapp-link nv-inapp-link-current' : 'nv-inapp-link')) topics
-  a(href='/profile' class=(currentPage === '/profile' ? 'nv-inapp-link nv-inapp-link-current' : 'nv-inapp-link')) profile
+  a(href='/home' class=(currentPage === '/home' ? 'nv-inapp-link nv-inapp-link-current' : 'nv-inapp-link'))
+    svg(xmlns="http://www.w3.org/2000/svg" height="16" width="18" viewBox="0 0 576 512" class='hr-mn-icon')
+          path(d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z")
+  a(href='/topics' class=(currentPage === '/topics' ? 'nv-inapp-link nv-inapp-link-current' : 'nv-inapp-link'))
+    svg(xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512" class='icon')
+          path(d="M181.3 32.4c17.4 2.9 29.2 19.4 26.3 36.8L197.8 128h95.1l11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3s29.2 19.4 26.3 36.8L357.8 128H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H347.1L325.8 320H384c17.7 0 32 14.3 32 32s-14.3 32-32 32H315.1l-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8l9.8-58.7H155.1l-11.5 69.3c-2.9 17.4-19.4 29.2-36.8 26.3s-29.2-19.4-26.3-36.8L90.2 384H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h68.9l21.3-128H64c-17.7 0-32-14.3-32-32s14.3-32 32-32h68.9l11.5-69.3c2.9-17.4 19.4-29.2 36.8-26.3zM187.1 192L165.8 320h95.1l21.3-128H187.1z")
+  a(href='/profile' class=(currentPage === '/profile' ? 'nv-inapp-link nv-inapp-link-current' : 'nv-inapp-link'))
+    svg(xmlns="http://www.w3.org/2000/svg" height="16" width="16" viewBox="0 0 512 512" class='icon')
+      path(d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z") 

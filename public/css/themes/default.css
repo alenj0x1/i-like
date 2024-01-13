@@ -80,7 +80,7 @@ legend {
 }
 
 main {
-  margin: 30px 20px;
+  margin: 30px 20px 160px 20px;
 }
 
 .fm {
@@ -152,7 +152,6 @@ main {
 /* Includes */
 .hr {
   display: flex;
-  position: relative;
   padding: 5px 20px 15px 20px;
   align-items: center;
   justify-content: space-between;
@@ -568,27 +567,19 @@ main {
 
 .nv-inapp {
   display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
 
+  background-color: var(--background-color-btn);
 }
 
 .nv-inapp-link {
   padding: 20px;
   width: 100%;
 
-  color: var(--font-color-link);
-
-  font-weight: 400;
-
-  text-decoration: none;
   text-align: center;
-
-  border-bottom: var(--border-light);
-}
-
-.nv-inapp-link-current {
-  font-weight: 500;
-
-  border-width: 3px;
 }
 
 .icon {
@@ -626,7 +617,7 @@ main {
   padding: 40px;
   width: 100%;
   height: 200px;
-  margin: 70px 0;
+  margin: 0 0 70px 0;
   z-index: 0;
 
   border-top-left-radius: 5px;
@@ -668,7 +659,7 @@ main {
 .space-desc,
 .space-manager {
   min-height: 15px;
-  max-height: 30px;
+  max-height: 15px;
   margin: 0;
   color: var(--font-color);
 
@@ -983,6 +974,20 @@ main {
 
   .tpvw-hr {
     height: 300px;
+
+    transition-duration: 200ms;
+  }
+
+  .tpvw:hover > .tpvw-hr {
+    height: 350px;
+
+    transition-duration: 200ms;
+  }
+
+  .tpvw:hover > .tpvw-main {
+    padding-bottom: 120px;
+
+    transition-duration: 200ms;
   }
 
   .tpvw-hr-info {
@@ -1004,7 +1009,7 @@ main {
     margin: 0;
     padding-left: 10px;
 
-    font-size: 3rem;
+    font-size: 3.5rem;
   }
 
   .tpvw-desc {
@@ -1028,19 +1033,39 @@ main {
   }
 
   .space {
+    max-width: 500px;
+    height: 400px;
     margin-bottom: 40px;
+  }
+  
+  .space-info {
+    height: 35%;
   }
 
   .space-nm {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
 
   .space-desc {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
+    max-height: 20px;
   }
 
   .space-manager {
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    max-height: 20px;
+  }
+
+  .space-post {
+    font-size: 0.8rem;
+  }
+
+  .space-view {
+    height: 10%;
+  }
+
+  .nv-inapp {
+    display: none;
   }
 }
 

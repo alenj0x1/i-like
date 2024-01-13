@@ -4,7 +4,8 @@ div(class='space' style=style)
   div(class='space-info')
     span(class='space-nm')=space.name
     p(class='space-desc')=space.description
-    p(class='space-manager')='managed by @'+space.manager.username
+    p(class='space-manager')='managed by '
+      a(href='/users/'+space.manager.username class='link')='@'+space.manager.username
     
     div(class='space-interact')
       button(class='space-btn')

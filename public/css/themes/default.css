@@ -18,6 +18,7 @@
   --font-color: rgb(175, 175, 175);
   --font-color-light: rgb(150, 150, 150);
   --font-color-icon: rgb(200, 200, 200);
+  --font-color-icon-heart: rgb(255, 119, 119);
   --font-color-link: rgb(150, 150, 150);
   --font-color-brand: rgb(255, 255, 255);
   --font-color-subt: rgb(255, 255, 255);
@@ -699,7 +700,7 @@ main {
 
 .topic-icon,
 .space-icon {
-  fill: var(--font-color-icon);
+  fill: var(--font-color-icon)
 }
 
 .topic-spaces,
@@ -747,7 +748,7 @@ main {
 
 .tpvw-hr {
   position: relative;
-  height: 200px;
+  height: 250px;
 
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -787,6 +788,12 @@ main {
   font-size: 0.6rem;
 
   color: var(--font-color-light);
+}
+
+.tpvw-btn {
+  top: 0;
+
+  background: transparent;
 }
 
 .tpvw-main {
@@ -830,6 +837,10 @@ main {
   z-index: -1;
 
   filter: blur(100px);
+}
+
+.icon-heart {
+  fill: rgb(255, 119, 119);
 }
 
 /* Desktop */
@@ -1023,6 +1034,16 @@ main {
     padding-right: 10px;
 
     font-size: 0.9rem;
+  }
+
+  .tpvw-interact {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+  }
+
+  .tpvw-btn {
+    background: var(--background-color-main);
   }
 
   .tpvw-main {

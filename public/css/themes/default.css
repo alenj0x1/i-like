@@ -1032,21 +1032,29 @@ main {
     gap: 30px;
   }
 
-  .space {
+  .space,
+  .topic {
     max-width: 500px;
     height: 400px;
     margin-bottom: 40px;
   }
+
+  .topic {
+    max-width: 700px;
+  }
   
-  .space-info {
+  .space-info,
+  .topic-info {
     height: 35%;
   }
 
-  .space-nm {
+  .space-nm,
+  .topic-nm {
     font-size: 1.6rem;
   }
 
-  .space-desc {
+  .space-desc,
+  .topic-desc {
     font-size: 1.1rem;
     max-height: 20px;
   }
@@ -1056,11 +1064,13 @@ main {
     max-height: 20px;
   }
 
-  .space-post {
+  .space-post,
+  .topic-space {
     font-size: 0.8rem;
   }
 
-  .space-view {
+  .space-view,
+  .topic-view {
     height: 10%;
   }
 

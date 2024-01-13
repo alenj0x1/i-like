@@ -9,8 +9,11 @@ html(lang="en")
     title Topics - i like!
   body
     include ../includes/header_logged.pug
-    - var currentPage = '/topics';
+    - let currentPage = '/topics';
     include ../includes/nav_inapp.pug
+
+    - let randomBanner = topics[Math.floor(Math.random() * (topics.length - 0))].banner
+    div(class='background' style=`background: url(${randomBanner}); background-position: top; background-size: cover;`)
     
     main
       for topic in topics 

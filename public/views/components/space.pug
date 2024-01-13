@@ -5,7 +5,10 @@ div(class='space' style=style)
     span(class='space-nm')=space.name
     p(class='space-desc')=space.description
     p(class='space-manager')='managed by '
-      a(href='/users/'+space.manager.username class='link')='@'+space.manager.username
+      if user.id == space.manager.id 
+        span()='you'
+      else 
+        a(href='/users/'+space.manager.username class='link')='@'+space.manager.username
     
     div(class='space-interact')
       button(class='space-btn')

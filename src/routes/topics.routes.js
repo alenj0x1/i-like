@@ -19,6 +19,7 @@ router.get('/:topicId', async (req, res) => {
         include_spaces: true,
         include_manager: true,
       }),
+      user: req.user,
     })
   } catch (err) {
     res.status(404).send({ err: err.message })

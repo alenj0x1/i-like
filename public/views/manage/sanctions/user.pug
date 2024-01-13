@@ -3,11 +3,11 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="../../css/normalize.css")
-    link(rel="stylesheet", href="../../css/themes/default.css")
-    link(rel="stylesheet", href="../../css/manage/default.css")
-    link(rel="stylesheet", href="../../css/manage/sanctions/user.css")
-    title="Manage / Sanctions of @"+user.username+" / i like!"
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/manage/default.css")
+    link(rel="stylesheet", href="/css/manage/sanctions/user.css")
+    title="Manage/Sanctions of @"+user.username+" - i like!"
   body
     include ../../includes/header_manage.pug
     main
@@ -35,4 +35,4 @@ html(lang="en")
         p(class='para')='Without sanctions.'
       a(href='/manage/sanctions/new/'+user.id class='btn' role='button') New sanction
 
-    script(src="../../js/lib/hrMenu.js") 
+    script(src="/js/lib/hrMenu.js") 

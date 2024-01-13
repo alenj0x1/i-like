@@ -3,11 +3,11 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="../../../css/normalize.css")
-    link(rel="stylesheet", href="../../../css/themes/default.css")
-    link(rel="stylesheet", href="../../../css/manage/default.css")
-    link(rel="stylesheet", href="../../../css/manage/sanctions/user.css")
-    title="Manage / User @2"+user.username+" / i like!"
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/manage/default.css")
+    link(rel="stylesheet", href="/css/manage/sanctions/user.css")
+    title="Manage/User @2"+user.username+" - i like!"
   body
     include ../../includes/header_manage.pug
 
@@ -50,5 +50,5 @@ html(lang="en")
           if perms_to_delete_users
             button(class="btn danger" id="btn-delete") Delete user
 
-    script(src="../../../js/lib/hrMenu.js")
-    script(src="../../../js/manage/users/user.js")
+    script(src="/js/lib/hrMenu.js")
+    script(src="/js/manage/users/user.js")

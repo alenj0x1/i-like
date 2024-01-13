@@ -3,14 +3,16 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="../css/normalize.css")
-    link(rel="stylesheet", href="../css/themes/default.css")
-    link(rel="stylesheet", href="../css/spaces/new.css")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/spaces/new.css")
     title Create a space - i like!
   body
     include ../includes/header_logged.pug
     include ../includes/nav_inapp.pug
     
+    div(class='background' style=`background: url('/images/background.png'); background-position: top; background-size: cover;`)
+
     main
       form(action='/spaces/new' method='post' class='fm')
         h2(class='subt')='Create a space' 
@@ -22,11 +24,11 @@ html(lang="en")
         label(for='banner' class='fm-lb') Banner
           input(type="text" name='banner' id='banner' class='fm-i')
         label(for='space' class='fm-lb') Select a topic
-          select(name='space' class='fm-i' required)
+          select(name='space' class='fm-i fm-select' required)
             for topic in topics
               option(value=topic.id)=topic.name
         
-        span(class='info')
+        span(class='info default')
           span(class='bold')='@'+user.username
             span(class='light')=' when you create a space you become the manager.'
 

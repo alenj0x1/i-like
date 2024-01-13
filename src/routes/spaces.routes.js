@@ -3,6 +3,8 @@ import { getTopics } from '../lib/manageApp'
 import { isValidUrl } from '../lib/validate'
 import Space from '../database/models/Space.models'
 import Topic from '../database/models/Topic.model'
+import { isValidObjectId } from 'mongoose'
+import { filterSpaceData } from '../lib/filterData'
 const router = Router()
 
 router.get('/new', async (req, res) => {
@@ -44,6 +46,25 @@ router.post('/new', async (req, res) => {
     newSpace.save()
 
     res.status(201).json({ ok: true, topicId: topic })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/:spaceId', async (req, res) => {
+  try {
+    const { spaceId } = req.params
+
+    const getSpace = await Space.findById(spaceId)
+    if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
+
+    res.render('spaces/view', {
+      space: await filterSpaceData(getSpace, {
+        include_manager: true,
+        include_topic: true,
+      }),
+      user: req.user,
+    })
   } catch (err) {
     res.status(404).json({ err: err.message })
   }

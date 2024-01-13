@@ -3,12 +3,12 @@
 /* Customization */
 :root {
   --background-color: rgb(17, 17, 17);
-  --background-color-main: rgba(4, 4, 4, .7);
+  --background-color-main: rgba(4, 4, 4, .9);
   --background-color-hr-mn: rgba(17, 17, 17);
   --background-color-btn: rgb(15, 15, 15);
   --background-color-danger: rgb(40, 20, 20);
   --background-color-warning: rgb(60, 40, 20);
-  --background-color-sucess: rgb(20, 40, 20);
+  --background-color-sucess: rgb(30, 50, 30);
   --color-status-connected: rgb(46, 148, 46);
   --color-status-disconnected: rgb(148, 46, 46);
   --background-space-info: rgb(19, 19, 19);
@@ -40,7 +40,7 @@ body {
   min-height: 100vh;
 
   background-color: var(--background-color);
-  background-image: linear-gradient(to bottom, var(--background-color) 10%, var(--background-color-main)), url('../../images/pattern.png');
+  background-image: linear-gradient(to bottom, var(--background-color) 10%, var(--background-color-main)), url('/images/pattern.png');
 }
 
 h1,
@@ -63,7 +63,7 @@ legend {
 
   color: var(--font-color-subt);
 
-  font-size: 2.5rem;
+  font-size: 1.6rem;
 }
 
 .subt-3 {
@@ -88,8 +88,7 @@ main {
   display: flex;
   flex-direction: column;
   max-width: 100%;
-  padding: 40px;
-
+  padding: 30px;
   background-color: var(--background-color-hr-mn);
 
   border: var(--border-light);
@@ -100,6 +99,7 @@ main {
   margin-bottom: 30px;
 
   font-weight: 500;
+  font-size: 0.9rem;
 
   color: var(--font-color-light);
 }
@@ -114,18 +114,18 @@ main {
   color: var(--font-color-link);
   background-color: transparent;
   
-  border: var(--border-light);
-  border-radius: 5px;
+  border: none;
+  border-bottom: var(--border-light);
 }
 
 .fm-i:focus {
   outline: none;
 
-  border: var(--border-semilight);
+  border-bottom: var(--border-semilight);
 }
 
 .fm-btn {
-  width: 100%;
+  width: max-content;
   padding: 10px 30px;
 
   background-color: var(--background-color-btn);
@@ -148,6 +148,10 @@ main {
   cursor: pointer;
 
   opacity: 1;
+}
+
+.fm-select {
+  background-color: var(--background-space-btn);
 }
 
 /* Includes */
@@ -191,7 +195,7 @@ main {
   position: absolute;
   left: 0;
   right: 0;
-  margin: 40px;
+  margin: 20px;
   margin-top: 60px;
   padding-left: 0;
   padding: 30px 15px;
@@ -199,7 +203,7 @@ main {
 
   background-color: var(--background-color-hr-mn);
 
-  border-radius: 10px;
+  border-radius: 5px;
   border: var(--border-light);
 
   transition-duration: 200ms;
@@ -211,7 +215,7 @@ main {
 
   color: var(--font-color);
 
-  border-bottom: var(--border-light);
+  border-bottom: var(--border-semilight);
 
   list-style: none;
 }
@@ -450,6 +454,10 @@ main {
   background-color: var(--background-color-sucess);
 }
 
+.default {
+  background-color: var(--background-color-btn);
+}
+
 .to-lower {
   text-transform: lowercase;
 }
@@ -601,14 +609,13 @@ main {
 .info {
   width: 100%;
   margin-bottom: 30px;
-  padding: 10px;
+  padding: 15px;
 
-  font-size: .9rem;
+  font-size: .8rem;
 
   color: var(--font-color-light);
 
-  border: var(--border-light);
-  border-radius: 10px;
+  border-left: var(--border-light);
 }
 
 .topic,
@@ -700,6 +707,8 @@ main {
 
 .topic-icon,
 .space-icon {
+  vertical-align: middle;
+
   fill: var(--font-color-icon)
 }
 
@@ -741,12 +750,14 @@ main {
   border-bottom-right-radius: 5px;
 }
 
-/* Topic view: tpvw */
-.tpvw {
+/* Topic view: tpvw & Space view: spvw */
+.tpvw,
+.spvw {
   width: 100%;
 }
 
-.tpvw-hr {
+.tpvw-hr,
+.spvw-hr {
   position: relative;
   height: 250px;
 
@@ -754,7 +765,8 @@ main {
   border-top-right-radius: 10px;
 }
 
-.tpvw-hr-info {
+.tpvw-hr-info,
+.spvw-hr-info {
   position: absolute;
   bottom: 0;
   padding: 20px;
@@ -768,7 +780,8 @@ main {
   border-top-right-radius: 50%;
 }
 
-.tpvw-nm {
+.tpvw-nm,
+.spvw-nm {
   margin: 0 20px;
 
   overflow: hidden;
@@ -776,13 +789,23 @@ main {
   font-size: 1.6rem;
 }
 
-.tpvw-desc {
+.tpvw-desc,
+.spvw-desc {
   font-size: 0.8rem;
 
   color: var(--font-color-subt-3);
 }
 
-.tpvw-dtl {
+.spvw-managed {
+  display: block;
+
+  font-size: 0.8rem;
+
+  color: var(--font-color-light);
+}
+
+.tpvw-dtl,
+.spvw-dtl {
   text-align: right;
 
   font-size: 0.6rem;
@@ -790,13 +813,24 @@ main {
   color: var(--font-color-light);
 }
 
-.tpvw-btn {
+.tpvw-interact,
+.spvw-interact {
+  display: flex;
+  justify-content: center;
+  gap: 0 10px;
+}
+
+.tpvw-btn,
+.spvw-btn {
+  display: flex;
+  gap: 10px;
   top: 0;
 
   background: transparent;
 }
 
-.tpvw-main {
+.tpvw-main,
+.spvw-main {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -836,11 +870,11 @@ main {
   bottom: 0;
   z-index: -1;
 
-  filter: blur(100px);
+  filter: blur(200px);
 }
 
 .icon-heart {
-  fill: rgb(255, 119, 119);
+  fill: var(--font-color-icon-heart)
 }
 
 /* Desktop */
@@ -855,7 +889,7 @@ main {
   }
 
   .subt {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
 
   .fm {
@@ -983,25 +1017,29 @@ main {
     background-color: var(--background-space-info);
   }
 
-  .tpvw-hr {
+  .tpvw-hr,
+  .spvw-hr {
     height: 300px;
 
     transition-duration: 200ms;
   }
 
-  .tpvw:hover > .tpvw-hr {
+  .tpvw:hover > .tpvw-hr,
+  .spvw:hover > .spvw-hr {
     height: 350px;
 
     transition-duration: 200ms;
   }
 
-  .tpvw:hover > .tpvw-main {
+  .tpvw:hover > .tpvw-main,
+  .spvw:hover > .spvw-main {
     padding-bottom: 120px;
 
     transition-duration: 200ms;
   }
 
-  .tpvw-hr-info {
+  .tpvw-hr-info,
+  .spvw-hr-info {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -1016,37 +1054,53 @@ main {
     border-top-right-radius: 10px;
   }
 
-  .tpvw-nm {
+  .tpvw-nm,
+  .spvw-nm {
     margin: 0;
     padding-left: 10px;
 
     font-size: 3.5rem;
   }
 
-  .tpvw-desc {
+  .tpvw-desc,
+  .spvw-desc {
     padding-left: 10px;
 
     font-size: 1.1rem;
   }
 
-  .tpvw-dtl {
+  .tpvw-dtl,
+  .spvw-dtl {
     align-self: flex-end;
     padding-right: 10px;
 
     font-size: 0.9rem;
   }
 
-  .tpvw-interact {
+  .spvw-managed {
+    padding-left: 10px;
+
+    font-size: 0.9rem;
+  }
+
+  .tpvw-interact,
+  .spvw-interact {
     position: absolute;
     top: 10px;
     right: 20px;
   }
 
-  .tpvw-btn {
+  .tpvw-btn,
+  .spvw-btn {
     background: var(--background-color-main);
   }
 
-  .tpvw-main {
+  .spvw-main > .spvw-btn {
+    background-color: var(--background-color-btn);
+  }
+
+  .tpvw-main,
+  .spvw-main {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;

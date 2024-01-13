@@ -3,11 +3,11 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="../../../css/normalize.css")
-    link(rel="stylesheet", href="../../../css/themes/default.css")
-    link(rel="stylesheet", href="../../../css/manage/default.css")
-    link(rel="stylesheet", href="../../../css/manage/sanctions/user.css")
-    title="Manage / Sanction of @"+sanction.user.username+" / i like!"
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/manage/default.css")
+    link(rel="stylesheet", href="/css/manage/sanctions/user.css")
+    title="Manage/Sanction of @"+sanction.user.username+" - i like!"
   body
     include ../../includes/header_manage.pug
     main
@@ -51,4 +51,4 @@ html(lang="en")
             a(href='/manage/sanctions/remove/'+sanction.id+"?userId="+sanction.user.id class='btn danger') Mark sanction as closed
 
           a(href='/manage/sanctions/interactions/'+sanction.id class='btn') Interactions
-    script(src="../../../js/lib/hrMenu.js") 
+    script(src="/js/lib/hrMenu.js") 

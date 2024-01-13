@@ -3,10 +3,10 @@ html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    link(rel="stylesheet", href="../css/normalize.css")
-    link(rel="stylesheet", href="../css/themes/default.css")
-    link(rel="stylesheet", href="../css/spaces/new.css")
-    title='#'+topic.name + ' / i like!'
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/spaces/new.css")
+    title='#'+topic.name + ' - i like!'
   body()
     include ../includes/header_logged.pug
     include ../includes/nav_inapp.pug
@@ -38,4 +38,4 @@ html(lang="en")
             p(class='para')='Without spaces. '
               a(href='/spaces/new' class='link')='Create one.'
     
-    script(src="../../js/lib/hrMenu.js")
+    script(src="/js/lib/hrMenu.js")

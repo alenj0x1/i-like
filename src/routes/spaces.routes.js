@@ -70,4 +70,23 @@ router.get('/:spaceId', async (req, res) => {
   }
 })
 
+router.get('/:spaceId/redactPost', async (req, res) => {
+  try {
+    const { spaceId } = req.params
+
+    const getSpace = await Space.findById(spaceId)
+    if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
+
+    res.render('spaces/redactPost', {
+      space: await filterSpaceData(getSpace, {
+        include_manager: true,
+        include_topic: true,
+      }),
+      user: req.user,
+    })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
 export default router

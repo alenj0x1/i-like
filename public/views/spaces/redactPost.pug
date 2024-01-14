@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/spaces/new.css")
+    title='Redact a post in '+space.name+' - i like!'
+  body
+    include ../includes/header_logged.pug
+    include ../includes/nav_inapp.pug
+    
+    div(class='background' style=`background: url('${space.banner}'); background-position: top; background-size: cover;`)
+
+    main
+      form(action='/spaces/'+space.id+'/redactPost' method='post' class='rdt-post')
+        div(class='rdt-post-banner')
+        
+        div(class='rdt-post-main')
+          input(class='rdt-title' name='rdt_name' placeholder='title' required)
+          span(class='rdt-writer')='by @'+user.username
+
+          textarea(class='rdt-description' name="rdt_description" minlength='30' maxlength='4000' placeholder='content' required)
+          span(class='rdt-description-count')='0/4000'
+
+          label(class='fm-lb')='Banner URL'
+            input(class='fm-i' name='banner' placeholder='automatically updated')
+
+          label(class='fm-lb')='Tags (max 25 - separated with ,)'
+            input(class='fm-i' name='rdt_tags' placeholder='example: daily, story')
+
+          div(class='rdt-')
+
+          button(class='btn rdt-btn')
+            span()='Post on '+space.name
+
+    script(src="../../js/lib/hrMenu.js")
+    script(src="../../js/spaces/redactPost.js")

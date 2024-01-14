@@ -16,7 +16,8 @@
 
   --font-family: 'Quicksand', sans-serif;
   --font-color: rgb(175, 175, 175);
-  --font-color-light: rgb(150, 150, 150);
+  --font-color-light: rgb(100, 100, 100);
+  --font-color-semilight: rgb(150, 150, 150);
   --font-color-icon: rgb(200, 200, 200);
   --font-color-icon-heart: rgb(255, 119, 119);
   --font-color-link: rgb(150, 150, 150);
@@ -54,7 +55,8 @@ span,
 table,
 td,
 p,
-legend {
+legend,
+textarea {
   font-family: var(--font-family);
 }
 
@@ -96,6 +98,7 @@ main {
 }
 
 .fm-lb {
+  width: 100%;
   margin-bottom: 30px;
 
   font-weight: 500;
@@ -122,6 +125,10 @@ main {
   outline: none;
 
   border-bottom: var(--border-semilight);
+}
+
+.fm-i::placeholder {
+  opacity: 0.3;
 }
 
 .fm-btn {
@@ -877,6 +884,103 @@ main {
   fill: var(--font-color-icon-heart)
 }
 
+.rdt-post {
+  width: 100%;
+  max-width: 800px;
+
+  background-color: var(--background-color-hr-mn);
+
+  border-radius: 5px;
+}
+
+.rdt-post-banner {
+  height: 150px;
+  width: 100%;
+
+  background: var(--background-color-btn);
+  background-size: cover;
+
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.rdt-post-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.rdt-title {
+  width: 100%;
+  background-color: transparent;
+
+  font-size: 1.5rem;
+
+  text-align: center;
+
+  color: var(--font-color-subt);
+
+  border: none;
+  border-bottom: var(--border-semilight);
+}
+
+.rdt-title:focus {
+  outline: none;
+
+  border-bottom: var(--border-light);
+}
+
+.rdt-writer {
+  margin: 5px;
+  align-self: center;
+
+  font-size: 0.8rem;
+
+  color: var(--font-color-light);
+}
+
+.rdt-description {
+  display: block;
+  min-height: 250px;
+  height: auto;
+  width: 100%;
+  margin-top: 40px;
+  padding: 10px;
+
+  color: var(--font-color);
+  background: transparent;
+
+  border: var(--border-semilight);
+
+  resize: none;
+}
+
+.rdt-description:focus {
+  outline: none;
+
+  border: var(--border-light);
+}
+
+.rdt-description-count {
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-bottom: 40px;
+
+  font-size: 0.9rem;
+
+  color: var(--font-color-light);
+}
+
+.rdt-title::placeholder,
+.rdt-description::placeholder {
+  opacity: 0.3;
+}
+
+.rdt-btn {
+  width: 100%;
+}
+
 /* Desktop */
 @media (min-width: 768px) {
   /* Main styles */
@@ -1151,6 +1255,19 @@ main {
 
   .nv-inapp {
     display: none;
+  }
+
+  .rdt-post-banner {
+    height: 250px;
+  }
+
+  .rdt-description {
+    height: 400px;
+  }
+
+  .rdt-btn {
+    width: max-content;
+    align-self: flex-end;
   }
 }
 

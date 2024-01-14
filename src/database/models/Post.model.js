@@ -11,7 +11,7 @@ const Post = new Schema(
     },
     content: {
       type: String,
-      minLength: 50,
+      minLength: 30,
       maxLength: 4000,
       required: true,
     },

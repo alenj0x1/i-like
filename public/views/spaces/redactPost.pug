@@ -18,17 +18,17 @@ html(lang="en")
         div(class='rdt-post-banner')
         
         div(class='rdt-post-main')
-          input(class='rdt-title' name='rdt_name' placeholder='title' required)
+          input(class='rdt-title' name='title' placeholder='title' required)
           span(class='rdt-writer')='by @'+user.username
 
-          textarea(class='rdt-description' name="rdt_description" minlength='30' maxlength='4000' placeholder='content' required)
-          span(class='rdt-description-count')='0/4000'
+          textarea(class='rdt-content' name="content" minlength='30' maxlength='4000' placeholder='content' required)
+          span(class='rdt-content-count')='0/4000'
 
           label(class='fm-lb')='Banner URL'
             input(class='fm-i' name='banner' placeholder='automatically updated')
 
           label(class='fm-lb')='Tags (max 25 - separated with ,)'
-            input(class='fm-i' name='rdt_tags' placeholder='example: daily, story')
+            input(class='fm-i' name='tags' placeholder='example: daily, story')
 
           div(class='rdt-')
 

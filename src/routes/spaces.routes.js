@@ -1,8 +1,9 @@
 import { Router } from 'express'
-import { getTopics } from '../lib/manageApp'
+import { getSpaces, getTopics } from '../lib/manageApp'
 import { isValidUrl } from '../lib/validate'
 import Space from '../database/models/Space.models'
 import Topic from '../database/models/Topic.model'
+import Post from '../database/models/Post.model'
 import { isValidObjectId } from 'mongoose'
 import { filterSpaceData } from '../lib/filterData'
 const router = Router()
@@ -84,6 +85,48 @@ router.get('/:spaceId/redactPost', async (req, res) => {
       }),
       user: req.user,
     })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/:spaceId/redactPost', async (req, res) => {
+  try {
+    const { spaceId } = req.params
+    const { title, content, banner, tags } = req.body
+    if (!title) throw Error('title_missing')
+    if (title.length < 3) throw Error('title_too_short')
+    if (title.length > 50) throw Error('title_too_long')
+    if (!content) throw Error('content_missing')
+    if (content.length < 30) throw Error('content_too_short')
+    if (content.length > 4000) throw Error('content_too_long')
+    if (!isValidUrl(banner)) throw Error('invalid_banner')
+
+    const tagsParsed = tags.split(',')
+
+    const getSpace = await Space.findById(spaceId)
+    if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
+
+    const lowercaseTitle = title.toLowerCase()
+
+    const getPost = await Post.findOne({ title: lowercaseTitle })
+    if (!getPost) throw Error('post_title_taken')
+
+    const newPost = new Post({
+      title,
+      content,
+      banner,
+      author: req.user.id,
+      tags: tagsParsed,
+      spaceId,
+    })
+
+    getSpace.posts.push(newPost._id)
+
+    getSpace.save()
+    newPost.save()
+
+    res.status(201).json({ ok: true, spaceId })
   } catch (err) {
     res.status(404).json({ err: err.message })
   }

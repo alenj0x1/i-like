@@ -44,7 +44,7 @@ fm.addEventListener('submit', async (e) => {
         alert.textContent = 'The description field is too long.'
         break
       case 'banner_invalid':
-        alert.textContent = 'The password field is invalid.'
+        alert.textContent = 'The banner field is invalid.'
         break
       case 'topic_missing':
         alert.textContent = 'The topic field is required.'

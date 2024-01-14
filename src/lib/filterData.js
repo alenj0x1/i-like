@@ -1,4 +1,4 @@
-import { getSpace, getSpaces, getTopic, getUser } from './manageApp'
+import { getPosts, getSpace, getSpaces, getTopic, getUser } from './manageApp'
 
 export function filterUserData(user, role) {
   switch (role) {
@@ -112,7 +112,9 @@ export async function filterSpaceData(space, obj) {
     topicId: obj.include_topic
       ? await getTopic(space.topicId, {})
       : space.topicId,
-    posts: space.posts,
+    posts: obj.include_posts
+      ? await getPosts(obj, space._id.toString())
+      : space.posts,
     created: space.createdAt,
     updated: space.updatedAt,
   }
@@ -124,4 +126,30 @@ export async function filterSpacesData(spaces, obj) {
         spaces.map(async (space) => await filterSpaceData(space, obj))
       )
     : spaces
+}
+
+export async function filterPostData(post, obj) {
+  return {
+    id: post._id,
+    title: post.title,
+    content: post.content,
+    banner: post.banner,
+    author: obj.include_author
+      ? await getUser(post.author, 'mod')
+      : post.author,
+    tags: post.tags,
+    spaceId: obj.include_space
+      ? await getSpace(post.spaceId, obj)
+      : post.spaceId,
+    created: post.createdAt,
+    updated: post.updatedAt,
+  }
+}
+
+export async function filterPostsData(posts, obj) {
+  return obj.include_author || obj.include_space
+    ? await Promise.all(
+        posts.map(async (post) => await filterPostData(post, obj))
+      )
+    : posts
 }

@@ -2,6 +2,7 @@ import User from '../database/models/User.models'
 import Mod from '../database/models/Mod.model'
 import Topic from '../database/models/Topic.model'
 import Space from '../database/models/Space.models'
+import Post from '../database/models/Post.model'
 import {
   filterSanctionData,
   filterSanctionsData,
@@ -11,6 +12,8 @@ import {
   filterTopicsData,
   filterUserData,
   filterUsersData,
+  filterPostData,
+  filterPostsData,
 } from './filterData'
 
 export const USER_ROLES = {
@@ -144,4 +147,48 @@ export async function deleteSpace(space_id) {
   topic.save()
 
   return space.deleteOne()
+}
+
+export async function getPosts(obj, space_id) {
+  if (space_id) {
+    const posts = await Post.find({ spaceId: space_id })
+
+    return await filterPostsData(posts, obj)
+  }
+
+  const posts = await Post.find({})
+
+  return await filterPostsData(posts, obj)
+}
+
+export async function getPost(post_id, obj) {
+  const post = await Post.findById(post_id)
+
+  return await filterPostData(post, obj)
+}
+
+export async function updatePost(post_id, data) {
+  const post = await Post.findById(post_id)
+
+  post.title = data.title
+  post.content = data.content
+  post.banner = data.banner
+
+  if (data.tags.length > 0) {
+    post.tags = data.tags
+  } else {
+    post.tags = []
+  }
+
+  post.save()
+}
+
+export async function deletePost(post_id) {
+  const post = await Post.findById(post_id)
+  const space = await Space.findById(post.spaceId)
+
+  space.posts.splice(space.posts.indexOf(post_id), 1)
+  space.save()
+
+  return post.deleteOne()
 }

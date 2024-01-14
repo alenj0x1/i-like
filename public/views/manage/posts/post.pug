@@ -1,0 +1,60 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/manage/default.css")
+    link(rel="stylesheet", href="/css/manage/sanctions/user.css")
+    title="Manage/Post "+post.title+" - i like!"
+  body
+    include ../../includes/header_manage.pug
+    
+    main
+      div(class='bx-dtl')
+        h3(class='subt-3' spellcheck="false")
+          span(id='post-title' spellcheck="false" contenteditable)=post.title
+        span(class='dtl-cont-val bold' data-post-id=post.id)="#"+post.id
+        
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Content
+          span(class='dtl-cont-val' id='post-content' spellcheck="false" contenteditable)=post.content
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Author
+          a(href='/manage/users/'+post.author.id class='dtl-cont-mod')='@'+post.author.username
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Space
+          a(href='/manage/spaces/'+post.spaceId.id class='dtl-cont-mod')=post.spaceId.name
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Tags
+          if post.tags.length
+            - tagsParsed = post.tags.join(', ')
+            span(class='dtl-cont-val' id='post-tags' spellcheck="false" contenteditable)=tagsParsed
+          else
+            span(class='dtl-cont-val') Without tags.
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Banner
+          span(class='dtl-cont-val' id='post-banner' contenteditable)=post.banner
+          img(src=post.banner alt='banner of '+post.title+' post.' class='dtl-cont-img')
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Created
+          span(class='dtl-cont-val')=post.created
+
+        div(class='bx-dtl-cont')
+          span(class='dtl-cont-key') Updated
+          span(class='dtl-cont-val')=post.updated
+
+        div(class='bx-dtl-cont bx-dtl-cont-btns')
+          button(class="btn sucess" id="btn-save" disabled) Save changes
+          a(href="/manage/posts" class='btn') Posts
+          if perms_to_delete_posts
+            button(class="btn danger" id="btn-delete") Delete post
+
+    script(src="/js/lib/hrMenu.js")
+    script(src="/js/manage/posts/post.js")

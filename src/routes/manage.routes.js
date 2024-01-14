@@ -3,9 +3,12 @@ import {
   MOD_SANCTION_TYPES,
   MOD_STATUS,
   MOD_TYPES,
+  deletePost,
   deleteSpace,
   deleteTopic,
   deleteUser,
+  getPost,
+  getPosts,
   getSanctionByUser,
   getSanctions,
   getSanctionsByUser,
@@ -16,6 +19,7 @@ import {
   getUser,
   getUsers,
   removeSanction,
+  updatePost,
   updateSpace,
   updateTopic,
   updateUser,
@@ -36,6 +40,7 @@ router.get('/', async (req, res) => {
         sanctions: await getSanctions({}),
         topics: await getTopics({}),
         spaces: await getSpaces({}),
+        posts: await getPosts({}),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -81,6 +86,17 @@ router.get('/spaces', async (req, res) => {
     if (req.user.roles.includes('admin'))
       return res.render('manage/spaces', {
         spaces: await getSpaces({ include_manager: true, include_topic: true }),
+      })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/posts', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin'))
+      return res.render('manage/posts', {
+        posts: await getPosts({ include_author: true, include_space: true }),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -333,7 +349,9 @@ router.get('/spaces/:spaceId', async (req, res) => {
       if (!isValidObjectId(spaceId)) throw Error('invalid_space_id')
 
       res.render('manage/spaces/space', {
-        space: await getSpace(spaceId, { include_manager: true }),
+        space: await getSpace(spaceId, {
+          include_manager: true,
+        }),
         perms_to_delete_spaces: req.user.roles.includes('admin') ? true : false,
       })
     }
@@ -369,6 +387,68 @@ router.post('/spaces/delete/:spaceId', async (req, res) => {
       if (!isValidObjectId(spaceId)) throw Error('invalid_space_id')
 
       await deleteSpace(spaceId)
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+/** POSTS **/
+router.get('/posts/:postId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { postId } = req.params
+      if (!isValidObjectId(postId)) throw Error('invalid_post_id')
+
+      res.render('manage/posts/post', {
+        post: await getPost(postId, {
+          include_author: true,
+          include_space: true,
+        }),
+        perms_to_delete_posts: req.user.roles.includes('admin') ? true : false,
+      })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/posts/edit/:postId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { postId } = req.params
+      const { title, content, tags, banner } = req.body
+      if (!isValidObjectId(postId)) throw Error('invalid_post_id')
+      if (title.length < 3) throw Error('title_too_short')
+      if (title.length > 50) throw Error('title_too_long')
+      if (content.length < 30) throw Error('content_too_short')
+      if (content.length > 4000) throw Error('content_too_long')
+      if (!isValidUrl(banner)) throw Error('banner_invalid')
+
+      const tagsParsed = tags.split(',').filter((tag) => tag.length > 0)
+      if (tagsParsed.length > 25) throw Error('max_tags')
+
+      await updatePost(postId, {
+        title,
+        content,
+        tags: tagsParsed,
+        banner,
+      })
+      res.status(200).json({ ok: true })
+    }
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/posts/delete/:postId', async (req, res) => {
+  try {
+    if (req.user.roles.includes('admin')) {
+      const { postId } = req.params
+      if (!isValidObjectId(postId)) throw Error('invalid_post_id')
+
+      await deletePost(postId)
       res.status(200).json({ ok: true })
     }
   } catch (err) {

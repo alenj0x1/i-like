@@ -28,8 +28,7 @@ html(lang="en")
         div(class='bx-dtl-cont')
           span(class='dtl-cont-key') Posts
           if space.posts.length
-            for post in space.spaces
-              span(class='dtl-cont-role')=space
+            span(class='dtl-cont-val')=space.posts.length
           else
             span(class='dtl-cont-val') Without posts.
 

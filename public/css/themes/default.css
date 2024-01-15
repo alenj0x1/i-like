@@ -11,8 +11,12 @@
   --background-color-sucess: rgb(30, 50, 30);
   --color-status-connected: rgb(46, 148, 46);
   --color-status-disconnected: rgb(148, 46, 46);
+  --background-topic-info: rgb(19, 19, 19);
+  --background-topic-btn: rgb(22, 22, 22);
   --background-space-info: rgb(19, 19, 19);
   --background-space-btn: rgb(22, 22, 22);
+  --background-tpvw-main: rgb(15, 15, 15);
+  --background-spvw-main: rgb(15, 15, 15);
 
   --font-family: 'Quicksand', sans-serif;
   --font-color: rgb(175, 175, 175);
@@ -29,6 +33,8 @@
   --border: 1px solid var(--border-color);
   --border-semilight: 1px solid rgb(25, 25, 25, .7);
   --border-light: 1px solid rgba(50, 50, 50, .7);
+
+  --box-shadow: 0 0 10px 2px rgb(0, 0, 0, .3);
 }
 
 * {
@@ -625,63 +631,70 @@ main {
   border-left: var(--border-light);
 }
 
+.tpsvw {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
 .topic,
 .space {
-  position: relative;
   display: block;
-  padding: 40px;
   width: 100%;
-  height: 200px;
-  margin: 0 0 70px 0;
-  z-index: 0;
+  max-width: 500px;
+
+  text-decoration: none;
+
+  border-radius: 5px;
+
+  box-shadow: var(--box-shadow);
+}
+
+.topic-banner,
+.space-banner {
+  height: 75px;
 
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-
-  text-decoration: none;
 }
 
 .topic-info,
 .space-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 65%;
+  position: relative;
   width: 100%;
-  padding: 15px 20px;
-  z-index: 1;
+  padding: 15px;
 
-  background-color: var(--background-color-hr-mn);
+  white-space: nowrap;
 }
 
 .topic-nm,
 .space-nm {
   display: inline-block;
-  max-width: 80%;
-  max-height: 25px;
-
-  overflow: hidden;
-
-  color: var(--font-color-subt);
-
-  text-overflow: ellipsis;
+  width: 70%;
 
   font-weight: 700;
   font-size: 1.3rem;
+  text-overflow: ellipsis;
+
+  color: var(--font-color-subt);
+
+  overflow: hidden;
 }
 
 .topic-desc,
 .space-desc,
 .space-manager {
-  min-height: 15px;
-  max-height: 15px;
+  display: block;
   margin: 0;
+  width: 90%;
+
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+
   color: var(--font-color);
 
   overflow: hidden;
-  overflow-wrap: normal;
-
-  font-size: 0.7rem;
 }
 
 .topic-interact,
@@ -691,7 +704,6 @@ main {
   right: 10px;
   position: absolute;
   gap: 10px;
-  z-index: 2;
 }
 
 .topic-btn,
@@ -721,18 +733,16 @@ main {
 
 .topic-spaces,
 .space-posts {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
+  display: inline-block;
+  width: 80%;
+  
+  font-size: 0.7rem;
+  text-overflow: ellipsis; 
 
   overflow: hidden;
-}
 
-.topic-space,
-.space-post {
   color: var(--font-color-light);
-
-  font-size: 0.7rem;
 }
 
 .topic-view,
@@ -740,15 +750,9 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  bottom: -40px;
-  left: 0;
-  height: 20%;
-  width: 100%;
-  z-index: 4;
+  height: 40px;
 
   color: var(--font-color-light);
-  background-color: var(--background-color-btn);
 
   text-decoration: none;
 
@@ -757,16 +761,49 @@ main {
   border-bottom-right-radius: 5px;
 }
 
+.topic-info {
+  background: var(--background-topic-info);
+}
+
+.topic-view {
+  background: var(--background-topic-btn);
+}
+
+.space-view {
+  background: var(--background-topic-btn);
+}
+
+.space-info {
+  background: var(--background-space-info);
+}
+
+.space-manager {
+  font-size: 0.8rem;
+
+  color: var(--font-color-light);
+}
+
+.space-view {
+  background-color: var(--background-space-btn);
+}
+
 /* Topic view: tpvw & Space view: spvw */
 .tpvw,
 .spvw {
   width: 100%;
+
+  box-shadow: var(--box-shadow);
 }
 
 .tpvw-hr,
 .spvw-hr {
-  position: relative;
-  height: 250px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.tpvw-hr-banner,
+.spvw-hr-banner {
+  height: 150px;
 
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -774,48 +811,68 @@ main {
 
 .tpvw-hr-info,
 .spvw-hr-info {
-  position: absolute;
-  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
   padding: 20px;
-  width: 100%;
 
-  text-align: center;
+  white-space: nowrap;
+}
 
-  background-color: var(--background-color-btn);
+.tpvw-hr-info {
+  background-color: var(--background-tpvw-main);
+}
 
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+.spvw-hr-info {
+  background-color: var(--background-spvw-main);
 }
 
 .tpvw-nm,
 .spvw-nm {
-  margin: 0 20px;
-
-  overflow: hidden;
+  display: block;
+  width: 70%;
+  margin: 0;
 
   font-size: 1.6rem;
+  text-overflow: ellipsis;
+  text-align: center;
+
+  overflow: hidden;
 }
 
 .tpvw-desc,
 .spvw-desc {
+  display: block;
+  width: 80%;
+  
   font-size: 0.8rem;
+  text-overflow: ellipsis;
+  text-align: center;
 
   color: var(--font-color-subt-3);
+
+  overflow: hidden;
 }
 
 .spvw-managed {
   display: block;
+  width: 60%;
 
   font-size: 0.8rem;
+  text-overflow: ellipsis;
+  text-align: center;
 
   color: var(--font-color-light);
+
+  overflow: hidden;
 }
 
 .tpvw-dtl,
 .spvw-dtl {
   text-align: right;
 
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 
   color: var(--font-color-light);
 }
@@ -841,32 +898,19 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 20px 40px 20px;
-
-  background-color: var(--background-color-btn);
+  gap: 30px;
+  padding: 30px 20px 40px 20px;
 
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
 
-.space {
-  max-width: 300px;
-  margin: 0;
-  margin-bottom: 70px;
+.tpvw-main {
+  background: var(--background-tpvw-main);
 }
 
-.space-info {
-  background-color: var(--background-space-info);
-}
-
-.space-manager {
-  font-size: 0.6rem;
-
-  color: var(--font-color-light);
-}
-
-.space-view {
-  background-color: var(--background-space-btn);
+.spvw-main {
+  background: var(--background-spvw-main);
 }
 
 .background {
@@ -877,7 +921,7 @@ main {
   bottom: 0;
   z-index: -1;
 
-  filter: blur(200px);
+  filter: blur(300px);
 }
 
 .icon-heart {
@@ -1100,9 +1144,49 @@ main {
     width: 50%;
   }
 
-  .topic {
-    max-width: 670px;
-    margin: 20px 0;
+  .tpsvw {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .topic,
+  .space {
+    max-width: 500px;
+  }
+
+  .topic-banner,
+  .space-banner {
+    height: 125px;
+  }
+
+  .topic-info,
+  .space-info {
+    padding: 25px;
+  }
+
+  .space-nm,
+  .topic-nm {
+    font-size: 1.4rem;
+  }
+
+  .space-desc,
+  .topic-desc {
+    font-size: 0.9rem;
+  }
+
+  .space-manager {
+    font-size: 0.9rem;
+  }
+
+  .space-posts,
+  .topic-spaces {
+    font-size: 0.7rem;
+  }
+
+  .space-view,
+  .topic-view {
+    height: 40px;
   }
 
   .topic:hover > .topic-info {
@@ -1121,82 +1205,47 @@ main {
     background-color: var(--background-space-info);
   }
 
-  .tpvw-hr,
-  .spvw-hr {
-    height: 300px;
-
-    transition-duration: 200ms;
-  }
-
-  .tpvw:hover > .tpvw-hr,
-  .spvw:hover > .spvw-hr {
+  .tpvw:hover .tpvw-hr-banner,
+  .spvw:hover .spvw-hr-banner {
     height: 350px;
 
     transition-duration: 200ms;
   }
 
-  .tpvw:hover > .tpvw-main,
-  .spvw:hover > .spvw-main {
-    padding-bottom: 120px;
+  .tpvw-hr-banner,
+  .spvw-hr-banner {
+    height: 300px;
 
     transition-duration: 200ms;
   }
 
   .tpvw-hr-info,
   .spvw-hr-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    top: 0;
-
-    background: linear-gradient(to bottom, rgb(0, 0, 0, 0.3), rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.8), var(--background-color-btn) 90%);
-
-    text-align: left;
-  
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    padding: 40px;
   }
 
   .tpvw-nm,
   .spvw-nm {
-    margin: 0;
-    padding-left: 10px;
-
     font-size: 3.5rem;
   }
 
   .tpvw-desc,
   .spvw-desc {
-    padding-left: 10px;
-
     font-size: 1.1rem;
   }
 
   .tpvw-dtl,
   .spvw-dtl {
-    align-self: flex-end;
-    padding-right: 10px;
-
     font-size: 0.9rem;
   }
 
   .spvw-managed {
-    padding-left: 10px;
-
     font-size: 0.9rem;
   }
 
   .tpvw-interact,
   .spvw-interact {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-  }
-
-  .tpvw-btn,
-  .spvw-btn {
-    background: var(--background-color-main);
+    margin-top: 10px;
   }
 
   .spvw-main > .spvw-btn {
@@ -1209,48 +1258,6 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
-  }
-
-  .space,
-  .topic {
-    max-width: 500px;
-    height: 300px;
-    margin-bottom: 40px;
-  }
-
-  .topic {
-    max-width: 500px;
-  }
-  
-  .space-info,
-  .topic-info {
-    height: 45%;
-  }
-
-  .space-nm,
-  .topic-nm {
-    font-size: 1.5rem;
-  }
-
-  .space-desc,
-  .topic-desc {
-    font-size: 1rem;
-    max-height: 20px;
-  }
-
-  .space-manager {
-    font-size: 0.9rem;
-    max-height: 20px;
-  }
-
-  .space-post,
-  .topic-space {
-    font-size: 0.8rem;
-  }
-
-  .space-view,
-  .topic-view {
-    height: 13%;
   }
 
   .nv-inapp {

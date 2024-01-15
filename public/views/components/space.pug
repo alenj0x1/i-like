@@ -1,6 +1,8 @@
 - style = `background: url('${space.banner}'); background-position: center; background-size: cover;`
 
-div(class='space' style=style)
+div(class='space')
+  div(class='space-banner' style=style)
+
   div(class='space-info')
     span(class='space-nm')=space.name
     p(class='space-desc')=space.description

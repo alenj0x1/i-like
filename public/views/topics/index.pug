@@ -16,7 +16,8 @@ html(lang="en")
     div(class='background' style=`background: url(${randomBanner}); background-position: top; background-size: cover;`)
     
     main
-      for topic in topics 
-        include ../components/topic.pug
+      div(class='tpsvw')
+        for topic in topics 
+          include ../components/topic.pug
     script(src="/js/lib/hrMenu.js")
     script(src="/js/spaces/new.js")

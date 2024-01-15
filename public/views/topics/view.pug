@@ -15,7 +15,9 @@ html(lang="en")
 
     main
       div(class='tpvw')
-        header(class='tpvw-hr' style=`background: url('${topic.banner}'); background-repeat: no-repeat; background-size: cover; background-position: top;`)
+        header(class='tpvw-hr')
+          div(class='tpvw-hr-banner' style=`background: url('${topic.banner}'); background-repeat: no-repeat; background-size: cover; background-position: top;`)
+          
           div(class='tpvw-hr-info')
             h2(class='tpvw-nm subt')=topic.name
             p(class='tpvw-desc normal')=topic.description

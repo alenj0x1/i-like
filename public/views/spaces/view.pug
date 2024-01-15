@@ -15,7 +15,9 @@ html(lang="en")
 
     main
       div(class='spvw')
-        header(class='spvw-hr' style=`background: url('${space.banner}'); background-repeat: no-repeat; background-size: cover; background-position: top;`)
+        header(class='spvw-hr')
+          div(class='spvw-hr-banner' style=`background: url('${space.banner}'); background-repeat: no-repeat; background-size: cover; background-position: top;`)
+          
           div(class='spvw-hr-info')
             h2(class='spvw-nm subt')=space.name
             p(class='spvw-desc normal')=space.description

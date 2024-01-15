@@ -6,6 +6,7 @@ import Topic from '../database/models/Topic.model'
 import Post from '../database/models/Post.model'
 import { isValidObjectId } from 'mongoose'
 import { filterSpaceData } from '../lib/filterData'
+import { parserTags } from '../lib/parser'
 const router = Router()
 
 router.get('/new', async (req, res) => {
@@ -100,12 +101,10 @@ router.post('/:spaceId/redactPost', async (req, res) => {
     if (!content) throw Error('content_missing')
     if (content.length < 30) throw Error('content_too_short')
     if (content.length > 4000) throw Error('content_too_long')
-    if (!isValidUrl(banner)) throw Error('invalid_banner')
+    if (banner && !isValidUrl(banner)) throw Error('invalid_banner')
 
-    const tagsParsed = tags
-      .split(',')
-      .map((tag) => tag.trim())
-      .filter((tag) => tag.length)
+    const tagsParsed = parserTags(tags)
+    if (tagsParsed.length > 25) throw Error('max_tags')
 
     const getSpace = await Space.findById(spaceId)
     if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
@@ -131,6 +130,7 @@ router.post('/:spaceId/redactPost', async (req, res) => {
 
     res.status(201).json({ ok: true, spaceId })
   } catch (err) {
+    console.log(err)
     res.status(404).json({ err: err.message })
   }
 })

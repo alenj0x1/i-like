@@ -56,6 +56,12 @@ form.addEventListener('submit', async (e) => {
       case 'post_title_taken':
         alert.textContent = 'Post title taken.'
         break
+      case 'max_tags':
+        alert.textContent = 'Max length of tags exceded. Only 25 tags'
+        break
+      case 'invalid_banner':
+        alert.textContent = 'Invalid banner URL.'
+        break
       default:
         alert.textContent = 'An unexpected error has occurred.'
     }

@@ -29,6 +29,7 @@ import Topic from '../database/models/Topic.model'
 import { isValidObjectId } from 'mongoose'
 import { isValidUrl } from '../lib/validate'
 import { ms } from '../lib/ms'
+import { parserTags } from '../lib/parser'
 const router = Router()
 
 /* HOME */
@@ -254,8 +255,7 @@ router.post('/users/delete/:userId', async (req, res) => {
 /** TOPICS **/
 router.get('/topics/new', async (req, res) => {
   try {
-    if (req.user.roles.includes('admin'))
-      return res.render('manage/topics/new', { user: req.user })
+    if (req.user.roles.includes('admin')) return res.render('manage/topics/new', { user: req.user })
   } catch (err) {
     res.status(404).json({ err: err.message })
   }
@@ -426,7 +426,7 @@ router.post('/posts/edit/:postId', async (req, res) => {
       if (content.length > 4000) throw Error('content_too_long')
       if (!isValidUrl(banner)) throw Error('banner_invalid')
 
-      const tagsParsed = tags.split(',').filter((tag) => tag.length > 0)
+      const tagsParsed = parserTags(tags)
       if (tagsParsed.length > 25) throw Error('max_tags')
 
       await updatePost(postId, {

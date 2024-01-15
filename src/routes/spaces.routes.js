@@ -25,10 +25,10 @@ router.post('/new', async (req, res) => {
     if (banner & !isValidUrl(banner)) throw Error('banner_invalid')
     if (!topic) throw Error('topic_missing')
 
-    const lowercaseName = name.toLowerCase()
+    const getSpace = await Space.find({})
+    const sameNameSpace = getSpace.filter((space) => space.name.toLowerCase === name.toLowerCase())
 
-    const getSpace = await Space.findOne({ lowercaseName })
-    if (getSpace) throw Error('space_name_taken')
+    if (sameNameSpace.length) throw Error('space_name_taken')
 
     const getTopic = await Topic.findById(topic)
     if (!getTopic) throw Error('topic_invalid')
@@ -102,15 +102,18 @@ router.post('/:spaceId/redactPost', async (req, res) => {
     if (content.length > 4000) throw Error('content_too_long')
     if (!isValidUrl(banner)) throw Error('invalid_banner')
 
-    const tagsParsed = tags.split(',')
+    const tagsParsed = tags
+      .split(',')
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length)
 
     const getSpace = await Space.findById(spaceId)
     if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
 
-    const lowercaseTitle = title.toLowerCase()
+    const getPost = await Post.find({})
+    const sameTitlePost = getPost.filter((post) => post.title.toLowerCase() === title.toLowerCase())
 
-    const getPost = await Post.findOne({ title: lowercaseTitle })
-    if (!getPost) throw Error('post_title_taken')
+    if (sameTitlePost.length) throw Error('post_title_taken')
 
     const newPost = new Post({
       title,

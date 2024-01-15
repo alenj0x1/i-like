@@ -54,7 +54,7 @@ form.addEventListener('submit', async (e) => {
         alert.textContent = 'Space id invalid.'
         break
       case 'post_title_taken':
-        alert.textContent = 'Title space taken.'
+        alert.textContent = 'Post title taken.'
         break
       default:
         alert.textContent = 'An unexpected error has occurred.'

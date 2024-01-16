@@ -2,6 +2,10 @@ import { Schema, model } from 'mongoose'
 
 const Post = new Schema(
   {
+    author: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       minLength: 3,
@@ -23,9 +27,17 @@ const Post = new Schema(
       type: String,
       default: '',
     },
-    author: {
-      type: String,
-      required: true,
+    likes: {
+      type: Array,
+      default: [],
+    },
+    comments: {
+      type: Array,
+      default: [],
+    },
+    shared: {
+      type: Array,
+      default: [],
     },
     spaceId: {
       type: String,

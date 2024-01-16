@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getSpaces, getTopics } from '../lib/manageApp'
+import { getPosts, getSpaces, getTopics } from '../lib/manageApp'
 import { isValidUrl } from '../lib/validate'
 import Space from '../database/models/Space.models'
 import Topic from '../database/models/Topic.model'
@@ -65,6 +65,7 @@ router.get('/:spaceId', async (req, res) => {
         include_manager: true,
         include_topic: true,
       }),
+      posts: await getPosts({ include_author: true, include_space: true }, getSpace._id),
       user: req.user,
     })
   } catch (err) {

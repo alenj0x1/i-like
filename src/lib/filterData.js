@@ -46,11 +46,7 @@ export async function filterSanctionData(sanction, obj) {
   return {
     id: sanction._id,
     moderators: obj.include_mod
-      ? await Promise.all(
-          sanction.moderators.map(
-            async (modId) => await getUser(modId, 'manage')
-          )
-        )
+      ? await Promise.all(sanction.moderators.map(async (modId) => await getUser(modId, 'manage')))
       : sanction.moderators,
     user: obj.include_user ? await getUser(sanction.user) : sanction.user,
     subject: sanction.subject,
@@ -66,11 +62,7 @@ export async function filterSanctionData(sanction, obj) {
 
 export async function filterSanctionsData(sanctions, obj) {
   return obj.include_mod || obj.include_user
-    ? await Promise.all(
-        sanctions.map(
-          async (sanction) => await filterSanctionData(sanction, obj)
-        )
-      )
+    ? await Promise.all(sanctions.map(async (sanction) => await filterSanctionData(sanction, obj)))
     : sanctions
 }
 
@@ -82,9 +74,7 @@ export async function filterTopicData(topic, obj) {
     banner: topic.banner,
     spaces: obj.include_spaces
       ? await Promise.all(
-          topic.spaces.map(
-            async (spaceId) => await getSpace(spaceId.toString(), obj)
-          )
+          topic.spaces.map(async (spaceId) => await getSpace(spaceId.toString(), obj))
         )
       : topic.spaces,
     created: topic.createdAt,
@@ -94,9 +84,7 @@ export async function filterTopicData(topic, obj) {
 
 export async function filterTopicsData(topics, obj) {
   return obj.include_spaces
-    ? await Promise.all(
-        topics.map(async (topic) => await filterTopicData(topic, obj))
-      )
+    ? await Promise.all(topics.map(async (topic) => await filterTopicData(topic, obj)))
     : topics
 }
 
@@ -106,15 +94,9 @@ export async function filterSpaceData(space, obj) {
     name: space.name,
     description: space.description,
     banner: space.banner,
-    manager: obj.include_manager
-      ? await getUser(space.manager, 'mod')
-      : space.manager,
-    topicId: obj.include_topic
-      ? await getTopic(space.topicId, {})
-      : space.topicId,
-    posts: obj.include_posts
-      ? await getPosts(obj, space._id.toString())
-      : space.posts,
+    manager: obj.include_manager ? await getUser(space.manager, 'mod') : space.manager,
+    topicId: obj.include_topic ? await getTopic(space.topicId, {}) : space.topicId,
+    posts: obj.include_posts ? await getPosts(obj, space._id.toString()) : space.posts,
     created: space.createdAt,
     updated: space.updatedAt,
   }
@@ -122,9 +104,7 @@ export async function filterSpaceData(space, obj) {
 
 export async function filterSpacesData(spaces, obj) {
   return obj.include_manager
-    ? await Promise.all(
-        spaces.map(async (space) => await filterSpaceData(space, obj))
-      )
+    ? await Promise.all(spaces.map(async (space) => await filterSpaceData(space, obj)))
     : spaces
 }
 
@@ -134,13 +114,9 @@ export async function filterPostData(post, obj) {
     title: post.title,
     content: post.content,
     banner: post.banner,
-    author: obj.include_author
-      ? await getUser(post.author, 'mod')
-      : post.author,
+    author: obj.include_author ? await getUser(post.author, 'mod') : post.author,
     tags: post.tags,
-    spaceId: obj.include_space
-      ? await getSpace(post.spaceId, obj)
-      : post.spaceId,
+    spaceId: obj.include_space ? await getSpace(post.spaceId, obj) : post.spaceId,
     created: post.createdAt,
     updated: post.updatedAt,
   }
@@ -148,8 +124,6 @@ export async function filterPostData(post, obj) {
 
 export async function filterPostsData(posts, obj) {
   return obj.include_author || obj.include_space
-    ? await Promise.all(
-        posts.map(async (post) => await filterPostData(post, obj))
-      )
+    ? await Promise.all(posts.map(async (post) => await filterPostData(post, obj)))
     : posts
 }

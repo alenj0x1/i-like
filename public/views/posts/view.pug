@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/spaces/new.css")
+    title=post.title + ' - i like!'
+  body()
+    if user
+      include ../includes/header_logged.pug
+      include ../includes/nav_inapp.pug
+    else
+      include ../includes/header.pug
+    
+    div(class='background' style=`background: url(${post.banner}); background-position: top; background-size: cover;`)
+
+    main
+      include ../components/post.pug
+    
+    script(src="/js/lib/hrMenu.js")
+    script(src="/js/lib/goTop.js")

@@ -10,6 +10,7 @@ import homeRoutes from './routes/home.routes'
 import manageRoutes from './routes/manage.routes'
 import spacesRoutes from './routes/spaces.routes'
 import topicsRoutes from './routes/topics.routes'
+import postRoutes from './routes/posts.routes'
 import { authenticate } from './middlewares/authenticate.middlewares'
 import { restricted } from './middlewares/restricted.middlewares'
 const SERVER_PORT = process.env.SERVER_PORT || 3001
@@ -36,6 +37,7 @@ app.use('/register', authenticate, registerRoutes)
 app.use('/home', authenticate, homeRoutes)
 app.use('/spaces', authenticate, spacesRoutes)
 app.use('/topics', authenticate, topicsRoutes)
+app.use('/posts', authenticate, postRoutes)
 
 app.get('/logout', authenticate, (req, res) => {
   if (req.cookies.token) {

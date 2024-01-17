@@ -1,4 +1,5 @@
 import { Schema, model } from 'mongoose'
+import { randomColor } from '../../lib/random'
 
 const User = new Schema(
   {
@@ -14,6 +15,56 @@ const User = new Schema(
       type: String,
       required: true,
       maxLength: 56,
+    },
+    profile: {
+      avatar: {
+        type: String,
+        default: '',
+      },
+      banner: {
+        type: String,
+        default: '',
+      },
+      about_me: {
+        type: String,
+        minlength: 1,
+        maxlength: 300,
+        default: 'hi, welcome to my profile!',
+      },
+      social_links: {
+        type: Array,
+        default: [],
+      },
+      color: {
+        type: String,
+        default: randomColor('pastel'),
+      },
+      badges: {
+        type: Array,
+        default: [{ type: 'account_created' }],
+      },
+      privacy: {
+        hidden_posts_likes: {
+          type: Boolean,
+          default: false,
+        },
+        hidden_favorites: {
+          type: Boolean,
+          default: false,
+        },
+        hidden_badges: {
+          type: Boolean,
+          default: false,
+        },
+        hidden_followers: {
+          type: Boolean,
+          default: false,
+        },
+        hidden_following: {
+          type: Boolean,
+          default: false,
+        },
+      },
     },
     password: {
       type: String,

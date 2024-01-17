@@ -1,0 +1,114 @@
+.hr-btn:nth-child(1) {
+  display: initial;
+}
+
+.sett {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 30px;
+  gap: 30px;
+
+  background-color: var(--background-color);
+
+  border-radius: 5px;
+
+  box-shadow: var(--box-shadow);
+}
+
+.sett-appr,
+.sett-priv,
+.sett-acc {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fm {
+  padding: 0;
+  border: none;
+}
+
+.profile-thb {
+  margin-bottom: 30px;
+}
+
+.subt {
+  font-size: 1.4rem;
+}
+
+.subt-3 {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+ol {
+  padding: 20px;
+
+  font-size: 0.9rem;
+}
+
+li {
+  font-size: 0.9rem;
+}
+
+#change-pass {
+  margin-bottom: 15px;
+}
+
+.btn,
+.fm-btn {
+  margin: 15px 0;
+}
+
+.fm-lb {
+  display: flex;
+  flex-direction: column;
+}
+
+.abtme_count {
+  margin-top: 5px;
+  align-self: flex-end;
+}
+
+@media (min-width: 768px) {
+  .hr-mn li:nth-child(1) {
+    display: initial;
+  }
+
+  .sett {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 900px;
+    padding: 60px;
+  }
+
+  .fm {
+    width: 100%;
+  }
+
+  .btn {
+    width: max-content;
+  }
+
+  .subt {
+    font-size: 1.7rem;
+  }
+  
+  .subt-3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  
+
+  ol {
+    padding: 20px;
+  
+    font-size: 1rem;
+  }
+  
+  li {
+    font-size: 1rem;
+  }
+}

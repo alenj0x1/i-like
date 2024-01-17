@@ -1,0 +1,99 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/settings.css")
+    title Settings - i like!
+  body
+    include includes/header_logged.pug
+    include includes/nav_inapp.pug
+
+    div(class='background' style=`background: url('/images/background.png'); background-position: top; background-size: cover;`)
+    
+    main
+      div(class='sett')
+        // Appearance
+        form(class='sett-appr fm')
+          h2(h2='appr' class='subt')='Appearance'
+
+          include components/user_profile_thumb.pug
+          
+          label(class='fm-lb')='Display name'
+            input(class='fm-i' name='display-name' placeholder=user.display_name)
+          
+          label(class='fm-lb')='Username'
+            input(class='fm-i' name='username' placeholder=user.username)
+          
+          label(class='fm-lb')='About me'
+            textarea(class='fm-txtar' name='about_me' placeholder=user.profile.about_me)
+            span(class='normal abtme_count')='0/300'
+          
+          label(class='fm-lb')='Banner URL'
+            input(class='fm-i' name='banner')
+          
+          label(class='fm-lb')='Avatar URL'
+            input(class='fm-i' name='avatar')
+          
+          label(class='fm-lb')='Color'
+            input(class='fm-icolor' type='color' name='color')
+          
+          button(id='save-appr' class='fm-btn sucess')='Save changes'
+
+        // Privacy
+        form(class='sett-priv fm')
+          h2(id='priv' class='subt')='Privacy'
+
+          label(class='fm-lbcheck')='Hide the posts you have liked'
+            input(class='fm-icheck' type='checkbox' name='hidden_posts_likes' value='true' checked=user.profile.privacy.hidden_posts_likes)
+
+          label(class='fm-lbcheck')='Hide your favorites'
+            input(class='fm-icheck' type='checkbox' name='hidden_favorites' value='true' checked=user.profile.privacy.hidden_favorites)
+
+          label(class='fm-lbcheck')='Hide your badges'
+            input(class='fm-icheck' type='checkbox' name='hidden_badges' value='true' checked=user.profile.privacy.hidden_badges)
+
+          label(class='fm-lbcheck')='Hide users who follow you'
+            input(class='fm-icheck' type='checkbox' name='hidden_followers' value='true' checked=user.profile.privacy.hidden_followers)
+
+          label(class='fm-lbcheck')='Hide users you follow'
+            input(class='fm-icheck' type='checkbox' name='hidden_following' value='true' checked=user.profile.privacy.hidden_following)
+
+          button(id='save-priv' class='btn sucess')='Save changes'
+      
+        // Account
+        form(class='sett-acc fm')
+          h2(id='acc' class='subt')='Account'
+
+          h3(class='subt-3')='Change password'
+          
+          label(class='fm-lb')='Current password'
+            input(class='fm-i' type='password' name='current_password' required)
+
+          label(class='fm-lb')='New password'
+            input(class='fm-i' type='password' name='new_password' required)
+
+          label(class='fm-lb')='Confirm new password'
+            input(class='fm-i' type='password' name='new_password_confirm' required)
+
+          label(class='fm-lb')='Password hint'
+            input(class='fm-i' name='password_hint')
+          
+          button(id='change-pass' type='submit' class='fm-btn warning')='Change password'
+
+          h3(class='subt-3')='Delete account'
+
+          span(class='normal')='Before deleting your account, please note the following:'
+            ol(class='normal')
+              li()='All the spaces you created and currently manage will be managed by another user.'
+              li()='All your interactions, including likes, comments, favorites, will be deleted.'
+              li()='Your profile data such as avatar, banner, color, about me, badges and preferences will be deleted.'
+              li()='Your followers and the users you follow will be lost.'
+              li()='After deleting your account, you cannot recover it. The action is irreversible.'
+
+          button(id='change-pass' type='button' class='btn danger')='Delete my account'
+
+
+    script(src="/js/lib/hrMenu.js")

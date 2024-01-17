@@ -1,0 +1,13 @@
+- let userBanner = user.profile.banner ? `background: url('${user.profile.banner}'); background-position: top; background-size: cover;` : `background-color: ${user.profile.color}`
+- let userAvatar = user.profile.avatar ? `background: url('${user.profile.avatar}'); background-position: top; background-size: cover;` : `background-color: ${user.profile.color}`
+
+div(class='profile-thb')
+  header(class='profile-thb-hr')
+    div(class='profile-thb-bnr' style=userBanner)
+    div(class='profile-thb-avtr' style=userAvatar)
+            
+  div(class='profile-thb-mn')
+    span(class='profile-thb-disname')=user.display_name
+    span(class='profile-thb-username')='@'+user.username
+
+    p(class='profile-thb-abtme')=user.profile.about_me

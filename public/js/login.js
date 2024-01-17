@@ -15,7 +15,6 @@ fm.addEventListener('submit', async (e) => {
   })
 
   let result = await response.json()
-  console.log(result)
 
   const alert = document.createElement('span')
   alert.classList.add('alert')

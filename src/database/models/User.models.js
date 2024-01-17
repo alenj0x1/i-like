@@ -14,6 +14,7 @@ const User = new Schema(
     display_name: {
       type: String,
       required: true,
+      minLength: 1,
       maxLength: 56,
     },
     profile: {
@@ -27,7 +28,6 @@ const User = new Schema(
       },
       about_me: {
         type: String,
-        minlength: 1,
         maxlength: 300,
         default: 'hi, welcome to my profile!',
       },

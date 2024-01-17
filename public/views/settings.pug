@@ -16,19 +16,19 @@ html(lang="en")
     main
       div(class='sett')
         // Appearance
-        form(class='sett-appr fm')
+        form(action='/settings/updateAppr' method='POST' class='sett-appr fm')
           h2(h2='appr' class='subt')='Appearance'
 
           include components/user_profile_thumb.pug
           
           label(class='fm-lb')='Display name'
-            input(class='fm-i' name='display-name' placeholder=user.display_name)
+            input(class='fm-i' name='display-name' maxlength='56' placeholder=user.display_name)
           
           label(class='fm-lb')='Username'
-            input(class='fm-i' name='username' placeholder=user.username)
+            input(class='fm-i' name='username' maxlength='28' placeholder=user.username)
           
           label(class='fm-lb')='About me'
-            textarea(class='fm-txtar' name='about_me' placeholder=user.profile.about_me)
+            textarea(class='fm-txtar' name='about_me' maxlength='300' placeholder=user.profile.about_me)
             span(class='normal abtme_count')='0/300'
           
           label(class='fm-lb')='Banner URL'
@@ -40,7 +40,7 @@ html(lang="en")
           label(class='fm-lb')='Color'
             input(class='fm-icolor' type='color' name='color')
           
-          button(id='save-appr' class='fm-btn sucess')='Save changes'
+          button(id='save-appr' class='fm-btn sucess disabled')='Save changes'
 
         // Privacy
         form(class='sett-priv fm')
@@ -61,7 +61,7 @@ html(lang="en")
           label(class='fm-lbcheck')='Hide users you follow'
             input(class='fm-icheck' type='checkbox' name='hidden_following' value='true' checked=user.profile.privacy.hidden_following)
 
-          button(id='save-priv' class='btn sucess')='Save changes'
+          button(id='save-priv' class='btn sucess disabled')='Save changes'
       
         // Account
         form(class='sett-acc fm')
@@ -93,7 +93,9 @@ html(lang="en")
               li()='Your followers and the users you follow will be lost.'
               li()='After deleting your account, you cannot recover it. The action is irreversible.'
 
-          button(id='change-pass' type='button' class='btn danger')='Delete my account'
+          button(id='delete-acc' type='button' class='btn danger' disabled)='Delete my account'
 
 
     script(src="/js/lib/hrMenu.js")
+    script(src="/js/lib/validate.js")
+    script(src="/js/settings.js")

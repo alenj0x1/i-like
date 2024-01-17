@@ -1,6 +1,8 @@
+import User from '../database/models/User.models'
+import { filterUserData } from '../lib/filterData'
 import { validateToken } from '../lib/manageToken'
 
-export function authenticate(req, res, next) {
+export async function authenticate(req, res, next) {
   const TOKEN = req.cookies.token
   const LOW_LEVEL_ROUTES = ['/', '/login', '/register']
   const WITHOUT_AUTENTICATION_ROUTES = ['/posts']
@@ -23,12 +25,14 @@ export function authenticate(req, res, next) {
     res.redirect('/login')
   }
 
+  const getUser = await User.findById(checkToken.data.id)
+
   if (LOW_LEVEL_ROUTES.includes(baseUrl)) {
-    req.user = checkToken.data
+    req.user = filterUserData(getUser)
     res.redirect('/home')
     return
   }
 
-  req.user = checkToken.data
+  req.user = filterUserData(getUser)
   next()
 }

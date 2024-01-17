@@ -1,13 +1,13 @@
-- let userBanner = user.profile.banner ? `background: url('${user.profile.banner}'); background-position: top; background-size: cover;` : `background-color: ${user.profile.color}`
-- let userAvatar = user.profile.avatar ? `background: url('${user.profile.avatar}'); background-position: top; background-size: cover;` : `background-color: ${user.profile.color}`
+- let userBanner = `background: url('${user.profile.banner}'); background-position: top; background-size: cover;`
+- let userAvatar = `background: url('${user.profile.avatar}'); background-position: top; background-size: cover;`
 
-div(class='profile-thb')
+div(class='profile-thb' style=`background-color: ${user.profile.color}`)
   header(class='profile-thb-hr')
-    div(class='profile-thb-bnr' style=userBanner)
-    div(class='profile-thb-avtr' style=userAvatar)
+    div(class='profile-thb-bnr' style=userBanner data-banner=user.profile.banner data-color=user.profile.color)
+    div(class='profile-thb-avtr' style=userAvatar data-avatar=user.profile.avatar data-color=user.profile.color)
             
-  div(class='profile-thb-mn')
-    span(class='profile-thb-disname')=user.display_name
-    span(class='profile-thb-username')='@'+user.username
+  div(class='profile-thb-mn' style=`background-color: ${user.profile.color}`)
+    span(class='profile-thb-disname' data-display-name=user.display_name)=user.display_name
+    span(class='profile-thb-username' data-username=user.username)='@'+user.username
 
-    p(class='profile-thb-abtme')=user.profile.about_me
+    p(class='profile-thb-abtme' data-about-me=user.profile.about_me)=user.profile.about_me

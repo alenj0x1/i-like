@@ -7,8 +7,8 @@
   --background-color-hr-mn: rgba(17, 17, 17);
   --background-color-btn: rgb(15, 15, 15);
   --background-color-danger: rgb(40, 20, 20);
-  --background-color-warning: rgb(60, 40, 20);
-  --background-color-sucess: rgb(30, 50, 30);
+  --background-color-warning: rgb(102, 71, 40);
+  --background-color-sucess: rgb(41, 73, 41);
   --color-status-connected: rgb(46, 148, 46);
   --color-status-disconnected: rgb(148, 46, 46);
   --background-topic-info: rgb(19, 19, 19);
@@ -22,9 +22,10 @@
   --background-post-thb-btn: rgb(22, 22, 22);
   --background-color-checked: rgb(25, 25, 25);
   --background-color-nochecked: rgb(15, 15, 15);
+  --background-color-disabled: rgb(40, 40, 40);
 
   --font-family: 'Quicksand', sans-serif;
-  --font-color: rgb(175, 175, 175);
+  --font-color: rgb(224, 224, 224);
   --font-color-light: rgb(100, 100, 100);
   --font-color-semilight: rgb(150, 150, 150);
   --font-color-icon: rgb(200, 200, 200);
@@ -222,18 +223,18 @@ main {
   width: max-content;
   padding: 10px 30px;
 
-  background-color: var(--background-color-btn);
+  background-color: var(--background-color-disabled);
 
   font-size: 0.9rem;
 
-  color: var(--font-color-light);
+  color: var(--font-color);
 
   border-radius: 5px;
   border: var(--border-light);
 
   cursor: not-allowed;
 
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .fm:valid .fm-btn {
@@ -397,7 +398,7 @@ main {
   text-align: center;
   text-decoration: none;
 
-  color: var(--font-color-light);
+  color: var(--font-color);
 
   border: var(--border-light);
   border-radius: 5px;
@@ -550,6 +551,13 @@ main {
 
 .default {
   background-color: var(--background-color-btn);
+}
+
+.disabled {
+  background-color: var(--background-color-disabled);
+  color: var(--font-color-light);
+
+  pointer-events: none;
 }
 
 .to-lower {
@@ -1385,6 +1393,7 @@ main {
   border-radius: 5px;
 
   box-shadow: var(--box-shadow);
+  overflow: hidden;
 }
 
 .profile-thb-hr {
@@ -1425,10 +1434,15 @@ main {
 }
 
 .profile-thb-disname {
+  width: 90%;
+
   font-weight: 700;
   font-size: 1.2rem;
+  text-overflow: ellipsis;
 
-  color: var(--font-color)
+  color: var(--font-color);
+
+  overflow: hidden;
 }
 
 .profile-thb-username {
@@ -1439,11 +1453,15 @@ main {
 }
 
 .profile-thb-abtme {
+  display: block;
+  width: 80%;
   margin-bottom: 30px;
 
   font-size: 0.9rem;
 
   color: var(--font-color-semilight);
+
+  overflow-wrap: break-word;
 }
 
 /* Desktop */

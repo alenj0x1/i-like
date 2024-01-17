@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
     const comparePasswords = comparePassword(password_login, getUser.password)
     if (!comparePasswords) throw Error('username_or_password_incorrect')
 
-    const token = createToken(getUser.toJSON())
+    const token = createToken(getUser.id)
 
     res.cookie('token', token, {
       httpOnly: true,
@@ -32,6 +32,7 @@ router.post('/', async (req, res) => {
 
     res.status(200).json({ ok: true })
   } catch (err) {
+    console.log(err)
     res.status(404).json({ err: err.message, data: '🪑' })
   }
 })

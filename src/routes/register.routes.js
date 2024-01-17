@@ -2,6 +2,7 @@ import { Router } from 'express'
 import User from '../database/models/User.models'
 import { hashPassword } from '../lib/managePassword'
 import { createToken } from '../lib/manageToken'
+import { randomColor } from '../lib/random'
 const router = Router()
 
 router.get('/', (_req, res) => {
@@ -25,8 +26,7 @@ router.post('/', async (req, res) => {
     if (!user_password) throw Error('password_required')
     if (!user_password_confirm) throw Error('password_confirm_required')
 
-    if (user_password !== user_password_confirm)
-      throw Error('password_confirm_is_not_equal')
+    if (user_password !== user_password_confirm) throw Error('password_confirm_is_not_equal')
 
     const findUser = await User.findOne({ username: user_username })
     if (findUser) throw Error('user_registered')
@@ -37,10 +37,13 @@ router.post('/', async (req, res) => {
       password: hashPassword(user_password),
       password_hint: user_password_hint,
       roles: ['user'],
+      profile: {
+        color: randomColor('pastel'),
+      },
     })
     await newUser.save()
 
-    const token = createToken(newUser.toJSON())
+    const token = createToken(newUser.id)
 
     res.cookie('token', token, {
       httpOnly: true,

@@ -1,10 +1,8 @@
+import 'dotenv/config'
 import { sign, verify } from 'jsonwebtoken'
-import { filterUserData } from './filterData'
 
-export function createToken(user) {
-  const dataFiltered = filterUserData(user)
-
-  return sign(dataFiltered, process.env.JWT_SECRET_KEY, {
+export function createToken(userId) {
+  return sign({ id: userId }, process.env.JWT_SECRET_KEY, {
     expiresIn: process.env.JWT_TOKEN_EXPIRES_IN,
   })
 }

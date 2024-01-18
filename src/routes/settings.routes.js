@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import User from '../database/models/User.models'
 import { isValidUrl } from '../lib/validate'
-import { filterUserData } from '../lib/filterData'
+import { hashPassword, comparePassword } from '../lib/managePassword'
 const router = Router()
 
 /**  View **/
@@ -66,6 +66,29 @@ router.post('/updatePriv', async (req, res) => {
     await getUser.save()
     res.status(200).json({ ok: true })
   } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/changePass', async (req, res) => {
+  try {
+    const { current_password, new_password, new_password_confirm, password_hint } = req.body
+    if (current_password.length < 8) throw Error('current_password_invalid')
+    if (new_password.length < 8) throw Error('new_password_invalid')
+    if (new_password_confirm.length < 8) throw Error('new_password_invalid')
+    if (new_password !== new_password_confirm) throw Error('new_password_not_match')
+
+    const getUser = await User.findById(req.user.id)
+
+    if (!comparePassword(current_password, getUser.password)) throw Error('incorrect_password')
+
+    getUser.password = hashPassword(new_password)
+    getUser.password_hint = password_hint
+
+    await getUser.save()
+    res.status(200).json({ ok: true })
+  } catch (err) {
+    console.log(err)
     res.status(404).json({ err: err.message })
   }
 })

@@ -165,6 +165,62 @@ fmPriv.addEventListener('submit', async (e) => {
   }, 1000)
 })
 
+// Change password - Account settings
+fmAcc.addEventListener('submit', async (e) => {
+  e.preventDefault()
+
+  const response = await fetch(e.target.action, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      current_password: e.target[0].value,
+      new_password: e.target[1].value,
+      new_password_confirm: e.target[2].value,
+      password_hint: e.target[3].value,
+    }),
+  })
+
+  let result = await response.json()
+
+  const alert = document.createElement('span')
+  alert.classList.add('alert')
+
+  if (result.ok) {
+    alert.textContent = 'Password changed correctly.'
+    document.querySelector('body').append(alert)
+
+    setTimeout(() => {
+      alert.remove()
+      window.location.href = '/'
+    }, 1000)
+  } else {
+    switch (result.err) {
+      case 'current_password_invalid':
+        alert.textContent = 'The display name is too short.'
+        break
+      case 'new_password_invalid':
+        alert.textContent = 'The display name is too long.'
+        break
+      case 'new_password_not_match':
+        alert.textContent = 'The username is too short.'
+        break
+      case 'incorrect_password':
+        alert.textContent = 'The username is too long.'
+        break
+      default:
+        alert.textContent = 'An unexpected error has occurred.'
+    }
+
+    document.querySelector('body').append(alert)
+
+    setTimeout(() => {
+      alert.remove()
+    }, 1000)
+  }
+})
+
 function setBackground(elem, value) {
   if (!value || !isValidUrl(value)) {
     elem.style.backgroundColor = `${elem.dataset.color}`

@@ -64,19 +64,19 @@ html(lang="en")
           button(id='save-priv' class='btn sucess disabled')='Save changes'
       
         // Account
-        form(class='sett-acc fm')
+        form(action='/settings/changePass' method='post' class='sett-acc fm')
           h2(id='acc' class='subt')='Account'
 
           h3(class='subt-3')='Change password'
           
           label(class='fm-lb')='Current password'
-            input(class='fm-i' type='password' name='current_password' required)
+            input(class='fm-i' type='password' name='current_password' minlength='8' required)
 
           label(class='fm-lb')='New password'
-            input(class='fm-i' type='password' name='new_password' required)
+            input(class='fm-i' type='password' name='new_password' minlength='8' required)
 
           label(class='fm-lb')='Confirm new password'
-            input(class='fm-i' type='password' name='new_password_confirm' required)
+            input(class='fm-i' type='password' name='new_password_confirm' minlength='8' required)
 
           label(class='fm-lb')='Password hint'
             input(class='fm-i' name='password_hint')

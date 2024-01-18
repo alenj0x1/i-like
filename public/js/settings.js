@@ -7,6 +7,8 @@ const savePriv = document.getElementById('save-priv')
 const changePass = document.getElementById('changePass')
 const deleteAcc = document.getElementById('delete-acc')
 
+/** APPEARANCE **/
+
 // Remove class 'disabled' of inputs and textarea - Appearance
 document
   .querySelectorAll('.sett-appr .fm-i, .sett-appr .fm-txtar, .sett-appr .fm-icolor')
@@ -107,6 +109,52 @@ fmAppr.addEventListener('submit', async (e) => {
       default:
         alert.textContent = 'An unexpected error has occurred.'
     }
+  }
+
+  document.querySelector('body').append(alert)
+
+  setTimeout(() => {
+    alert.remove()
+    window.location.href = '/settings'
+  }, 1000)
+})
+
+/** PRIVACY **/
+
+// Remove class 'disabled' of inputs and textarea - Appearance
+document.querySelectorAll('.sett-priv .fm-icheck').forEach((inp, key) => {
+  inp.addEventListener('input', () => {
+    if (savePriv.classList.contains('disabled')) savePriv.classList.remove('disabled')
+  })
+})
+
+// Update privacy settings
+fmPriv.addEventListener('submit', async (e) => {
+  e.preventDefault()
+
+  const response = await fetch(e.target.action, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      hidden_posts_likes: e.target[0].checked,
+      hidden_favorites: e.target[1].checked,
+      hidden_badges: e.target[2].checked,
+      hidden_followers: e.target[3].checked,
+      hidden_following: e.target[4].checked,
+    }),
+  })
+
+  let result = await response.json()
+
+  const alert = document.createElement('span')
+  alert.classList.add('alert')
+
+  if (result.ok) {
+    alert.textContent = 'Preferences updated correctly'
+  } else {
+    alert.textContent = 'An unexpected error has occurred.'
   }
 
   document.querySelector('body').append(alert)

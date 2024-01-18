@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
 router.post('/updateAppr', async (req, res) => {
   try {
     const { display_name, username, about_me, banner_url, avatar_url, color } = req.body
-    console.log(req.body)
     if (display_name && display_name.length < 2) throw Error('display_name_too_short')
     if (display_name && display_name.length > 56) throw Error('display_name_too_long')
     if (username && display_name.length < 3) throw Error('username_too_short')
@@ -40,10 +39,37 @@ router.post('/updateAppr', async (req, res) => {
     })
 
     await getUser.save()
-
     res.status(200).json({ ok: true })
   } catch (err) {
-    console.log(err)
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/updatePriv', async (req, res) => {
+  try {
+    const {
+      hidden_posts_likes,
+      hidden_favorites,
+      hidden_badges,
+      hidden_followers,
+      hidden_following,
+    } = req.body
+
+    const getUser = await User.findByIdAndUpdate(req.user.id, {
+      profile: {
+        privacy: {
+          hidden_posts_likes,
+          hidden_favorites,
+          hidden_badges,
+          hidden_followers,
+          hidden_following,
+        },
+      },
+    })
+
+    await getUser.save()
+    res.status(200).json({ ok: true })
+  } catch (err) {
     res.status(404).json({ err: err.message })
   }
 })

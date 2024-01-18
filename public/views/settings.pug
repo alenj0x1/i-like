@@ -43,23 +43,23 @@ html(lang="en")
           button(id='save-appr' class='fm-btn sucess disabled')='Save changes'
 
         // Privacy
-        form(class='sett-priv fm')
+        form(action='/settings/updatePriv' method='post' class='sett-priv fm')
           h2(id='priv' class='subt')='Privacy'
 
           label(class='fm-lbcheck')='Hide the posts you have liked'
-            input(class='fm-icheck' type='checkbox' name='hidden_posts_likes' value='true' checked=user.profile.privacy.hidden_posts_likes)
+            input(class='fm-icheck' type='checkbox' name='hidden_posts_likes' checked=user.profile.privacy.hidden_posts_likes)
 
           label(class='fm-lbcheck')='Hide your favorites'
-            input(class='fm-icheck' type='checkbox' name='hidden_favorites' value='true' checked=user.profile.privacy.hidden_favorites)
+            input(class='fm-icheck' type='checkbox' name='hidden_favorites' checked=user.profile.privacy.hidden_favorites)
 
           label(class='fm-lbcheck')='Hide your badges'
-            input(class='fm-icheck' type='checkbox' name='hidden_badges' value='true' checked=user.profile.privacy.hidden_badges)
+            input(class='fm-icheck' type='checkbox' name='hidden_badges' checked=user.profile.privacy.hidden_badges)
 
           label(class='fm-lbcheck')='Hide users who follow you'
-            input(class='fm-icheck' type='checkbox' name='hidden_followers' value='true' checked=user.profile.privacy.hidden_followers)
+            input(class='fm-icheck' type='checkbox' name='hidden_followers' checked=user.profile.privacy.hidden_followers)
 
           label(class='fm-lbcheck')='Hide users you follow'
-            input(class='fm-icheck' type='checkbox' name='hidden_following' value='true' checked=user.profile.privacy.hidden_following)
+            input(class='fm-icheck' type='checkbox' name='hidden_following' checked=user.profile.privacy.hidden_following)
 
           button(id='save-priv' class='btn sucess disabled')='Save changes'
       

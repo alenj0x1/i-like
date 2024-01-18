@@ -198,16 +198,16 @@ fmAcc.addEventListener('submit', async (e) => {
   } else {
     switch (result.err) {
       case 'current_password_invalid':
-        alert.textContent = 'The display name is too short.'
+        alert.textContent = 'Current password field is invalid.'
         break
       case 'new_password_invalid':
-        alert.textContent = 'The display name is too long.'
+        alert.textContent = 'New password field is invalid.'
         break
       case 'new_password_not_match':
-        alert.textContent = 'The username is too short.'
+        alert.textContent = 'New password not match.'
         break
       case 'incorrect_password':
-        alert.textContent = 'The username is too long.'
+        alert.textContent = 'Password incorrect.'
         break
       default:
         alert.textContent = 'An unexpected error has occurred.'

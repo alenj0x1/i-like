@@ -98,14 +98,14 @@ export async function filterSpaceData(space, obj) {
     banner: space.banner,
     manager: obj.include_manager ? await getUser(space.manager, 'mod') : space.manager,
     topicId: obj.include_topic ? await getTopic(space.topicId, {}) : space.topicId,
-    posts: obj.include_posts ? await getPosts(obj, space._id.toString()) : space.posts,
+    posts: obj.include_posts ? await getPosts({ obj, spaceId: space._id }) : space.posts,
     created: space.createdAt,
     updated: space.updatedAt,
   }
 }
 
 export async function filterSpacesData(spaces, obj) {
-  return obj.include_manager
+  return obj.include_manager || obj.include_topic || obj.include_posts
     ? await Promise.all(spaces.map(async (space) => await filterSpaceData(space, obj)))
     : spaces
 }

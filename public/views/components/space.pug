@@ -1,4 +1,4 @@
-- style = `background: url('${space.banner}'); background-position: center; background-size: cover;`
+- let style = space.banner ? `background: url('${space.banner}'); background-position: center; background-size: cover;` : ''
 
 div(class='space')
   div(class='space-banner' style=style)
@@ -6,11 +6,12 @@ div(class='space')
   div(class='space-info')
     span(class='space-nm')=space.name
     p(class='space-desc')=space.description
-    p(class='space-manager')='managed by '
-      if user.id == space.manager.id 
-        span()='you'
-      else 
-        a(href='/users/'+space.manager.username class='link')='@'+space.manager.username
+    if space.manager.id
+      p(class='space-manager')='managed by '
+        if user.id == space.manager.id 
+          span()='you'
+        else 
+          a(href='/users/'+space.manager.username class='link')='@'+space.manager.username
     
     div(class='space-interact')
       button(class='space-btn')
@@ -19,8 +20,8 @@ div(class='space')
 
     div(class='space-posts normal')
       if space.posts.length
-        for post in space.posts
-          span(class='space-post')=post.title
+        - postsParsed = space.posts.map((post) => post.title).join(', ')
+        span(class='space-post')=postsParsed
       else
         span(class='space-post')='Without posts.'
 

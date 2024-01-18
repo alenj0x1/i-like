@@ -45,7 +45,7 @@
   --border-light: 1px solid rgba(50, 50, 50, .7);
   --border-tag: 1px solid rgba(75, 75, 75, .7);
 
-  --box-shadow: 0 0 5px 2px rgb(0, 0, 0, .2);
+  --box-shadow: 0 0 5px 2px rgb(0, 0, 0, .1);
 }
 
 * {
@@ -746,6 +746,8 @@ main {
 
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+
+  background-color: var(--background-space-btn);
 }
 
 .topic-info,
@@ -1056,6 +1058,7 @@ main {
   flex-direction: column;
   align-items: flex-start;
   padding: 20px;
+  gap: 20px;
 }
 
 .rdt-title {
@@ -1079,7 +1082,6 @@ main {
 }
 
 .rdt-writer {
-  margin: 5px;
   align-self: center;
 
   font-size: 0.8rem;
@@ -1092,7 +1094,6 @@ main {
   min-height: 250px;
   height: auto;
   width: 100%;
-  margin-top: 40px;
   padding: 10px;
 
   color: var(--font-color);
@@ -1112,7 +1113,6 @@ main {
 .rdt-content-count {
   align-self: flex-end;
   margin-top: 10px;
-  margin-bottom: 40px;
 
   font-size: 0.9rem;
 
@@ -1139,7 +1139,7 @@ main {
 }
 
 .post-thb-bnr {
-  height: 50px;
+  height: 75px;
 
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -1215,6 +1215,7 @@ main {
 .post-thb-author,
 .post-thb-space {
   display: block;
+  margin-bottom: 10px;
 }
 
 .post-thb-fr {
@@ -1449,7 +1450,7 @@ main {
   font-weight: 500;
   font-size: 0.8rem;
 
-  color: var(--font-color-light);
+  color: var(--font-color);
 }
 
 .profile-thb-abtme {
@@ -1459,7 +1460,7 @@ main {
 
   font-size: 0.9rem;
 
-  color: var(--font-color-semilight);
+  color: var(--font-color);
 
   overflow-wrap: break-word;
 }
@@ -1584,9 +1585,11 @@ main {
   }
 
   .tpsvw {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    justify-items: center;
+    gap: 40px 20px;
   }
 
   .topic,
@@ -1692,10 +1695,11 @@ main {
   }
 
   .tpvw-main {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+    padding: 0 40px 40px 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    justify-items: center;
+    gap: 40px 20px;
   }
 
   .spvw-main {
@@ -1721,7 +1725,7 @@ main {
   }
 
   .post-thb {
-    max-width: 800px;
+    max-width: 80%;
   }
 
   .post-thb-bnr {
@@ -1730,6 +1734,7 @@ main {
 
   .post-thb-mn {
     padding: 25px;
+    padding-bottom: 60px;
   }
   
   .post-thb-ttl {
@@ -1741,16 +1746,17 @@ main {
   }
   
   .post-thb-cont {
+    height: 60px;
     max-width: 100%;
   
     font-size: 1.1rem;
 
-    -webkit-line-clamp: 5;
+    -webkit-line-clamp: 3;
   }
   
   .post-thb-inf {
     margin-top: 5px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
 
     font-size: 0.9rem;
   }
@@ -1796,6 +1802,37 @@ main {
   
   .post-fr {
     padding: 40px;
+  }
+  
+  .profile-thb-hr {
+    height: 200px;
+  }
+  
+  .profile-thb-bnr {
+    height: 200px;
+  }
+  
+  .profile-thb-avtr {
+    height: 125px;
+    width: 125px;
+    bottom: -50px;
+    right: calc(50% - 62.5px);
+  }
+  
+  .profile-thb-mn {
+    margin-top: 50px;
+  }
+  
+  .profile-thb-disname {
+    font-size: 1.3rem;
+  }
+  
+  .profile-thb-username {
+    font-size: 0.9rem;
+  }
+  
+  .profile-thb-abtme {
+    font-size: 1rem;
   }
 }
 

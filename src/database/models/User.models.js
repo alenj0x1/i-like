@@ -73,9 +73,27 @@ const User = new Schema(
     password_hint: {
       type: String,
     },
-    like: {
+    likes: {
+      topics: {
+        type: Array,
+        default: [],
+      },
+      spaces: {
+        type: Array,
+        default: [],
+      },
+      posts: {
+        type: Array,
+        default: [],
+      },
+    },
+    favorites_posts: {
       type: Array,
-      default: [], // Coming soon
+      default: [],
+    },
+    shared_posts: {
+      type: Array,
+      default: [],
     },
     roles: {
       type: Array,

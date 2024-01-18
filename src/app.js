@@ -12,6 +12,7 @@ import spacesRoutes from './routes/spaces.routes'
 import topicsRoutes from './routes/topics.routes'
 import postRoutes from './routes/posts.routes'
 import settingsRoutes from './routes/settings.routes'
+import usersRoutes from './routes/users.routes'
 import { authenticate } from './middlewares/authenticate.middlewares'
 import { restricted } from './middlewares/restricted.middlewares'
 const SERVER_PORT = process.env.SERVER_PORT || 3001
@@ -40,6 +41,11 @@ app.use('/spaces', authenticate, spacesRoutes)
 app.use('/topics', authenticate, topicsRoutes)
 app.use('/posts', authenticate, postRoutes)
 app.use('/settings', authenticate, settingsRoutes)
+app.use('/users', authenticate, usersRoutes)
+
+app.get('/me', authenticate, (req, res) => {
+  res.redirect(`/users/${req.user.username}`)
+})
 
 app.get('/logout', authenticate, (req, res) => {
   if (req.cookies.token) {

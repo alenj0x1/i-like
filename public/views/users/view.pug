@@ -1,0 +1,69 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/users.css")
+    title=user.username + ' - i like!'
+  body()
+    include ../includes/header_logged.pug
+    include ../includes/nav_inapp.pug
+    
+    div(class='background' style=`background: url(${user.profile.banner}); background-position: top; background-size: cover;`)
+
+    main
+      div(class='usr')
+        header(class='usr-hr')
+          div(class='usr-bnr' style=`background: url('${user.profile.banner}'); background-repeat: no-repeat; background-size: cover; background-position: center;`)
+
+          img(class='usr-avtr' src=user.profile.avatar alt='avatar of '+user.username height='75px' width='75px')
+
+          div(class='usr-roles')
+            for role in user.roles
+              span(class=`usr-role role-${role}`)=role
+        div(class='usr-inf' style=`background-color: ${user.profile.color}`)
+          span(class='usr-dspnm')=user.display_name
+          span(class='usr-usrnm')='@'+user.username
+          span(class='usr-abtme')=user.profile.about_me
+
+          div(class='usr-stats')
+            div(class='usr-stat')
+              span(class='usr-stat-key')='Posts'
+              span(class='usr-stat-val')=posts.length
+            div(class='usr-stat')
+              span(class='usr-stat-key')='Spaces'
+              span(class='usr-stat-val')=spaces.length
+            div(class='usr-stat')
+              span(class='usr-stat-key')='Followers'
+              if user.profile.privacy.hidden_followers
+                span(class='usr-stat-val')='hidden'
+              else
+                span(class='usr-stat-val')=0
+            div(class='usr-stat')
+              span(class='usr-stat-key')='Following'
+              if user.profile.privacy.hidden_following
+                span(class='usr-stat-val')='hidden'
+              else
+                span(class='usr-stat-val')=0
+      
+        div(class='usr-mn')
+          if posts.length
+            section(class='usr-posts' style=`background-color: ${user.profile.color}`)
+              h2(class='subt')='My posts'
+
+              div(class='usr-posts-cont')
+                for post in posts 
+                  include ../components/post_thumb.pug
+
+          if spaces.length
+            section(class='usr-spaces' style=`background-color: ${user.profile.color}`)
+              h2(class='subt')='My spaces'
+
+              div(class='usr-spaces-cont')
+                for space in spaces 
+                  include ../components/space.pug
+    
+    script(src="/js/lib/hrMenu.js")
+    script(src="/js/lib/goTop.js")

@@ -18,6 +18,7 @@ router.get('/:topicId', async (req, res) => {
       topic: await getTopic(topicId, {
         include_spaces: true,
         include_manager: true,
+        include_posts: true,
       }),
       user: req.user,
     })

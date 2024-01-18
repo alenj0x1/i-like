@@ -7,17 +7,23 @@ div(class='post-thb')
   div(class='post-thb-mn')
     h2(class='post-thb-ttl')=post.title
 
+    div(class='post-thb-inf')
+      if space
+          span(class='post-thb-author')='by '
+            a(href='/users/'+post.author.username class='link')='@'+post.author.username
+          
+          if post.spaceId.id.toString() !== space.id.toString()
+            span(class='post-thb-space')='from '+post.spaceId.name
+      else
+        span(class='post-thb-space')='from '
+          a(href='/spaces/'+post.spaceId.id class='link')=post.spaceId.name
+
     if post.tags
       div(class='post-thb-tags')
         for tag in post.tags 
           span(class='post-thb-tag')=tag
           
     p(class='post-thb-cont')=post.content
-
-    div(class='post-thb-inf')
-        span(class='post-thb-author')='by @'+post.author.username
-        if post.spaceId.id.toString() !== space.id.toString()
-          span(class='post-thb-space')='from '+post.spaceId.name
   
   footer(class='post-thb-fr')
     div(class='post-thb-stats')

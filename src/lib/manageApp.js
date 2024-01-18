@@ -68,9 +68,7 @@ export async function getSanctionByUser(sanction_id, obj) {
 }
 
 export async function getSanctions(obj) {
-  const sanctions = (await Mod.find({})).filter(
-    (sanction) => sanction.type === 'sanction'
-  )
+  const sanctions = (await Mod.find({})).filter((sanction) => sanction.type === 'sanction')
 
   return await filterSanctionsData(sanctions, obj)
 }
@@ -119,7 +117,12 @@ export async function deleteTopic(topic_id) {
   return topic.deleteOne()
 }
 
-export async function getSpaces(obj) {
+export async function getSpaces({ obj, managerId }) {
+  if (managerId) {
+    const spaces = await Space.find({ manager: managerId })
+
+    return await filterSpacesData(spaces, obj)
+  }
   const spaces = await Space.find({})
 
   return await filterSpacesData(spaces, obj)
@@ -149,9 +152,14 @@ export async function deleteSpace(space_id) {
   return space.deleteOne()
 }
 
-export async function getPosts(obj, space_id) {
-  if (space_id) {
-    const posts = await Post.find({ spaceId: space_id })
+export async function getPosts({ obj, spaceId, authorId }) {
+  if (spaceId) {
+    const posts = await Post.find({ spaceId })
+
+    return await filterPostsData(posts, obj)
+  }
+  if (authorId) {
+    const posts = await Post.find({ author: authorId })
 
     return await filterPostsData(posts, obj)
   }

@@ -40,8 +40,8 @@ router.get('/', async (req, res) => {
         users: await getUsers(),
         sanctions: await getSanctions({}),
         topics: await getTopics({}),
-        spaces: await getSpaces({}),
-        posts: await getPosts({}),
+        spaces: await getSpaces({ obj: {} }),
+        posts: await getPosts({ obj: {} }),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -86,7 +86,7 @@ router.get('/spaces', async (req, res) => {
   try {
     if (req.user.roles.includes('admin'))
       return res.render('manage/spaces', {
-        spaces: await getSpaces({ include_manager: true, include_topic: true }),
+        spaces: await getSpaces({ obj: { include_manager: true, include_topic: true } }),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -97,7 +97,7 @@ router.get('/posts', async (req, res) => {
   try {
     if (req.user.roles.includes('admin'))
       return res.render('manage/posts', {
-        posts: await getPosts({ include_author: true, include_space: true }),
+        posts: await getPosts({ obj: { include_author: true, include_space: true } }),
       })
   } catch (err) {
     res.status(404).json({ err: err.message })

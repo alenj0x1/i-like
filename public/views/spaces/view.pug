@@ -25,7 +25,7 @@ html(lang="en")
               if space.manager.id == user.id
                 span()='you'
               else
-                span()='@'+space.manager.username
+                a(href='/users/'+space.manager.username class='link')='@'+space.manager.username
             
             if space.posts.length 
               span(class='spvw-dtl')='with '+space.posts.length+' posts.'
@@ -50,8 +50,11 @@ html(lang="en")
                 span()='Redact a post.'
 
         div(class='spvw-main')
-          for post in posts
-            include ../components/post_thumb.pug
+          if space.posts.length 
+            for post in posts
+              include ../components/post_thumb.pug
+          else 
+            span(class='normal')='Without posts.'
 
     script(src="/js/lib/hrMenu.js")
     script(src="/js/lib/goTop.js")

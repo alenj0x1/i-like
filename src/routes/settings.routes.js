@@ -30,12 +30,10 @@ router.post('/updateAppr', async (req, res) => {
     const getUser = await User.findByIdAndUpdate(req.user.id, {
       display_name: display_name.length ? display_name : req.user.display_name,
       username: username.length ? username : req.user.username,
-      profile: {
-        about_me: about_me.length ? about_me : req.user.profile.about_me,
-        banner: banner_url.length ? banner_url : req.user.profile.banner,
-        avatar: avatar_url.length ? avatar_url : req.user.profile.avatar,
-        color: color !== '#000000' ? color : req.user.profile.color,
-      },
+      'profile.about_me': about_me.length ? about_me : req.user.profile.about_me,
+      'profile.banner': banner_url.length ? banner_url : req.user.profile.banner,
+      'profile.avatar': avatar_url.length ? avatar_url : req.user.profile.avatar,
+      'profile.color': color !== '#000000' ? color : req.user.profile.color,
     })
 
     await getUser.save()
@@ -56,14 +54,12 @@ router.post('/updatePriv', async (req, res) => {
     } = req.body
 
     const getUser = await User.findByIdAndUpdate(req.user.id, {
-      profile: {
-        privacy: {
-          hidden_posts_likes,
-          hidden_favorites,
-          hidden_badges,
-          hidden_followers,
-          hidden_following,
-        },
+      'profile.privacy': {
+        hidden_posts_likes,
+        hidden_favorites,
+        hidden_badges,
+        hidden_followers,
+        hidden_following,
       },
     })
 

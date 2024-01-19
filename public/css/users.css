@@ -16,21 +16,17 @@
   border-top-right-radius: 5px;
 }
 
+.font-light {
+  color: var(--font-tone-light);
+}
+
+.font-dark {
+  color: var(--font-tone-dark);
+}
+
 .usr-bnr {
   position: relative;
   height: 100%;
-
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.usr-bnr::before {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  content: '';
-
-  background: linear-gradient(to top, rgb(0, 0, 0, 0.9), rgb(0, 0, 0, 0.1));
 
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
@@ -66,8 +62,6 @@
   font-size: 1.5rem;
   text-overflow: ellipsis;
 
-  color: var(--font-color);
-
   overflow: hidden;
 }
 
@@ -79,8 +73,6 @@
   font-size: 0.7rem;
   text-overflow: ellipsis;
 
-  color: var(--font-color);
-
   overflow: hidden;
 }
 
@@ -90,8 +82,6 @@
   font-weight: 500;
   font-size: 0.9rem;
   text-align: center;
-
-  color: var(--font-color);
 }
 
 .usr-roles {
@@ -107,8 +97,6 @@
 
 .usr-role {
   padding: 5px 10px;
-
-  color: var(--font-color);
 
   font-size: 0.6rem;
 
@@ -144,8 +132,6 @@
   justify-content: space-between;
   padding: 20px;
   width: 100%;
-
-  color: var(--font-color);
 }
 
 .usr-stat {
@@ -189,7 +175,8 @@
 }
 
 .subt {
-  color: var(--font-color);
+  color: inherit;
+
   text-align: center;
 }
 
@@ -294,6 +281,7 @@
   }
   
   .subt {
+    font-size: 3rem;
     text-align: left;
   }
   

@@ -38,6 +38,8 @@
   --font-color-subt: rgb(255, 255, 255);
   --font-color-subt-3: rgb(175, 175, 175);
   --font-color-tag: rgb(120, 120, 120);
+  --font-tone-light: rgb(255, 255, 255);
+  --font-tone-dark: rgb(50, 50, 50);
 
   --border-color: rgb(100, 100, 100);
   --border: 1px solid var(--border-color);

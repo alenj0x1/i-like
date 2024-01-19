@@ -15,7 +15,7 @@ html(lang="en")
 
     main
       div(class='usr')
-        header(class='usr-hr')
+        header(class=`usr-hr`)
           div(class='usr-bnr' style=`background: url('${user.profile.banner}'); background-repeat: no-repeat; background-size: cover; background-position: center;`)
 
           img(class='usr-avtr' src=user.profile.avatar alt='avatar of '+user.username height='75px' width='75px')
@@ -23,12 +23,13 @@ html(lang="en")
           div(class='usr-roles')
             for role in user.roles
               span(class=`usr-role role-${role}`)=role
+        
         div(class='usr-inf' style=`background-color: ${user.profile.color}`)
-          span(class='usr-dspnm')=user.display_name
-          span(class='usr-usrnm')='@'+user.username
-          span(class='usr-abtme')=user.profile.about_me
+          span(class=`usr-dspnm font-${color.suggestedTone}`)=user.display_name
+          span(class=`usr-usrnm font-${color.suggestedTone}`)='@'+user.username
+          span(class=`usr-abtme font-${color.suggestedTone}`)=user.profile.about_me
 
-          div(class='usr-stats')
+          div(class=`usr-stats font-${color.suggestedTone}`)
             div(class='usr-stat')
               span(class='usr-stat-key')='Posts'
               span(class='usr-stat-val')=posts.length
@@ -50,7 +51,7 @@ html(lang="en")
       
         div(class='usr-mn')
           if posts.length
-            section(class='usr-posts' style=`background-color: ${user.profile.color}`)
+            section(class=`usr-posts font-${color.suggestedTone}` style=`background-color: ${user.profile.color}`)
               h2(class='subt')='My posts'
 
               div(class='usr-posts-cont')
@@ -58,7 +59,7 @@ html(lang="en")
                   include ../components/post_thumb.pug
 
           if spaces.length
-            section(class='usr-spaces' style=`background-color: ${user.profile.color}`)
+            section(class=`usr-spaces font-${color.suggestedTone}` style=`background-color: ${user.profile.color}`)
               h2(class='subt')='My spaces'
 
               div(class='usr-spaces-cont')

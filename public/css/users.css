@@ -17,11 +17,32 @@
 }
 
 .font-light {
+  fill: var(--font-tone-light);
   color: var(--font-tone-light);
 }
 
 .font-dark {
+  fill: var(--font-tone-dark);
   color: var(--font-tone-dark);
+}
+
+.background-light {
+  background: var(--font-tone-light);
+}
+
+.background-dark {
+  background: var(--font-tone-dark);
+}
+
+.btn {
+  padding: 7.5px 25px;
+
+  border: none;
+}
+
+.usr-icon {
+  height: 20px;
+  width: 20px;
 }
 
 .usr-bnr {
@@ -52,6 +73,12 @@
 
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.usr-interact {
+  display: flex;
+  margin-bottom: 20px;
+  gap: 20px;
 }
 
 .usr-dspnm {
@@ -243,6 +270,7 @@
   
   .usr-stats {
     padding: 0;
+    padding-top: 10px;
     padding-bottom: 60px;
     margin-left: 350px;
     justify-content: flex-start;
@@ -264,6 +292,21 @@
   
   .usr-stat-val {
     font-size: 1rem;
+  }
+
+  .usr-interact {
+    margin: 0;
+    margin-left: 350px;
+    padding-bottom: 20px;
+  }
+
+  .btn {
+    padding: 7.5px 30px;
+  }
+
+  .usr-icon {
+    height: 24px;
+    width: 24px;
   }
   
   .usr-mn {

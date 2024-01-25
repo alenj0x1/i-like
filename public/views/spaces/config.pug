@@ -1,0 +1,38 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="stylesheet", href="/css/normalize.css")
+    link(rel="stylesheet", href="/css/themes/default.css")
+    link(rel="stylesheet", href="/css/spaces/new.css")
+    title=space.name+' - i like!'
+  body()
+    include ../includes/header_logged.pug
+    include ../includes/nav_inapp.pug
+    
+    div(class='background' style=`background: url(${space.banner}); background-position: top; background-size: cover;`)
+
+    main
+      div(class='spconf')
+        header(class='spconf-hr')
+          div(class='spconf-hr-banner' data-space-bnr=space.banner style=`background: url('${space.banner}'); background-repeat: no-repeat; background-size: cover; background-position: top;`)
+        
+        form(class='fm spconf-main' action='/spaces/'+space.id+'/config' method='post')
+          h2(class='subt spconf-nm' data-space-nm=space.name spellcheck='false' contenteditable)=space.name
+          span(class='normal spconf-desc' data-space-desc=space.description spellcheck='false' contenteditable)=space.description
+
+          label(class='fm-lb')='Transfer space management to another user'
+            input(class='fm-i spconf-mng-usrnm' name='mng-usrnm' placeholder='username of user')
+
+          label(class='fm-lb')='Banner URL'
+            input(class='fm-i spconf-bnr' name='banner' placeholder='automatically updated')
+
+          span(class='info sucess')='Simply click or tap on the banner title or description to change it. If you want to go back to the original name, it is as simple as leaving the space empty and going to another field.'
+          
+          button(class='fm-btn disabled')='Update config'
+
+
+    script(src="/js/lib/hrMenu.js")
+    script(src="/js/lib/goTop.js")
+    script(src="/js/spaces/config.js")

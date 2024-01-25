@@ -32,23 +32,20 @@ form.addEventListener('submit', async (e) => {
       case 'title_missing':
         alert.textContent = 'The title field is required.'
         break
-      case 'name_too_short':
+      case 'title_too_short':
         alert.textContent = 'The title field is too short.'
         break
-      case 'name_too_long':
+      case 'title_too_long':
         alert.textContent = 'The title field is too long.'
         break
       case 'content_missing':
         alert.textContent = 'The content field is required.'
         break
-      case 'name_too_short':
+      case 'content_too_short':
         alert.textContent = 'The content field is too short.'
         break
-      case 'name_too_long':
+      case 'content_too_long':
         alert.textContent = 'The content field is too long.'
-        break
-      case 'banner_invalid':
-        alert.textContent = 'The banner field is invalid.'
         break
       case 'invalid_space_id':
         alert.textContent = 'Space id invalid.'

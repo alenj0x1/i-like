@@ -4,6 +4,7 @@ import { isValidUrl } from '../lib/validate'
 import Space from '../database/models/Space.models'
 import Topic from '../database/models/Topic.model'
 import Post from '../database/models/Post.model'
+import User from '../database/models/User.models'
 import { isValidObjectId } from 'mongoose'
 import { filterSpaceData } from '../lib/filterData'
 import { parserTags } from '../lib/parser'
@@ -133,6 +134,58 @@ router.post('/:spaceId/redactPost', async (req, res) => {
     newPost.save()
 
     res.status(201).json({ ok: true, spaceId })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.get('/:spaceId/config', async (req, res) => {
+  try {
+    const { spaceId } = req.params
+
+    const getSpace = await Space.findById(spaceId)
+    if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
+
+    res.render('spaces/config', {
+      space: await filterSpaceData(getSpace, {
+        include_manager: true,
+        include_topic: true,
+      }),
+    })
+  } catch (err) {
+    res.status(404).json({ err: err.message })
+  }
+})
+
+router.post('/:spaceId/config', async (req, res) => {
+  try {
+    const { spaceId } = req.params
+    const { name, description, newManager, banner } = req.body
+    if (name.length < 3) throw Error('name_too_short')
+    if (name.length > 50) throw Error('name_too_long')
+    if (description.length < 10) throw Error('description_too_short')
+    if (description.length > 100) throw Error('description_too_long')
+    if (banner && !isValidUrl(banner)) throw Error('invalid_banner')
+
+    console.log(req.body)
+
+    const getSpace = await Space.findById(spaceId)
+    if (!isValidObjectId(spaceId) || !getSpace) throw Error('invalid_space_id')
+
+    if (newManager) {
+      const getNewManager = await User.findOne({ username: newManager })
+      if (!getNewManager) throw Error('user_not_found')
+
+      getSpace.manager = getNewManager.id
+    }
+
+    getSpace.name = name
+    getSpace.description = description
+    getSpace.banner = banner ? banner : getSpace.banner
+
+    await getSpace.save()
+
+    res.status(200).json({ spaceId: getSpace.id })
   } catch (err) {
     console.log(err)
     res.status(404).json({ err: err.message })

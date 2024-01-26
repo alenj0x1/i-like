@@ -328,7 +328,6 @@
     text-align: left;
   }
   
-  .usr-posts-cont,
   .usr-spaces-cont {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -339,10 +338,17 @@
   }
 
   .usr-posts-cont {
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    justify-items: center;
   }
 
   .post-thb {
-    max-width: 100%;
+    filter: grayscale(0);
+    margin: 0;
+  }
+
+  .post-thb-hr {
+    display: none;
   }
 }

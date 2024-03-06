@@ -51,9 +51,7 @@ export async function updateUser(user_id, data) {
 
 export async function deleteUser(user_id) {
   // Delete sanctions
-  const getUserSanctions = (await Mod.find({ user: user_id })).filter(
-    (sanction) => sanction.type === 'sanction'
-  )
+  const getUserSanctions = (await Mod.find({ user: user_id })).filter((sanction) => sanction.type === 'sanction')
 
   getUserSanctions.forEach(async (sanction) => {
     await Mod.findOneAndDelete(sanction._id)

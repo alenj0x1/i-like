@@ -7,7 +7,7 @@ div(class='profile-thb' style=`background-color: ${user.profile.color}`)
     div(class='profile-thb-avtr' style=userAvatar data-avatar=user.profile.avatar data-color=user.profile.color)
             
   div(class='profile-thb-mn' style=`background-color: ${user.profile.color}`)
-    span(class='profile-thb-disname' data-display-name=user.display_name)=user.display_name
-    span(class='profile-thb-username' data-username=user.username)='@'+user.username
+    span(class=`profile-thb-disname font-${color.suggestedTone}` data-display-name=user.display_name)=user.display_name
+    span(class=`profile-thb-username font-${color.suggestedTone}` data-username=user.username)='@'+user.username
 
-    p(class='profile-thb-abtme' data-about-me=user.profile.about_me)=user.profile.about_me
+    p(class=`profile-thb-abtme font-${color.suggestedTone}` data-about-me=user.profile.about_me)=user.profile.about_me

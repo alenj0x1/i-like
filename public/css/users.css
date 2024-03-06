@@ -16,16 +16,6 @@
   border-top-right-radius: 5px;
 }
 
-.font-light {
-  fill: var(--font-tone-light);
-  color: var(--font-tone-light);
-}
-
-.font-dark {
-  fill: var(--font-tone-dark);
-  color: var(--font-tone-dark);
-}
-
 .background-light {
   background: var(--font-tone-light);
 }

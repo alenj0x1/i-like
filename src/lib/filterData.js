@@ -75,9 +75,7 @@ export async function filterTopicData(topic, obj) {
     description: topic.description,
     banner: topic.banner,
     spaces: obj.include_spaces
-      ? await Promise.all(
-          topic.spaces.map(async (spaceId) => await getSpace(spaceId.toString(), obj))
-        )
+      ? await Promise.all(topic.spaces.map(async (spaceId) => await getSpace(spaceId.toString(), obj)))
       : topic.spaces,
     created: topic.createdAt,
     updated: topic.updatedAt,
@@ -85,9 +83,7 @@ export async function filterTopicData(topic, obj) {
 }
 
 export async function filterTopicsData(topics, obj) {
-  return obj.include_spaces
-    ? await Promise.all(topics.map(async (topic) => await filterTopicData(topic, obj)))
-    : topics
+  return obj.include_spaces ? await Promise.all(topics.map(async (topic) => await filterTopicData(topic, obj))) : topics
 }
 
 export async function filterSpaceData(space, obj) {

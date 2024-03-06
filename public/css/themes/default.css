@@ -1502,6 +1502,16 @@ main {
   outline: none;
 }
 
+.font-light {
+  fill: var(--font-tone-light);
+  color: var(--font-tone-light);
+}
+
+.font-dark {
+  fill: var(--font-tone-dark);
+  color: var(--font-tone-dark);
+}
+
 /* Desktop */
 @media (min-width: 768px) {
   /* Main styles */

@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import User from '../database/models/User.models'
-import { isValidUrl } from '../lib/validate'
+import { isValidUrl, validateColor } from '../lib/validate'
 import { hashPassword, comparePassword } from '../lib/managePassword'
 const router = Router()
 
@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
   try {
     res.render('settings.pug', {
       user: req.user,
+      color: validateColor({ color: req.user.profile.color, convert: 'hsl', useTone: true }),
     })
   } catch (err) {
     res.status(404).json({ err: err.message })
@@ -45,13 +46,7 @@ router.post('/updateAppr', async (req, res) => {
 
 router.post('/updatePriv', async (req, res) => {
   try {
-    const {
-      hidden_posts_likes,
-      hidden_favorites,
-      hidden_badges,
-      hidden_followers,
-      hidden_following,
-    } = req.body
+    const { hidden_posts_likes, hidden_favorites, hidden_badges, hidden_followers, hidden_following } = req.body
 
     const getUser = await User.findByIdAndUpdate(req.user.id, {
       'profile.privacy': {

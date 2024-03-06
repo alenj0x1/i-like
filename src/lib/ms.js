@@ -18,13 +18,9 @@ export function ms(time_string) {
     if (isNaN(time_string.charAt(i))) type += time_string.charAt(i)
   }
 
-  if (!Object.keys(MS_TYPES_AVAILABLES).includes(type))
-    return { err: 'type_invalid' }
+  if (!Object.keys(MS_TYPES_AVAILABLES).includes(type)) return { err: 'type_invalid' }
 
   return {
-    time:
-      type === 'permanent'
-        ? 'permanent'
-        : parseInt(number) * MS_TYPES_AVAILABLES[type],
+    time: type === 'permanent' ? 'permanent' : parseInt(number) * MS_TYPES_AVAILABLES[type],
   }
 }

@@ -1,9 +1,9 @@
 {
   "name": "i-like",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "babel src/index.js -d dist",
+    "build": "babel src -d dist",
     "dev": "nodemon --exec babel-node src/index.js"
   },
   "devDependencies": {

@@ -1,4 +1,7 @@
 services:
+  database:
+    container_name: mongodb
+    image: mongo
   server:
     container_name: ilike
     build:

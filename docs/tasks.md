@@ -26,7 +26,7 @@ Este documento es el tablero de trabajo vivo del proyecto. Permite mantener cont
 | T-011 | Completada | Establecer el registro de ejecuciones por sesión de agente. | Ninguna. | Completada el 2026-07-26: creada la estructura inicial y añadida la regla obligatoria en `AGENTS.md`. |
 | T-012 | Completada | Precisar la creación, continuación y metadatos de los registros de sesión. | Ninguna. | Completada el 2026-07-26: `AGENTS.md` exige crear o retomar el archivo correspondiente y define sus metadatos mínimos. |
 | T-013 | Completada | Precisar que los registros son individuales por sesión y deben permitir la continuidad entre agentes. | Ninguna. | Completada el 2026-07-26: `AGENTS.md` exige un archivo por sesión y registros autosuficientes para su continuación. |
-| T-014 | En progreso | Establecer y publicar las convenciones de commits y descripciones. | Ninguna; se publicará mediante Git directo en `origin/development`. | Convención añadida a `AGENTS.md`; pendiente de crear el commit y confirmar la subida. |
+| T-014 | Completada | Establecer y publicar las convenciones de commits y descripciones. | Ninguna. | Completada el 2026-07-26: convenciones publicadas en `origin/development` mediante el commit `9c8e3c6`. |
 
 ## Historial de tareas
 
@@ -36,4 +36,4 @@ Las tareas completadas permanecen en la tabla principal con estado `Completada`.
 - 2026-07-26: Se estableció `docs/executions/<DD-MM-AAAA>/` para registros separados por sesión y agente.
 - 2026-07-26: Se precisó la regla de creación o continuación de archivos de sesión y sus metadatos obligatorios.
 - 2026-07-26: Se estableció que cada archivo representa una sesión individual y debe permitir la continuación por otro agente.
-- 2026-07-26: Se añadieron convenciones de commits y descripciones; publicación en curso mediante Git directo.
+- 2026-07-26: Se añadieron convenciones de commits y descripciones; publicadas en `origin/development` mediante `9c8e3c6`.

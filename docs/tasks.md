@@ -15,7 +15,7 @@ Este documento es el tablero de trabajo vivo del proyecto. Permite mantener cont
 | --- | --- | --- | --- | --- |
 | T-001 | Pendiente | Ejecutar Fase 0: descubrimiento y congelación de alcance de la migración. | Requiere validación funcional y decisiones de negocio. | Confirmar alcance, matriz de roles y funcionalidades incompletas. |
 | T-002 | Completada | Crear rama `development` y versionar la documentación de migración. | Ninguna. | Completada el 2026-07-26: rama creada y documentación confirmada en el commit `046ccf5`. |
-| T-003 | En progreso | Publicar la rama `development` en el remoto. | Requiere remoto Git configurado y acceso de publicación. | Verificar remoto y ejecutar `git push -u origin development`. |
+| T-003 | Completada | Publicar la rama `development` en el remoto. | Requiere remoto Git configurado y acceso de publicación. | Completada el 2026-07-26: `development` publicada en `origin` y configurada para seguir `origin/development`. |
 
 ## Historial de tareas
 

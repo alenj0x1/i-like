@@ -78,5 +78,5 @@ sesiones_previas: docs/executions/26-07-2026/configuracion-registro-sesiones.md
 - Ejecutado `yarn profile:legacy`: confirmados conteos, duplicados y referencias huérfanas sintéticas documentadas en `docs/analisis.md`.
 - Verificado el entorno local: MongoDB ejecutándose mediante Docker y servidor conectado mediante `yarn dev`.
 - Ejecutado `git diff --check`: sin errores de espacios.
-- Commit creado: `66c13d2` (`docs: cerrar fase 0 de migracion`) en la rama `development`.
+- Commit creado: `bcd226d` (`docs: cerrar fase 0 de migracion`) en la rama `development`.
 - Publicación: pendiente de `git push origin development`.

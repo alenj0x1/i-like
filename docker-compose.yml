@@ -2,11 +2,10 @@ services:
   database:
     container_name: mongodb
     image: mongo
-  server:
-    container_name: ilike
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
-      - "3001:3001"
-    restart: always
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:

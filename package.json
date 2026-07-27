@@ -4,7 +4,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src -d dist",
-    "dev": "nodemon --exec babel-node src/index.js"
+    "dev": "nodemon --exec babel-node src/index.js",
+    "seed:legacy": "babel-node src/scripts/seedLegacyData.js",
+    "profile:legacy": "babel-node src/scripts/profileLegacyData.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.23.4",

@@ -10,13 +10,18 @@
 
 ## Fase 0 — Descubrimiento y congelación de alcance
 
+**Estado:** Completada el 2026-07-26. Alcance aprobado en `docs/v1-scope.md`; el perfilado de datos se realizó con datos sintéticos y debe repetirse con datos legacy reales antes de la migración final.
+
 **Objetivo:** establecer qué comportamiento legacy debe conservarse, corregirse o descartarse.
 
 **Alcance:**
 
 - Inventariar rutas, vistas, scripts y modelos existentes.
+- Priorizar, para la primera versión, las capacidades que habiliten comunidad y conversación (decisión aceptada el 2026-07-26).
 - Validar con negocio los flujos implementados y las funciones incompletas: likes, favoritos, compartidos, comentarios, soporte y reportes.
+- Alcance confirmado el 2026-07-26: incluir likes, comentarios y reportes; posponer favoritos, compartidos y soporte; separar el rol de moderador funcional del administrador.
 - Definir roles, permisos, reglas de propiedad y políticas de borrado.
+- Política aprobada el 2026-07-26: borrado lógico recuperable por 30 días, anonimización de contenido de cuentas eliminadas, eliminación física de likes/follows y retención de reportes/auditoría por 12 meses.
 - Identificar datos existentes, volumen, calidad, duplicados y relaciones huérfanas.
 - Crear un catálogo de requisitos funcionales y no funcionales.
 

@@ -19,6 +19,13 @@
 - Si surge cualquier problema, bloqueo, desviación, riesgo nuevo o percance que impida cumplir el plan o sus criterios de finalización, informa inmediatamente al usuario con evidencia concreta y el impacto. Detén las decisiones que dependan de ese asunto hasta recibir dirección.
 - Cuando el problema requiera una decisión sobre arquitectura, patrón, dependencia, tecnología, alcance, datos o estrategia, registra la decisión confirmada en `docs/decitions.md`.
 
+## Comunicación ante bloqueos y decisiones
+
+- Ante cualquier bloqueo o duda que impida continuar de forma segura o que requiera dirección del usuario, explica el asunto antes de solicitar una decisión.
+- La explicación debe incluir contexto, evidencia comprobada, impacto en el trabajo, ejemplos concretos cuando ayuden a entenderlo y alternativas o sugerencias razonadas.
+- Facilita una discusión con el usuario hasta alcanzar una conclusión; no presentes una pregunta aislada ni supongas una decisión de producto, alcance, arquitectura, datos o seguridad sin confirmación.
+- Una vez confirmada la conclusión, actualiza el tablero, el registro de sesión y, cuando corresponda, `docs/decitions.md`, `docs/analisis.md` y `docs/migration-plan.md`.
+
 ## Tablero de trabajo
 
 - `docs/tasks.md` es el tablero de trabajo vivo y la fuente de continuidad entre sesiones y agentes.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Gobernanza de migraciones"
+  short_description: "Gestiona migraciones con trazabilidad"
+  default_prompt: "Usa $migration-governance para organizar la migración de este proyecto legacy."

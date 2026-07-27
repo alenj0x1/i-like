@@ -29,6 +29,8 @@ Este documento es el tablero de trabajo vivo del proyecto. Permite mantener cont
 | T-014 | Completada | Establecer y publicar las convenciones de commits y descripciones. | Ninguna. | Completada el 2026-07-26: convenciones publicadas en `origin/development` mediante el commit `9c8e3c6`. |
 | T-015 | Completada | Establecer el protocolo de comunicación ante bloqueos y decisiones. | Ninguna. | Completada el 2026-07-26: `AGENTS.md` exige contexto, evidencia, impacto, ejemplos y alternativas antes de pedir dirección. |
 | T-016 | Completada | Configurar el entorno local con MongoDB en Docker y servidor ejecutado con Yarn. | Requiere Docker, Yarn y `.env` local. | Completada el 2026-07-26: MongoDB persiste en Docker; `yarn dev` conecta y crea el administrador inicial. |
+| T-017 | Completada | Reconstruir el flujo histórico del proyecto y extraer un proceso reutilizable para una skill de migración. | Requirió revisar commits, documentación y configuración actuales. | Completada el 2026-07-26: flujo histórico, método de gobernanza, guardas, contrato documental y borrador de skill registrados en `docs/migration-skill-extraction.md`. |
+| T-018 | Completada | Implementar la skill instalable derivada de `docs/migration-skill-extraction.md`. | Decisiones confirmadas el 2026-07-26: alcance genérico, español y ubicación dentro del repositorio. | Completada el 2026-07-26: creada `.agents/skills/migration-governance` con flujo, referencias, plantillas y validación oficial satisfactoria. |
 
 ## Historial de tareas
 
@@ -52,3 +54,6 @@ Las tareas completadas permanecen en la tabla principal con estado `Completada`.
 - 2026-07-26: T-008 completada con un perfilado sintético reproducible; T-009 iniciada para consolidar requisitos de la primera versión.
 - 2026-07-26: T-009 completada: catálogo inicial aprobado, notificaciones excluidas y objetivos cuantificados de rendimiento diferidos a fase 1; T-010 iniciada.
 - 2026-07-26: T-010 y T-001 completadas: el usuario aprobó el expediente de alcance y cerró la fase 0.
+- 2026-07-26: T-018 bloqueada: la implementación de la skill requiere confirmar si será genérica o especializada, el idioma de las plantillas y el directorio de instalación.
+- 2026-07-26: T-018 reanudada: el usuario confirmó una skill genérica para migraciones, en español y dentro del repositorio.
+- 2026-07-26: T-018 completada: `migration-governance` creada en `.agents/skills/`; `quick_validate.py` confirmó que la skill es válida.

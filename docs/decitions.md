@@ -14,6 +14,14 @@ Este documento registra decisiones confirmadas sobre arquitectura, patrones, dep
 
 ## Decisiones
 
+### 2026-07-26 — Alcance y ubicación de la skill de gobernanza de migraciones
+
+- **Estado:** Aceptada
+- **Contexto:** El análisis histórico produjo un borrador de skill reutilizable, pero dejaba por definir su especialización, idioma y ubicación. El usuario confirmó estas opciones para permitir su implementación.
+- **Decisión:** Crear `migration-governance` como una skill genérica aplicable a cualquier proyecto de migración, con instrucciones y plantillas en español, versionada en `.agents/skills/` dentro de este repositorio.
+- **Consecuencias:** La skill describirá un proceso adaptable y no impondrá un stack, una arquitectura ni un modelo de datos de `i-like`. Podrá copiarse o instalarse manualmente desde el repositorio en otros entornos.
+- **Alternativas consideradas:** Especializarla en monolitos web hacia API + SPA; redactar las plantillas en inglés o bilingües; instalarla directamente en el directorio global de Codex.
+
 ### 2026-07-26 — Prioridad funcional de la primera versión migrada
 
 - **Estado:** Aceptada

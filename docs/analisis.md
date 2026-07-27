@@ -6,6 +6,15 @@
 
 > Las recomendaciones no son decisiones confirmadas. Las decisiones aprobadas deben registrarse en `docs/decitions.md`.
 
+## Flujo histórico comprobado
+
+El historial Git visible contiene 72 commits entre el 2023-12-28 y el 2026-07-26, sin etiquetas. La evolución se divide en dos periodos que deben tratarse por separado:
+
+1. **Construcción incremental del legacy (2023-12 a 2024-09):** se creó un monolito Express + Pug, primero con estructura, vistas y MongoDB; después identidad y sesión; luego administración, moderación, comunidades, publicaciones, perfil y follows; finalmente Docker y soporte local de MongoDB. Los commits cambian rutas, modelos, librerías y vistas en conjunto, lo que confirma un desarrollo por capacidades funcionales, aunque sin un contrato API, pruebas automatizadas ni documentación operativa sistemática.
+2. **Preparación gobernada de la migración (2026-07):** se creó la rama `development`, se añadieron `AGENTS.md`, análisis, decisiones, tablero, plan por fases, requisitos, expediente de alcance y registros de sesión. La fase 0 se cerró solo después de inventario estático, validación de negocio, matriz de permisos, políticas de retención, perfilado sintético y aprobación del alcance.
+
+Este segundo periodo aporta un proceso reutilizable: registrar el trabajo antes de iniciarlo; separar hechos, riesgos, propuestas y decisiones; ejecutar fases con criterios de cierre; detener decisiones dependientes de bloqueos; y conservar evidencia de validaciones, publicación y continuidad entre sesiones. El detalle y la propuesta de formalización en una skill están en `docs/migration-skill-extraction.md`.
+
 ## Tecnologías
 
 | Área | Implementación actual |
@@ -304,6 +313,14 @@ La API futura debe separar autenticación, perfil, temas, espacios, publicacione
 5. Migrar React por verticales funcionales, reutilizando componentes para navegación, tarjetas y formularios.
 6. Validar conteos, relaciones y credenciales migradas antes del corte.
 7. Realizar corte gradual, evitando doble escritura prolongada.
+
+## Implementación de la skill de migración
+
+- Hecho comprobado el 2026-07-26: `docs/migration-skill-extraction.md` mantiene como pendientes la especialización de la skill y el idioma de sus plantillas; el documento no autoriza crearla sin esas confirmaciones.
+- Hecho comprobado el 2026-07-26: la guía de creación de skills exige confirmar el directorio de salida antes de inicializar una skill nueva, y validar posteriormente el paquete creado.
+- Riesgo: crear una skill genérica, especializada o instalada fuera del directorio esperado sin confirmación impondría decisiones de alcance y distribución no aprobadas.
+- Propuesta implementada: crear `migration-governance` con referencias y plantillas después de confirmar alcance, idioma y ubicación.
+- Hecho comprobado el 2026-07-26: la decisión fue confirmada y se creó `.agents/skills/migration-governance` con un flujo genérico, tres referencias de divulgación progresiva y cinco plantillas adaptables. `quick_validate.py` validó correctamente la estructura del paquete.
 
 ## Decisiones pendientes
 

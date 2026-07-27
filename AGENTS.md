@@ -27,6 +27,25 @@
 - Nunca borres una tarea completada. Conserva su historial y cambia únicamente su estado a `Completada`, incluyendo la fecha y evidencia o resultado de finalización.
 - Al finalizar una sesión o tarea, asegúrate de que el estado del tablero represente con precisión el trabajo realizado y el trabajo restante.
 
+## Registro de ejecuciones por sesión
+
+- Cada archivo en `docs/executions/<DD-MM-AAAA>/` corresponde a una sesión individual de un agente; la carpeta agrupa las sesiones por fecha local. El archivo debe usar un nombre descriptivo en minúsculas y con guiones (por ejemplo, `inventario-legacy.md`).
+- Al iniciar una sesión, cada agente debe localizar el archivo que corresponda a esa misma sesión. Si no existe, debe crearlo antes de realizar trabajo; si corresponde a una sesión previa retomada, debe editar y continuar el archivo existente.
+- Todo archivo de sesión debe iniciar con metadatos: fecha, agente, título o tema, estado, objetivo, alcance, tareas relacionadas y referencias a sesiones previas cuando aplique. Los metadatos deben permitir identificar el trabajo sin leer el resto del documento.
+- Actualiza ese archivo durante la sesión. Debe registrar el objetivo y alcance, proceso realizado, hallazgos, problemas o bloqueos, detalle de la implementación, archivos o cambios efectuados, decisiones y alternativas, soluciones aplicadas, verificaciones y trabajo pendiente.
+- Registra únicamente hechos comprobados. Distingue claramente las decisiones confirmadas de las propuestas que requieran aprobación del usuario.
+- No sobrescribas ni elimines registros de otras sesiones o agentes. Si una sesión retoma trabajo previo, crea su propio archivo y enlaza o referencia el registro anterior cuando sea útil.
+- Antes de finalizar la sesión, deja el registro actualizado con el estado real del trabajo, incluidos bloqueos y próximos pasos.
+- Cada registro debe ser autosuficiente para que cualquier otro agente pueda continuar el trabajo sin depender de la conversación previa: debe indicar el contexto, estado alcanzado, evidencia, archivos relevantes, decisiones, bloqueos, próximos pasos accionables y cualquier instrucción necesaria para la continuación.
+
+## Convenciones de commits y descripciones
+
+- Antes de crear un commit, verifica el alcance con `git status` y el diff; no incluyas cambios ajenos a la tarea o sesión actual sin autorización explícita.
+- Usa mensajes de commit claros, concisos y en imperativo, con el formato `tipo: descripción` (por ejemplo, `docs: registrar reglas de sesiones de agentes`). Los tipos admitidos son `feat`, `fix`, `docs`, `refactor`, `test`, `build`, `ci` y `chore`.
+- La descripción debe explicar el resultado o propósito del cambio, no solo la acción realizada; evita mensajes genéricos como `cambios`, `actualización` o `fix`.
+- Cuando se cree una descripción de pull request o entrega, incluye: qué cambió, por qué, impacto para usuario o sistema, decisiones relevantes, validaciones realizadas y bloqueos o trabajo pendiente. Debe permitir revisión y continuidad sin depender de la conversación.
+- Registra en el archivo de ejecución de la sesión el hash del commit, la rama, el destino de publicación y el resultado de la subida; si no se puede publicar, documenta la causa y el siguiente paso.
+
 ## Convenciones
 
 - Redacta la documentación en español.

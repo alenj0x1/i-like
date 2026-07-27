@@ -79,4 +79,6 @@ sesiones_previas: docs/executions/26-07-2026/configuracion-registro-sesiones.md
 - Verificado el entorno local: MongoDB ejecutándose mediante Docker y servidor conectado mediante `yarn dev`.
 - Ejecutado `git diff --check`: sin errores de espacios.
 - Commit creado: `bcd226d` (`docs: cerrar fase 0 de migracion`) en la rama `development`.
-- Publicación: pendiente de `git push origin development`.
+- Registro de cierre: `0df68e9` (`docs: registrar cierre de fase 0`).
+- Publicación confirmada: `git push origin development` actualizó `origin/development` de `12260a3` a `0df68e9`.
+- El remoto informó 39 vulnerabilidades existentes en la rama predeterminada (2 críticas, 19 altas, 10 moderadas y 8 bajas). No fueron introducidas ni modificadas por este cierre; requieren una tarea de triage independiente.
